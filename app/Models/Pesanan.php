@@ -18,9 +18,6 @@ class Pesanan extends Model
 
     protected $guarded = ['id'];
 
-    const CREATED_AT = 'tanggal_pesanan';
-    const UPDATE_AT = 'tanggal_update';
-
     public function user()
     {
         return $this->belongsTo(User::class);
