@@ -15,9 +15,12 @@ class CreateUlasansTable extends Migration
     {
         Schema::create('ulasans', function (Blueprint $table) {
             $table->id();
-            $table->integer('rating')->length(1);
-            $table->text('ulasan');
+            $table->foreignId('id_user');
             $table->foreignId('id_produk');
+            $table->text('ulasan');
+            $table->integer('rating');
+            
+            $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_produk')->references('id')->on('produks');
         });
     }

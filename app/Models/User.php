@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Ulasan;
 use App\Models\Pesanan;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
@@ -60,5 +61,10 @@ class User extends Authenticatable
     public function pesanan()
     {
         return $this->hasMany(Pesanan::class);
+    }
+
+    public function ulasan()
+    {
+        return $this->hasMany(Ulasan::class);
     }
 }

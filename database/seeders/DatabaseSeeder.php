@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\StatusPesanan;
 use Illuminate\Database\Seeder;
 use App\Models\StatusPembayaran;
@@ -32,8 +33,8 @@ class DatabaseSeeder extends Seeder
             KecamatanSeeder::class,
             KabupatenSeeder::class,
             ProdukSeeder::class,
-            UlasanSeeder::class,
             UserSeeder::class,
+            UlasanSeeder::class,
             TransaksiSeeder::class,
             StatusPesananSeeder::class,
             PengirimanSeeder::class,
