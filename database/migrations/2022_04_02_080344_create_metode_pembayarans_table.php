@@ -15,7 +15,7 @@ class CreateMetodePembayaransTable extends Migration
     {
         Schema::create('metode_pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->string('metode_pembayaran', 100);
+            $table->string('metode_pembayaran', 20);
             $table->string('no_rekening', 50)->nullable();
         });
     }

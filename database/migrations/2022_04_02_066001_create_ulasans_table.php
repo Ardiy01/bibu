@@ -18,7 +18,7 @@ class CreateUlasansTable extends Migration
             $table->foreignId('id_user');
             $table->foreignId('id_produk');
             $table->text('ulasan');
-            $table->integer('rating');
+            $table->tinyInteger('rating');
             
             $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_produk')->references('id')->on('produks');

@@ -15,7 +15,7 @@ class CreateStatusPembayaransTable extends Migration
     {
         Schema::create('status_pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->string('status_pembayaran');
+            $table->string('status_pembayaran', 12);
         });
     }
 

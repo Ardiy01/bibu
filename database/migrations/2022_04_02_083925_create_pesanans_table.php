@@ -18,7 +18,7 @@ class CreatePesanansTable extends Migration
             $table->id();
             $table->foreignId('id_user');
             $table->foreignId('id_produk');
-            $table->integer('jumlah_produk');
+            $table->tinyInteger('jumlah_produk');
             $table->foreignId('id_metode_pembayaran');
             $table->string('bukti_pembayaran')->nullable();
             $table->foreignId('id_status_pembayaran')->default(2);
