@@ -20,6 +20,7 @@ class CreateProduksTable extends Migration
             $table->smallInteger('stok');
             $table->string('gambar');
             $table->text('keterangan');
+            $table->timestamps();
         });
     }
 

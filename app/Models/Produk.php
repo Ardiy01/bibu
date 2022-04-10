@@ -15,11 +15,11 @@ class Produk extends Model
 
     public function ulasan()
     {
-        return $this->hasMany(Ulasan::class);
+        return $this->hasMany(Ulasan::class, 'id_produk');
     }
 
     public function pesanan()
     {
-        return $this->belongsTo(Pesanan::class);
+        return $this->hasMany(Pesanan::class, 'id_produk');
     }
 }

@@ -14,6 +14,6 @@ class StatusPesanan extends Model
 
     public function pesanan()
     {
-        return $this->belongsTo(Pesanan::class);
+        return $this->hasMany(Pesanan::class, 'id_status_pesanna');
     }
 }

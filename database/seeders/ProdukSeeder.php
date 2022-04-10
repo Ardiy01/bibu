@@ -21,7 +21,7 @@ class ProdukSeeder extends Seeder
             'harga' => 15000,
             'stok' => 500,
             'gambar' => 'produkmentah.png',
-            'keterangan' => 'Ubi Cilembu tidak melalui proses pemanggangan'
+            'keterangan' => 'ubi jalar yang belum diolah yang ditanam di Desa Cilembu yang memiliki rasa manis'
         ]);
 
         DB::table('produks')->insert([
@@ -29,7 +29,7 @@ class ProdukSeeder extends Seeder
             'harga' => 22000,
             'stok' => 300,
             'gambar' => 'produkbakar.png',
-            'keterangan' => 'Ubi Cilembu proses pemanggangan'
+            'keterangan' => 'ubi jalar khas cilembu yang melalui proses pemanggangan dan memiliki rasa manis yang didalamnya mengeluarkan cairan madu. '
         ]);
     }
 }

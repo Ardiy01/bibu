@@ -1,0 +1,41 @@
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  .sidebar {
+    top: 5rem;
+  }
+
+  .iconify{
+    color: #007C84;
+  }
+
+  header{
+    margin-top: -16px;
+    border-radius: 0px;
+  }
+
+  header .navbar-brand{
+    visibility: visible;
+  }
+  
+  header .person{
+    border-radius: 0px;
+  }
+
+  .drp-header{
+    display: unset;
+  }
+
+  .person{
+    display: none;
+  }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) { 
+  
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) { 
+
+}

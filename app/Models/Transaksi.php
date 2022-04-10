@@ -15,11 +15,11 @@ class Transaksi extends Model
 
     public function pengeluaran()
     {
-        return $this->hasMany(Pengeluaran::class);
+        return $this->hasMany(Pengeluaran::class, 'id_transaksi');
     }
 
     public function pesanan()
     {
-        return $this->hasMany(Pesanan::class);
+        return $this->hasMany(Pesanan::class, 'id_transaksi');
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Pesanan;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -50,21 +51,24 @@ class User extends Authenticatable
 
     public function kecamatan()
     {
-        return $this->belongsTo(Kecamatan::class);
+        return $this->belongsTo(Kecamatan::class, 'id_kecamatan');
     }
 
     public function kabupaten()
     {
-        return $this->belongsTo(Kabupaten::class);
+        return $this->belongsTo(Kabupaten::class, 'id_kabupaten');
     }
 
     public function pesanan()
     {
-        return $this->hasMany(Pesanan::class);
+        return $this->hasMany(Pesanan::class, 'id_user');
     }
 
     public function ulasan()
     {
-        return $this->hasMany(Ulasan::class);
+        return $this->hasMany(Ulasan::class, 'id_user');
     }
+
+
+
 }

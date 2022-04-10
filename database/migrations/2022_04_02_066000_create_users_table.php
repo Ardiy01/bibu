@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('id_kecamatan');
             $table->foreignId('id_kabupaten');
             $table->rememberToken();
+            $table->timestamps();
 
             $table->foreign('id_kecamatan')->references('id')->on('kecamatans');
             $table->foreign('id_kabupaten')->references('id')->on('kabupatens');
