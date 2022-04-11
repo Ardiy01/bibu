@@ -28,6 +28,19 @@
   .person{
     display: none;
   }
+  
+  h6.psn-produk{
+    display: none;
+  }
+
+  .nm-produk{
+    margin: auto;
+  }
+
+  .text{
+    text-align: center;
+  }
+
 }
 
 /* Medium devices (tablets, less than 992px) */

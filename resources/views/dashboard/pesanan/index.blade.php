@@ -1,59 +1,76 @@
 @extends('dashboard.layouts.main')
 
 @section('content')
-    <h4 class="text-center mt-3 bg-primary py-2 text-light rounded-3">Pesanan</h4>
-
-    {{-- tombol create pesanan --}}
-    <a href="/dashboard/pesanan/create" class="btn btn-primary rounded-3 my-2">Tambah Pesanan &ensp; <span data-feather="plus"></span></a>
-
+<div class="container py-2 mt-4 shadow" style="border-radius: 12px; background-color: rgba(234, 243, 244, 1);">
+    <div class="container text-end">
+        <a href="/dashboard/pesanan/create" class="btn sty-btn-edit"> 
+            <span class="iconify" data-icon="akar-icons:plus" style="color: #007c84;"></span>
+        </a>
+    </div>
     @if ($pesanan->count())
-        <div class="container">
-            <div class="row my-1 d-flex justify-content-center">
-                @foreach ($pesanan as $psn) 
-                <div class="col-12 col-sm-3 my-2 d-flex justify-content-center">
-                        <a href="/dashboard/pesanan/{{ $psn->id }}" style="text-decoration: none; color: black;">
-                        <div class="card  shadow hover-card-produk" style="width: 18rem;">
-                            <div class="card-body">
-                                <img src="{{ asset('storage/' .$psn->produk->gambar) }}" class="card-img-top d-block overflow-hidden m-auto" alt="{{ $psn->produk->nama_produk }}" style="max-height: 9rem;">
-                                <h5 class="card-title text-center text-capitalize mt-2">{{ $psn->produk->nama_produk }}</h5>
-                                <p class="card-text ">Nama Pembeli : <span class="text-capitalize">{{ $psn->user->nama }}</span></p>
-                                <p class="card-text">Jumlah &nbsp;&nbsp;&nbsp;: <span>{{ $psn->jumlah_produk }} kg</span></p>
-                                <p class="card-text">Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span>Rp. {{ $psn->jumlah_produk * $psn->produk->harga }}</span></p>
-
-                                {{-- cek status --}}
-                                @if ($psn->status_pesanan->status_pesanan == 'Belum Diverifikasi')
-                                    <p class="card-text">Status &nbsp;&nbsp;&nbsp;&nbsp;: <span class=" bg-danger rounded-2 px-2 text-light py-1">{{ $psn->status_pesanan->status_pesanan}}</span></p>
-                                @endif
-                                @if($psn->status_pesanan->status_pesanan == 'Diproses')
-                                    <p class="card-text">Status &nbsp;&nbsp;&nbsp;&nbsp;: <span class=" bg-warning rounded-2 px-2 text-light py-1">{{ $psn->status_pesanan->status_pesanan }}</span></p>
-                                @endif
-                                @if($psn->status_pesanan->status_pesanan == 'Dikirim')
-                                    <p class="card-text">Status &nbsp;&nbsp;&nbsp;&nbsp;: <span class=" bg-primary rounded-2 px-2 text-light py-1">{{ $psn->status_pesanan->status_pesanan }}</span></p>
-                                @endif
-                                @if($psn->status_pesanan->status_pesanan == 'Selesai')
-                                    <p class="card-text bg-succes">Status &nbsp;&nbsp;&nbsp;&nbsp;: <span class=" bg-success rounded-2 px-2 text-light py-1">{{ $psn->status_pesanan->status_pesanan }}</span></p>
-                                @endif
-                                {{-- end cek status --}}
-                            
-                            </div>
-                            <div class="d-flex justify-content-end mx-2">
-                                <ul class="icons">
-                                    <li>
-                                        <a href="/dashboard/pesanan/{{ $psn->id }}/edit" class="badge btn-warning"><span data-feather="edit"></span></a>
-                                    </li>
-                                </ul>
+    @foreach ($pesanan as $psn)
+        <a href="/dashboard/pesanan/{{ $psn->id }}" style="text-decoration: none">
+        <div class="container my-3 zoom" >
+            <div class="card card-melihat sty-card">
+                <div class="card-header mb-0 pb-0 hd">
+                    <div class="d-flex justify-content-between mx-3">
+                        <div class="mb-0 pb-0">
+                            <h6 class="fw-bold text-uppercase mb-0 psn-produk">{{ $psn->produk->nama_produk }}</h6>
+                            <p class="mb-0">{{ $psn->user->nama }}</p>
+                        </div>
+                        <div class="my-auto">
+                            <p class="py-1 px-2 mb-0">
+                                <span class="iconify" data-icon="arcticons:mapsgo" style="color: #007c84;"></span>
+                                {{ $psn->user->jalan . ' No. ' . $psn->user->nomor . ' Kec. ' . $psn->user->kecamatan->nama_kecamatan .', Kab. '. $psn->user->kabupaten->nama_kabupaten}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt-0 mb-0" style="background-color: rgba(0, 124, 132, 0.2);">
+                <div class="card-body mt-0">
+                    <div class="row">
+                        <div class="col-sm-3 col-12">
+                            <div class="text-center">
+                                <img src="{{ asset('storage/' .$psn->produk->gambar) }}" class="rounded m-auto" alt="{{ $psn->produk->nama_produk }}" style="max-width: 12rem;">
                             </div>
                         </div>
-                    </a>
+                        <div class="col-sm-6 col-12">
+                            <div class="d-flex align-items-start flex-column bd-highlight" style="height: 100%;">
+                                <p class="fw-bold text-uppercase p-2 nm-produk" style="margin-bottom: -15px;">{{ $psn->produk->nama_produk }}</p>
+                                <p class="mb-auto p-2 bd-highlight text-capitalize text"> {{ $psn->produk->keterangan }} </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-12 mb-0 mt-0">
+                            <div class="d-flex flex-column bd-highlight mb-0 text-center">
+                                <div class="bd-highlight">
+                                    <p>Jumlah Produk</p>
+                                    <p class="fw-bold" style="margin-top: -18px;">{{ $psn->jumlah_produk }} Kg</p>
+                                </div>
+                                <div class="bd-highlight" style="margin-top: -15px;">
+                                    <p>Status Pembayaran</p>
+                                    <p class="mx-5 py-1" style="margin-top: -10px; background-color:#007C84; color: white; border-radius: 10px">{{ $psn->status_pembayaran->status_pembayaran }}</p>
+                                </div>
+                                <div class="bd-highlight" style="margin-top: -15px;">
+                                    <p>Status Pesanan</p>
+                                    <p class="mx-5 py-1 mb-0" style="margin-top: -10px; background-color:#007C84; color: white; border-radius: 10px">{{ $psn->status_pesanan->status_pesanan }}</p>
+                                </div>
+    
+                            </div>
+                        </div>
+                    </div>
                 </div>
-        @endforeach
 
             </div>
         </div>
+    </a>
+    @endforeach
     @else
         <h4 class="text-center m-auto">Belum ada Pesanan</h4>
     @endif
     <div class="d-flex justify-content-center my-3">
         {{ $pesanan->links() }}
     </div>
+</div>
+         
+
 @endsection

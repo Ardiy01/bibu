@@ -8,7 +8,7 @@
     @endif
     {{ $readonly ? 'readonly' : '' }}>
     @error($name)
-        <div class="invalid-feedback">
+        <div class="invalid-feedback text-capitalize">
             {{ $message }}
         </div>
     @enderror

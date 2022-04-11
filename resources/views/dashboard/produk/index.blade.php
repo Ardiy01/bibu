@@ -40,10 +40,19 @@
                                 </div>
                         </div>
                     </div>
-                    <div class="col-sm-2 text-end col-12 mb-0 mt-auto">
-                        <a href="/dashboard/produk/{{ $produk->id }}/edit" class="btn sty-btn-edit">
-                            <span class="iconify" data-icon="akar-icons:edit" style="color: #007c84; font-size: 1.2rem; "></span>
-                        </a>
+                    <div class="col-sm-2 col-12  text-end">
+                        {{-- <div class="container d-flex align-content-between flex-wrap" style="height: 100%">
+                            <div class=" text-end"> --}}
+                                <a href="/dashboard/produk/{{ $produk->id }}/edit" class="btn sty-btn-edit">
+                                    <span class="iconify" data-icon="akar-icons:edit" style="color: #007c84; font-size: 1.2rem; "></span>
+                                </a>
+                            {{-- </div> --}}
+                            {{-- <div class=" t">
+                                <a href="#" class="btn sty-btn-edit">
+                                    <span class="iconify" data-icon="akar-icons:edit" style="color: #007c84; font-size: 1.2rem; "></span>
+                                </a>
+                            </div> --}}
+                        {{-- </div> --}}
                     </div>
                 </div>
             </div>

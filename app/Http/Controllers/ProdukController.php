@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Models\Produk;
-use App\Models\Ulasan;
 use Illuminate\Http\Request;
 
 class ProdukController extends Controller
@@ -28,7 +26,7 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        return view('dashboard.produk.create', []);
+        return view('dashboard.produk.create');
     }
 
     /**
@@ -40,7 +38,6 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         //
-
         $validateData = $request->validate([
             'nama_produk' => 'required|min:5',
             'harga' => 'required',
@@ -51,7 +48,8 @@ class ProdukController extends Controller
         $validateData['gambar'] = $request->file('gambar')->store('produk-images');
         Produk::create($validateData);
 
-        return redirect('/dashboard/produk')->with('succes', 'Data Produk Berhasil di Tambahkan');
+        alert()->success('Update Produk', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true'); 
+        return redirect('/dashboard/produk');
     }
 
     /**
@@ -109,17 +107,7 @@ class ProdukController extends Controller
         Produk::where('id', $produk->id)
             ->update($validateData);
 
-        return redirect('/dashboard/produk')->with('succes', 'Data Berhasil di Update');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Produk  $produk
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Produk $produk)
-    {
-        //
+        alert()->success('Update Produk', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true'); 
+        return redirect('/dashboard/produk/'.$produk->id.'/edit');
     }
 }

@@ -45,7 +45,7 @@
                         <div class="input-group">
                           <textarea class="form-control @error('keterangan') is-invalid @enderror" id="keterangan" aria-label="With textarea" name="keterangan">{{ old('keterangan') }}</textarea>
                           @error('keterangan')
-                            <div class="invalid-feedback">
+                            <div class="invalid-feedback text-capitalize">
                                 {{ $message }}
                             </div>
                           @enderror
@@ -54,7 +54,7 @@
 
                     {{-- button --}}
                     <div class="d-grid gap-2 mt-4">
-                        <button type="button" class="btn fw-bold text-light shadow-sm" id="btn-create-produk" style="background-color: #004347">Simpan</button>
+                        <button type="submit" class="btn fw-bold text-light shadow-sm" style="background-color: #004347">Simpan</button>
                         <a href="/dashboard/produk" class="btn px-2 fw-bold text-light shadow-sm" style="background-color: #2DB5B2">Batal</a>
                     </div>
                   </form>

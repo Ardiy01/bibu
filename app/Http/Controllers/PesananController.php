@@ -17,11 +17,8 @@ class PesananController extends Controller
     public function index()
     {
         //
-
-        
         return view('dashboard.pesanan.index',[
-            'pesanan' => Pesanan::latest()->paginate(5),
-            'alamat' => Pesanan::Alamat(),
+            'pesanan' => Pesanan::latest()->paginate(7),
         ]);
     }
 
