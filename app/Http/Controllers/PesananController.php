@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Produk;
 use App\Models\Pesanan;
+use App\Models\Pengiriman;
 use Illuminate\Http\Request;
+use App\Models\StatusPesanan;
+use App\Models\MetodePembayaran;
+use App\Models\StatusPembayaran;
 use Illuminate\Support\Facades\DB;
 
 class PesananController extends Controller
@@ -67,7 +72,12 @@ class PesananController extends Controller
     {
         //
         return view('dashboard.pesanan.update', [
-            'pesanan' => $pesanan,
+            'pesan' => $pesanan,
+            'metode' => MetodePembayaran::all(),
+            'pembayaran' => StatusPembayaran::all(),
+            'status' => StatusPesanan::all(),
+            'ekspedisi' => Pengiriman::all(),
+            'produk' => Produk::all()
         ]);
     }
 
@@ -81,6 +91,37 @@ class PesananController extends Controller
     public function update(Request $request, Pesanan $pesanan)
     {
         //
+        $data = [
+            'id_produk' => 'required',
+            'jumlah_produk' => 'required',
+            'id_status_pembayaran' => 'required',
+            'id_status_pesanan' => 'required',
+            'bukti_pembayaran' => 'nullable|image|mimes:jpeg,png,jpg|file|max:2048',
+            'id_metode_pembayaran' => 'required',
+            'id_pengiriman' => 'required',
+            'no_resi' => 'nullable',
+            'ongkir' => 'nullable',
+            'deskripsi' => 'nullable'
+        ];
+
+        $validateData = $request->validate($data);
+
+        if ($request->file('bukti_pembayaran')) {
+            $struks = $request->file('bukti_pembayaran')->store('struk-images');
+            $validateData['bukti_pembayaran'] = $struks;
+        } else {
+            $struks = $pesanan->struk;
+            $validateData['bukti_pembayaran'] = $struks;
+        }
+
+        Pesanan::where('id', $pesanan->id)
+            ->update($validateData);
+
+        alert()->success('Update Pesanan', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true'); 
+        return redirect('/dashboard/pesanan/' . $pesanan->id . '/edit');
+
+
+
     }
 
     /**

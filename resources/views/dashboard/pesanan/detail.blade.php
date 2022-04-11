@@ -21,7 +21,7 @@
             <div class="card-body mt-0 mx-sm-0 mx-0">
                 <div class="card-body mt-0 mx-1">
                     <table cellpadding="4">
-                        @if ($pesanan->id_user != 1)
+                        @if ($pesanan->user->rule != 'Pemilik')
                         <tr>
                             <td class="fs-6" style="padding-right: 1rem;">Nama</td>
                             <td>:</td>

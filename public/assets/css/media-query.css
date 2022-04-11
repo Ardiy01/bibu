@@ -45,6 +45,10 @@
     text-align: end;
   }
 
+  #btn-update{
+    margin-left: 0rem !important;
+  }
+
 }
 
 /* Medium devices (tablets, less than 992px) */
