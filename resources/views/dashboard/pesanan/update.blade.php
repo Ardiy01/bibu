@@ -138,13 +138,20 @@
                             id="ongkir"
                             label="Ongkir"
                             type="number"
-                            name="onkir"
+                            name="ongkir"
                             :value="$pesan->ongkir ?? ''"
                         />   
                     @endif
 
                     @if ($pesan->user->rule == 'Pemilik')
-                        
+                    <div class="row mb-sm-3 mb-3">
+                        <label for="deskripsi" class="form-label col-sm-3 col-12 m-auto fs-6">Deskripsi</label>
+                        <div class="col-sm-9 col-12 mt-1">
+                            <div class="input-group">
+                              <textarea class="form-control" id="deskripsi" aria-label="With textarea" name="deskripsi">{{ $pesan->deskripsi }}</textarea>  
+                            </div>                  
+                        </div>
+                    </div>
                     @endif
 
                     {{-- button --}}

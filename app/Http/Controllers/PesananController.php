@@ -23,6 +23,7 @@ class PesananController extends Controller
     {
         //
         return view('dashboard.pesanan.index',[
+            'pesananUser' => Pesanan::where('id', 2)->latest()->paginate(7), // Ambil pesanan milik user yang login
             'pesanan' => Pesanan::latest()->paginate(7),
         ]);
     }
@@ -35,6 +36,14 @@ class PesananController extends Controller
     public function create()
     {
         //
+        return view('dashboard.pesanan.create',[
+            'users' => User::where('id', 2)->get(), // ubah id user dengan user login
+            'metode' => MetodePembayaran::all(),
+            'pembayaran' => StatusPembayaran::all(),
+            'status' => StatusPesanan::all(),
+            'ekspedisi' => Pengiriman::all(),
+            'produk' => Produk::all()
+        ]);
     }
 
     /**
@@ -46,6 +55,32 @@ class PesananController extends Controller
     public function store(Request $request)
     {
         //
+        $data = [
+            'id_produk' => 'required',
+            'jumlah_produk' => 'required',
+            'id_status_pembayaran' => 'required',
+            'id_status_pesanan' => 'required',
+            'bukti_pembayaran' => 'nullable|image|mimes:jpeg,png,jpg|file|max:2048',
+            'id_metode_pembayaran' => 'required',
+            'id_pengiriman' => 'required',
+            'deskripsi' => 'nullable'
+        ];
+
+        $validateData = $request->validate($data);
+        if($request->file('bukti_pembayaran')){
+            $struk = $request->file('bukti_pembayaran')->store('struk-images');
+            $validateData['bukti_pembayaran'] = $struk;
+
+        } else{
+            $validateData['bukti_pembayaran'] = Null;
+        }
+        $validateData['id_user'] = 1;
+        Pesanan::create($validateData);
+
+        alert()->success('Tambah Pesanan', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true'); 
+        return redirect('/dashboard/pesanan');
+
+
     }
 
     /**
@@ -79,6 +114,7 @@ class PesananController extends Controller
             'ekspedisi' => Pengiriman::all(),
             'produk' => Produk::all()
         ]);
+
     }
 
     /**
@@ -119,19 +155,5 @@ class PesananController extends Controller
 
         alert()->success('Update Pesanan', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true'); 
         return redirect('/dashboard/pesanan/' . $pesanan->id . '/edit');
-
-
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Pesanan  $pesanan
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pesanan $pesanan)
-    {
-        //
     }
 }

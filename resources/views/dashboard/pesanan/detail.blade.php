@@ -7,7 +7,9 @@
             <div class="card-header mb-0 pb-0 hd pt-0 mt-0">
                 <div class="row mx-2 my-2">
                     <div class="col-8 my-auto fw-bold text-uppercase" style="color: #007C84;">
-                        <a href="/dashboard/pesanan" class="mx-1 text-center"><</a>
+                        <a href="/dashboard/pesanan" class="mx-1 text-center" style="text-decoration: none">
+                            <span class="iconify fw-bold" data-icon="ooui:next-rtl" style="color: #007c84;"></span>
+                        </a>
                         Detail pesanan
                     </div>
                     <div class="col-4 text-end mb-0">
