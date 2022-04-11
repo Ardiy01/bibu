@@ -66,6 +66,9 @@ class PesananController extends Controller
     public function edit(Pesanan $pesanan)
     {
         //
+        return view('dashboard.pesanan.update', [
+            'pesanan' => $pesanan,
+        ]);
     }
 
     /**

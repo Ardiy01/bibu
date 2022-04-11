@@ -8,6 +8,17 @@
     background-color: #007C84;
 }
 
+/* card offline */
+.card-off::before{
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: 17px;
+    height: 3rem;
+    border-radius: 12px 0px 12px 0px;
+    background-color: #007C84;
+}
+
 /* index produk */
 .sty-card{
     background-color: #f2f8f8; 
@@ -26,14 +37,24 @@
     border-radius: 12px 12px 0px 0px !important;
 }
 
-/* card melihat */
+/* card melihat pesanan */
 .card-melihat::before{
     content: ' ';
     display: block;
     position: absolute;
     width: 17px;
-    height: 3.3rem;
+    height: 3.2rem;
     border-radius: 12px 0px 12px 0px;
     background-color: #007C84;
+}
+
+.card-off::before{
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: 17px;
+    height: 3.2rem;
+    border-radius: 12px 0px 12px 0px;
+    background-color: #2db5b2;
 }
 

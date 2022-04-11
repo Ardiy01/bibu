@@ -10,8 +10,12 @@
     @if ($pesanan->count())
     @foreach ($pesanan as $psn)
         <a href="/dashboard/pesanan/{{ $psn->id }}" style="text-decoration: none">
-        <div class="container my-3 zoom" >
-            <div class="card card-melihat sty-card">
+        <div class="container my-3 zoom">
+            @if ($psn->id_user != 1)
+            <div class="sty-card card-melihat">   
+            @else
+            <div class="sty-card card-off">  
+            @endif
                 <div class="card-header mb-0 pb-0 hd">
                     <div class="d-flex justify-content-between mx-3">
                         <div class="mb-0 pb-0">
@@ -19,7 +23,7 @@
                             <p class="mb-0">{{ $psn->user->nama }}</p>
                         </div>
                         <div class="my-auto">
-                            <p class="py-1 px-2 mb-0">
+                            <p class="py-sm-1 px-sm-2 almt mb-0">
                                 <span class="iconify" data-icon="arcticons:mapsgo" style="color: #007c84;"></span>
                                 {{ $psn->user->jalan . ' No. ' . $psn->user->nomor . ' Kec. ' . $psn->user->kecamatan->nama_kecamatan .', Kab. '. $psn->user->kabupaten->nama_kabupaten}}
                             </p>

@@ -11,14 +11,10 @@ body {
 .sidebar {
     position: fixed;
     top: 0;
-    /* rtl:raw:
-    right: 0;
-    */
     bottom: 0;
-    /* rtl:remove */
     left: 0;
-    z-index: 100; /* Behind the navbar */
-    padding: 10px 0 0; /* Height of navbar */
+    z-index: 100; 
+    padding: 10px 0 0;
     background-color: rgba(234, 243, 244, 1) !important;
 }
 
@@ -28,7 +24,7 @@ body {
     height: calc(100vh - 48px);
     padding-top: .5rem;
     overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    overflow-y: auto;
     background-color: rgba(234, 243, 244, 1) !important; 
 }
 
@@ -47,7 +43,6 @@ body {
 
 .sidebar .nav-link .iconify {
     margin-right: 5px;
-    /* color: #007C84 !important; */
 }
 
 .sidebar .nav-link.active {

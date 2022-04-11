@@ -41,6 +41,10 @@
     text-align: center;
   }
 
+  .almt{
+    text-align: end;
+  }
+
 }
 
 /* Medium devices (tablets, less than 992px) */

@@ -26,6 +26,7 @@ class CreatePesanansTable extends Migration
             $table->float('ongkir')->nullable();
             $table->string('no_resi', 30)->nullable();
             $table->foreignId('id_status_pesanan')->default(1);
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
             $table->foreignId('id_transaksi')->default(1);
 

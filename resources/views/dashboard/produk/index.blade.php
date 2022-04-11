@@ -33,7 +33,7 @@
                     <div class="col-sm-7 col-12 mt-2 mt-sm-0">
                         <div class="d-flex align-items-start flex-column bd-highlight" style="height: 100%;">
                             <div class="mb-auto px-2 pb-3 pb-sm-5 bd-highlight text-capitalize">{{ $produk->keterangan }}</div>
-                            <div class="px-2 py-0 bd-highlight fw-bold">Rp. {{ $produk->harga }}</div>
+                            <div class="px-2 py-0 bd-highlight fw-bold">@currency($produk->harga)</div>
                                 <div class="px-2 my-0 bd-highlight">
                                     <span class="iconify" data-icon="ant-design:star-filled" style="color: #007c84;"></span>
                                     {{ $produk->ulasan->avg('rating') }} | Terjual {{ $produk->pesanan->sum('jumlah_produk') }} Kg
