@@ -74,7 +74,8 @@ class PesananController extends Controller
         } else{
             $validateData['bukti_pembayaran'] = Null;
         }
-        $validateData['id_user'] = 1;
+        
+        $validateData['id_user'] = 2; // ganti id user yang login
         Pesanan::create($validateData);
 
         alert()->success('Tambah Pesanan', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true'); 

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PesananController;
+use App\Http\Controllers\RiwayatPesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,5 @@ Route::get('/dashboard', function () {
 Route::resources([
     'dashboard/produk' => ProdukController::class,
     'dashboard/pesanan' => PesananController::class,
+    'dashboard/riwayatpesanan' => RiwayatPesananController::class,
 ]);

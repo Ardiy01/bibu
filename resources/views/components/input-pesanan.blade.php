@@ -8,5 +8,10 @@
             value="{{ old($name) }}"
         @endif
         {{ $readonly ? 'readonly' : '' }}>
+        @error($name)
+            <div class="invalid-feedback text-capitalize">
+                {{ $message }}
+            </div>
+        @enderror
     </div>
 </div>
