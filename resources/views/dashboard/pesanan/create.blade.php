@@ -14,7 +14,7 @@
                 <form action="/dashboard/pesanan" method="post" id="create-pesanan" enctype="multipart/form-data">
                     @csrf
                     @foreach ($users as $user)
-                        @if ($user->rule != 'Pemilik')
+                        @if ($user->rule == 'Customer')
                             <x-input-pesanan class="row mb-sm-3 mb-3"
                                 id="namaPemesan"
                                 label="Nama Pemesan"
@@ -32,9 +32,8 @@
                                 :readonly=true
                             />
                         @endif  
-                    @endforeach
-
-                    <div class="row mb-sm-3 mb-3">
+                        
+                        <div class="row mb-sm-3 mb-3">
                         <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="produk">Nama Produk</label>
                         <div class="col-sm-9 col-12 mt-1">
                             <select class="form-select" id="produk" name="id_produk">
@@ -44,14 +43,16 @@
                             </select>
                         </div>
                     </div>
-
+                    
                     <x-input-pesanan class="row mb-sm-3 mb-3"
-                        id="jumlahPesanan"
-                        label="Jumlah Pesanan"
+                    id="jumlahPesanan"
+                    label="Jumlah Pesanan"
                         type="number"
                         name="jumlah_produk"
                     />
 
+                    @if ($user->rule == "Pemilik")
+                        
                     <div class="row mb-sm-3 mb-3">
                         <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="statusPembayaran">Status Pembayaran</label>
                         <div class="col-sm-9 col-12 mt-1">
@@ -62,17 +63,19 @@
                             </select>
                         </div>
                     </div>
-
+                    
                     <div class="row mb-sm-3 mb-3">
                         <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="statusPembayaran">Status Pesanan</label>
                         <div class="col-sm-9 col-12 mt-1">
                             <select class="form-select" id="statusPembayaran" name="id_status_pesanan">
                                 @foreach ($status as $sts)
-                                        <option value="{{ old('is_status_pesanan', $sts->id) }}">{{ $sts->status_pesanan }}</option>   
+                                <option value="{{ old('is_status_pesanan', $sts->id) }}">{{ $sts->status_pesanan }}</option>   
                                 @endforeach
                             </select>
                         </div>
                     </div>
+                    @endif
+                    @endforeach
 
                     <div class="row mb-sm-3 mb-3">
                         <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="statusPesanan">Metode Pembayaran</label>
@@ -88,10 +91,10 @@
                     @foreach ($users as $user)
                     @if ($user->rule == 'Customer')
                         <x-input-pesanan class="row mb-sm-3 mb-3"
-                            id="struk"
-                            label="Bukti Pembayaran"
-                            type="file"
-                            name="bukti_pembayaran"
+                        id="struk"
+                        label="Bukti Pembayaran"
+                        type="file"
+                        name="bukti_pembayaran"
                         />
                     @endif
                     @endforeach

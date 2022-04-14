@@ -3,33 +3,32 @@
 @section('content')
 <div class="container py-2 mt-4 shadow" style="border-radius: 12px; background-color: rgba(234, 243, 244, 1);">
     <div class="mx-4" style="color: #007c84">
-        <form action="/dashboard/riwayatpesanan" method="get">
-            <div class="row mb-2" style="max-width: 24.5rem;">
+        <form action="/dashboard/riwayat/pesanan" method="get">
+            <div class="row mb-2 search" style="max-width: 24.5rem;">
                 <label for="start_date" class="form-label col-sm-5 col-12 m-auto">Pilih Rentang Tanggal:</label>
-                <div class="col-sm-7 col-12 mt-1" style="max-width: 15rem;">
-                    <input type="date" class="form-control" style=" border-radius: 12px;" id="start_date" name="start_date">
+                <div class="col-sm-7 col-12 mt-1 input-src-date" style="max-width: 15rem;">
+                    <input type="date" class="form-control" style=" border-radius: 12px;" id="start_date" name="start_date" value="{{ old('start_date') }}">
                 </div>
             </div>
-            <div class="row mb-3" style="max-width: 24.5rem;">
+            <div class="row mb-3 search" style="max-width: 24.5rem;">
                 <label for="end_date" class="form-label col-sm-5 col-12 m-auto">Pilih Rentang Tanggal:</label>
                 <div class="col-sm-7 col-12 mt-1" style="max-width: 15rem;">
                     <input type="date" class="form-control" style=" border-radius: 12px;" id="end_date" name="end_date">
                 </div>
             </div>
-            <div class="text-sm-start text-center" style="margin-left: 10rem;">
-
+            <div class="text-sm-start btn-src-date" style="margin-left: 10rem;">
                 <button class="btn mb-2 text-light px-4" type="submit" style="background-color: #007C84;  border-radius: 10px">Cari</button>
             </div>
         </form>
     </div>
+    @if ($riwayats->count())
     @foreach ($riwayats as $riwayat)
-    @if ($riwayat->count())
-        <a href="/dashboard/ulasanproduk/{{ $riwayat->id }}" style="text-decoration: none">
+        <a href="/dashboard/riwayat/pesanan/{{ $riwayat->id }}" style="text-decoration: none">
         <div class="container my-3 zoom">
-            @if ($riwayat->id_user != 1)
-            <div class="sty-card card-melihat">   
+            @if ($riwayat->user->rule != "Pemilik")
+            <div class="sty-card card-melihat shadow">   
             @else
-            <div class="sty-card card-off">  
+            <div class="sty-card card-off shadow">  
             @endif
                 <div class="card-header mb-0 pb-0 hd">
                     <div class="d-flex justify-content-between mx-3">
@@ -82,10 +81,10 @@
             </div>
         </div>
     </a>
-    @else
-        <h4 class="text-center m-auto">Belum ada Pesanan</h4>
-    @endif
     @endforeach
+    @else
+        <h4 class="text-center text-center my-4" style="color: #007c84">Belum ada Riwayat Pesanan</h4>
+    @endif
     <div class="d-flex justify-content-center my-3">
         {{ $riwayats->links() }}
     </div>

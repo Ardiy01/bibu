@@ -1,11 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
-use App\Models\User;
-use App\Models\StatusPesanan;
 use Illuminate\Database\Seeder;
-use App\Models\StatusPembayaran;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\ProdukSeeder;
 use Database\Seeders\UlasanSeeder;
@@ -28,13 +24,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         $this->call([
             KecamatanSeeder::class,
             KabupatenSeeder::class,
             ProdukSeeder::class,
             UserSeeder::class,
-            UlasanSeeder::class,
             TransaksiSeeder::class,
             StatusPesananSeeder::class,
             PengirimanSeeder::class,
@@ -42,6 +36,7 @@ class DatabaseSeeder extends Seeder
             StatusPembayaranSeeder::class,
             PengeluaranSeeder::class,
             PesananSeeder::class,
+            UlasanSeeder::class,
         ]);
     }
 }

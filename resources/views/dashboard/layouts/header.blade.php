@@ -32,7 +32,7 @@
               </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link {{ Request::is('dashboard/riwayatpesanan*') ? 'active' : ''}}" href="/dashboard/riwayatpesanan">
+              <a class="nav-link {{ Request::is('dashboard/riwayat/pesanan*') ? 'active' : ''}}" href="/dashboard/riwayat/pesanan">
                   <span class="iconify" data-icon="ic:outline-work-history"></span>
                   Riwayat Pesanan
               </a>

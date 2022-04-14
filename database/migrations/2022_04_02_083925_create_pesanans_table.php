@@ -20,15 +20,16 @@ class CreatePesanansTable extends Migration
             $table->foreignId('id_produk');
             $table->tinyInteger('jumlah_produk');
             $table->foreignId('id_metode_pembayaran');
-            $table->string('bukti_pembayaran')->nullable();
+            $table->string('bukti_pembayaran')->nullable()->default("Null");
             $table->foreignId('id_status_pembayaran')->default(2);
             $table->foreignId('id_pengiriman');
-            $table->float('ongkir')->nullable();
-            $table->string('no_resi', 30)->nullable();
+            $table->float('ongkir')->nullable()->default(0);
+            $table->string('no_resi', 30)->nullable()->default("Null");
             $table->foreignId('id_status_pesanan')->default(1);
-            $table->text('deskripsi')->nullable();
+            $table->string('deskripsi')->nullable()->default("Null");
             $table->timestamps();
             $table->foreignId('id_transaksi')->default(1);
+            
 
             $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_produk')->references('id')->on('produks');
@@ -37,6 +38,8 @@ class CreatePesanansTable extends Migration
             $table->foreign('id_pengiriman')->references('id')->on('pengirimen');
             $table->foreign('id_status_pesanan')->references('id')->on('status_pesanans');
             $table->foreign('id_transaksi')->references('id')->on('transaksis');
+           
+            
 
         });
     }

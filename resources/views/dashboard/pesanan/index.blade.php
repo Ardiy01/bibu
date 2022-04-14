@@ -11,10 +11,10 @@
     @foreach ($pesanan as $psn)
         <a href="/dashboard/pesanan/{{ $psn->id }}" style="text-decoration: none">
         <div class="container my-3 zoom">
-            @if ($psn->id_user != 1)
-            <div class="sty-card card-melihat">   
+            @if ($psn->user->rule != "Pemilik")
+            <div class="sty-card card-melihat shadow">   
             @else
-            <div class="sty-card card-off">  
+            <div class="sty-card card-off shadow">  
             @endif
                 <div class="card-header mb-0 pb-0 hd">
                     <div class="d-flex justify-content-between mx-3">

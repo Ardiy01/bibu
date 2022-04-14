@@ -15,7 +15,7 @@ class CreateKabupatensTable extends Migration
     {
         Schema::create('kabupatens', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_kabupaten');
+            $table->string('nama_kabupaten')->unique();
         });
     }
 

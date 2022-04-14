@@ -17,11 +17,14 @@ class CreateUlasansTable extends Migration
             $table->id();
             $table->foreignId('id_user');
             $table->foreignId('id_produk');
-            $table->text('ulasan');
-            $table->tinyInteger('rating');
-            
+            $table->text('ulasan')->nullable();
+            $table->tinyInteger('rating')->nullable();
+            $table->timestamps();
+            $table->foreignId('id_pesanan')->nullable();
+
             $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('id_produk')->references('id')->on('produks');
+            $table->foreign('id_pesanan')->references('id')->on('pesanans');
         });
     }
 

@@ -49,6 +49,48 @@
     margin-left: 0rem !important;
   }
 
+  .search{
+    width: 100% !important;
+  }
+
+  .input-src-date{
+    width: 100% !important;
+  }
+
+  .btn-src-date{
+    margin-left: 0rem !important;
+  }
+
+  .ulasan{
+    overflow: visible;
+  }
+
+  .ulasan::before{
+    content: none;
+  }
+
+
+
+  .sty-ulasan{
+    max-height: 100%;
+    min-height: 20px;
+    overflow: hidden;
+    /* margin-top: -20px; */
+    font-size:smaller;
+  }
+
+  .sty-ulasan .nama{
+    font-size: 12px
+  }
+
+  .sty-ulasan .img-user{
+    display: none;
+  }
+
+  .sty-ulasan .tgl{
+    font-size: xx-small;
+  }
+
 }
 
 /* Medium devices (tablets, less than 992px) */

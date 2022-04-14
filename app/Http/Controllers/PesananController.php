@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Produk;
+use App\Models\Ulasan;
 use App\Models\Pesanan;
 use App\Models\Pengiriman;
 use Illuminate\Http\Request;
@@ -66,17 +67,26 @@ class PesananController extends Controller
             'deskripsi' => 'nullable'
         ];
 
+        
         $validateData = $request->validate($data);
         if($request->file('bukti_pembayaran')){
             $struk = $request->file('bukti_pembayaran')->store('struk-images');
             $validateData['bukti_pembayaran'] = $struk;
-
-        } else{
-            $validateData['bukti_pembayaran'] = Null;
+            
         }
         
         $validateData['id_user'] = 2; // ganti id user yang login
-        Pesanan::create($validateData);
+        $pesanan = Pesanan::create($validateData);
+        
+        // ulasan
+        $ulasan = Ulasan::create([
+            'id_pesanan' => $pesanan->id,
+            'id_user' => $pesanan->id_user,
+            'id_produk' => $pesanan->id_produk
+        ]);
+
+        $pesanan->save();
+        $ulasan->save();
 
         alert()->success('Tambah Pesanan', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true'); 
         return redirect('/dashboard/pesanan');
@@ -127,7 +137,6 @@ class PesananController extends Controller
      */
     public function update(Request $request, Pesanan $pesanan)
     {
-        //
         $data = [
             'id_produk' => 'required',
             'jumlah_produk' => 'required',
@@ -143,11 +152,35 @@ class PesananController extends Controller
 
         $validateData = $request->validate($data);
 
+        if($request['no_resi']){
+            $noResi = $request['no_resi'];
+            $validateData['no_resi'] = $noResi;
+        } else{
+            $noResi = $pesanan->no_resi;
+            $validateData['no_resi'] = $noResi;
+        }
+
+        if($request['ongkir']){
+            $ongkir = $request['ongkir'];
+            $validateData['ongkir'] = $ongkir;
+        } else{
+            $ongkir = $pesanan->ongkir;
+            $validateData['ongkir'] = $ongkir;
+        }
+
+        if($request['deskripsi']){
+            $deskripsi = $request['deskripsi'];
+            $validateData['deskripsi'] = $deskripsi;
+        } else{
+            $deskripsi = $pesanan->deskripsi;
+            $validateData['deskripsi'] = $deskripsi;
+        }
+
         if ($request->file('bukti_pembayaran')) {
             $struks = $request->file('bukti_pembayaran')->store('struk-images');
             $validateData['bukti_pembayaran'] = $struks;
         } else {
-            $struks = $pesanan->struk;
+            $struks = $pesanan->bukti_pembayaran;
             $validateData['bukti_pembayaran'] = $struks;
         }
 

@@ -151,7 +151,7 @@
                               <textarea class="form-control" id="deskripsi" aria-label="With textarea" name="deskripsi">{{ $pesan->deskripsi }}</textarea>  
                             </div>                  
                         </div>
-                    </div>
+                    </div> 
                     @endif
 
                     {{-- button --}}

@@ -15,7 +15,7 @@ class CreatePengirimenTable extends Migration
     {
         Schema::create('pengirimen', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_pengiriman', 20);
+            $table->string('nama_pengiriman', 20)->unique();
         });
     }
 

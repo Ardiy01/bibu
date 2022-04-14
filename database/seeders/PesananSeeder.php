@@ -25,7 +25,7 @@ class PesananSeeder extends Seeder
             'id_pengiriman' => 1,
             'id_status_pesanan' => 4,
             'created_at' => '2022-4-1',
-            'updated_at' => '2022-4-1'
+            'updated_at' => '2022-4-1',
         ]);
 
         DB::table('pesanans')->insert([
@@ -38,7 +38,7 @@ class PesananSeeder extends Seeder
             'id_pengiriman' => 1,
             'id_status_pesanan' => 4,
             'created_at' => '2022-4-1',
-            'updated_at' => '2022-4-1'
+            'updated_at' => '2022-4-1',
         ]);
 
         DB::table('pesanans')->insert([
@@ -50,7 +50,7 @@ class PesananSeeder extends Seeder
             'id_pengiriman' => 1,
             'id_status_pesanan' => 4,
             'created_at' => '2022-4-2',
-            'updated_at' => '2022-4-2'
+            'updated_at' => '2022-4-2',
         ]);
 
         DB::table('pesanans')->insert([
@@ -65,7 +65,7 @@ class PesananSeeder extends Seeder
             'no_resi' => 'JP6675645910',
             'id_status_pesanan' => 4,
             'created_at' => '2022-4-2',
-            'updated_at' => '2022-4-2'
+            'updated_at' => '2022-4-2',
         ]);
 
         DB::table('pesanans')->insert([
@@ -78,7 +78,7 @@ class PesananSeeder extends Seeder
             'id_pengiriman' => 1,
             'id_status_pesanan' => 4,
             'created_at' => '2022-4-2',
-            'updated_at' => '2022-4-2'
+            'updated_at' => '2022-4-2',
         ]);
 
         DB::table('pesanans')->insert([
@@ -90,7 +90,7 @@ class PesananSeeder extends Seeder
             'id_pengiriman' => 1,
             'id_status_pesanan' => 4,
             'created_at' => '2022-4-3',
-            'updated_at' => '2022-4-3'
+            'updated_at' => '2022-4-3',
         ]);
 
         DB::table('pesanans')->insert([
@@ -105,7 +105,7 @@ class PesananSeeder extends Seeder
             'no_resi' => 'JP3272583550',
             'id_status_pesanan' => 4,
             'created_at' => '2022-4-3',
-            'updated_at' => '2022-4-3'
+            'updated_at' => '2022-4-3',
         ]);
 
         DB::table('pesanans')->insert([
@@ -118,7 +118,7 @@ class PesananSeeder extends Seeder
             'id_pengiriman' => 1,
             'id_status_pesanan' => 4,
             'created_at' => '2022-4-3',
-            'updated_at' => '2022-4-3'
+            'updated_at' => '2022-4-3',
         ]);
 
         DB::table('pesanans')->insert([
@@ -130,7 +130,7 @@ class PesananSeeder extends Seeder
             'id_pengiriman' => 1,
             'id_status_pesanan' => 4,
             'created_at' => '2022-4-3',
-            'updated_at' => '2022-4-3'
+            'updated_at' => '2022-4-3',
         ]);
 
         DB::table('pesanans')->insert([
@@ -145,7 +145,6 @@ class PesananSeeder extends Seeder
             'no_resi' => 'JP3282583551',
             'id_status_pesanan' => 4,
             'created_at' => '2022-4-3',
-            'updated_at' => '2022-4-3'
         ]);
 
         DB::table('pesanans')->insert([
@@ -158,7 +157,7 @@ class PesananSeeder extends Seeder
             'id_pengiriman' => 1,
             'id_status_pesanan' => 4,
             'created_at' => '2022-4-4',
-            'updated_at' => '2022-4-4'
+            'updated_at' => '2022-4-4',
         ]);
 
         DB::table('pesanans')->insert([
@@ -171,7 +170,7 @@ class PesananSeeder extends Seeder
             'id_status_pesanan' => 4,
             'deskripsi' => 'Pembelian oleh Martin',
             'created_at' => '2022-4-4',
-            'updated_at' => '2022-4-4'
+            'updated_at' => '2022-4-4',
         ]);
 
     }

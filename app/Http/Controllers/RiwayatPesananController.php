@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Pesanan;
+use App\Models\Ulasan;
 use Illuminate\Http\Request;
 
 class RiwayatPesananController extends Controller
@@ -16,40 +17,20 @@ class RiwayatPesananController extends Controller
     public function index()
     {
         //
-    
         if(request()->start_date && request()->end_date){
             $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
             $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
             $riwayats = Pesanan::where('id_status_pesanan', 4)->whereBetween('created_at', [$start_date, $end_date])->latest()->paginate(7);
+            $riwayatUser = Pesanan::where('id_status_pesanan', 4)->where('id_user', 2)->whereBetween('created_at', [$start_date, $end_date])->latest()->paginate(7); // ganti id user yang login
         } else{
             $riwayats = Pesanan::where('id_status_pesanan', 4)->latest()->paginate(7);
+            $riwayatUser = Pesanan::where('id_status_pesanan', 4)->where('id_user', 2)->latest()->paginate(7);
         }
 
         return view('dashboard.riwayat.index', [
-            'riwayatsUser' => Pesanan::where('id_status_pesanan', 4)->where('id_user', 2)->latest()->paginate(7), // ganti id user yang login
+            'riwayatsUser' => $riwayatUser, 
             'riwayats' => $riwayats
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -61,6 +42,10 @@ class RiwayatPesananController extends Controller
     public function show(Pesanan $pesanan)
     {
         //
+        return view('dashboard.riwayat.detail', [
+            'riwayat' => Pesanan::where('id', $pesanan->id)->get(),
+            'ulasan' => Ulasan::where('id_pesanan', $pesanan->id)->get(),
+        ]);
     }
 
     /**
@@ -72,6 +57,9 @@ class RiwayatPesananController extends Controller
     public function edit(Pesanan $pesanan)
     {
         //
+        return view('dashboard.ulasan.update', [
+            'ulasan' => $pesanan,
+        ]);
     }
 
     /**
@@ -81,19 +69,21 @@ class RiwayatPesananController extends Controller
      * @param  \App\Models\Pesanan  $pesanan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pesanan $pesanan)
-    {
-        //
-    }
+    // public function update(Request $request, Ulasan $ulasan, Pesanan $pesanan)
+    // {
+    //     //
+    //     $data = [
+    //         'rating' => 'nullabel',
+    //         'ulasan' => 'nullabel'
+    //     ];
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Pesanan  $pesanan
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pesanan $pesanan)
-    {
-        //
-    }
+    //     $validateData = $request->validate($data);
+
+    //     $updateUlasan = Ulasan::where('id_pesanan', $pesanan->id)
+    //         ->update($validateData);
+    //     $updateUlasan->save();
+
+    //     alert()->success('Tambah Ulasan', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true'); 
+    //     return redirect('/dashboard/riwayat/pesanan/' . $pesanan->id);
+    // }
 }

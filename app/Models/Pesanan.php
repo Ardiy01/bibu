@@ -4,12 +4,12 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Produk;
+use App\Models\Ulasan;
 use App\Models\Transaksi;
 use App\Models\Pengiriman;
 use App\Models\StatusPesanan;
 use App\Models\MetodePembayaran;
 use App\Models\StatusPembayaran;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -54,15 +54,10 @@ class Pesanan extends Model
         return $this->belongsTo(MetodePembayaran::class, 'id_metode_pembayaran');
     }
 
-    public function scopeAlamat()
+    public function ulasan()
     {
-        $alamat = DB::table('users')
-        ->join('kecamatans', 'kecamatans.id',  '=',  'users.id_kecamatan')
-        ->join('kabupatens', 'kabupatens.id', '=', 'users.id_kabupaten')
-        ->select('users.jalan', 'users.nomor', 'kecamatans.nama_kecamatan', 'kabupatens.nama_kabupaten')
-                        ->get();
-
-        return $alamat;
+        return $this->hasOne(Ulasan::class);
     }
+
 
 }

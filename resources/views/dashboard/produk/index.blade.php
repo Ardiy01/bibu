@@ -40,19 +40,20 @@
                                 </div>
                         </div>
                     </div>
-                    <div class="col-sm-2 col-12  text-end">
-                        {{-- <div class="container d-flex align-content-between flex-wrap" style="height: 100%">
-                            <div class=" text-end"> --}}
+                    <div class="col-sm-2 col-12  text-end ">
+                        {{-- button edit --}}
+                            <div class="mb-sm-5 mx-3 mx-sm-0 d-inline d-sm-block">
                                 <a href="/dashboard/produk/{{ $produk->id }}/edit" class="btn sty-btn-edit">
                                     <span class="iconify" data-icon="akar-icons:edit" style="color: #007c84; font-size: 1.2rem; "></span>
                                 </a>
-                            {{-- </div> --}}
-                            {{-- <div class=" t">
-                                <a href="#" class="btn sty-btn-edit">
-                                    <span class="iconify" data-icon="akar-icons:edit" style="color: #007c84; font-size: 1.2rem; "></span>
+                            </div>
+                            {{-- button lihat rating --}}
+                            <div class="d-inline d-sm-block ">
+                                <a href="/dashboard/produk/ulasan/{{ $produk->id }}" class="btn sty-btn-edit">
+                                    <span class="iconify" data-icon="carbon:star-review" style="color: #007c84;"></span>
                                 </a>
-                            </div> --}}
-                        {{-- </div> --}}
+                            </div>
+
                     </div>
                 </div>
             </div>
