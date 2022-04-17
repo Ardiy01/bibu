@@ -37,7 +37,7 @@ class PesananController extends Controller
     {
         //
         return view('dashboard.pesanan.create', [
-            'users' => User::where('id', 2)->get(), // ubah id user dengan user login
+            'users' => User::where('id', 1)->get(), // ubah id user dengan user login
             'metode' => MetodePembayaran::all(),
             'pembayaran' => StatusPembayaran::all(),
             'status' => StatusPesanan::all(),

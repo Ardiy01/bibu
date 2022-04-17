@@ -16,7 +16,7 @@
           </div>
           <div class="my-auto">
             <p class="text-center mb-0 fw-bold fs-4">
-              {{ $rating->avg('rating') }}<span class="fs-6">/5.0</span>
+              @format($rating->avg('rating'))<span class="fs-6">/5.0</span>
             </p>   
           </div>
         </div>
