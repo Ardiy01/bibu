@@ -14,6 +14,7 @@
                 <form action="/dashboard/pesanan" method="post" id="create-pesanan" enctype="multipart/form-data">
                     @csrf
                     @foreach ($users as $user)
+                    <input type="hidden" name="id_user" value="{{ $user->id }}">
                         @if ($user->rule == 'Customer')
                             <x-input-pesanan class="row mb-sm-3 mb-3"
                                 id="namaPemesan"

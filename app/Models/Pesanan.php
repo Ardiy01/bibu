@@ -58,6 +58,4 @@ class Pesanan extends Model
     {
         return $this->hasOne(Ulasan::class);
     }
-
-
 }

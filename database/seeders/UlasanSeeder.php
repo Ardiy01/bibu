@@ -103,6 +103,12 @@ class UlasanSeeder extends Seeder
             'id_pesanan' => 11,
         ]);
 
+        DB::table('ulasans')->insert([
+            'id_produk' => 1,
+            'id_user' => 1,
+            'id_pesanan' => 12,
+        ]);
+
 
     }
 }

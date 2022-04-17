@@ -11,12 +11,13 @@
             </div>
             <hr class="mt-0 mb-0" style="background-color: rgba(0, 124, 132, 0.2);">
             <div class="card-body m-auto">
-                <form class="form-horizontal poststars" action="/dashboard/produk/ulasan/{{ $ulasan->id - 1}}" id="addStar"  style="color: #007C84;">
+                <form class="form-horizontal poststars" action="/dashboard/riwayat/pesanan/{{ $ulasan->id}}" id="addStar"  style="color: #007C84;">
                     @method('put')
                     @csrf
                         <div>
                             <h6>Rating:</h6>
                         </div>
+                        <p>{{ $ulasan->id }}</p>
                         <div class="form-group required">
                             <div class="col-sm-12">
                                 <input class="star star-5" value="5" id="star-5" type="radio" name="rating"/>

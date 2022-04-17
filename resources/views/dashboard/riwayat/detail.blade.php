@@ -17,7 +17,7 @@
                         <div class="col-4 text-end mb-0" @if ($rwyt->user->rule == "Pemilik")
                             style="visibility: hidden;"
                         @endif>
-                            <a href="/dashboard/produk/ulasan/{{ $rwyt->id - 1}}/edit" class="btn sty-btn-edit"> 
+                            <a href="/dashboard/riwayat/pesanan/{{ $rwyt->id}}/edit" class="btn sty-btn-edit"> 
                                 <span class="iconify" data-icon="akar-icons:edit" style="color: #007c84; font-size: 1.2rem; "></span>
                             </a>
                         </div>

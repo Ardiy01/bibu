@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\Pesanan;
 use App\Models\Ulasan;
+use App\Models\Pesanan;
 use Illuminate\Http\Request;
 
 class RiwayatPesananController extends Controller
@@ -17,18 +17,18 @@ class RiwayatPesananController extends Controller
     public function index()
     {
         //
-        if(request()->start_date && request()->end_date){
+        if (request()->start_date && request()->end_date) {
             $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
             $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
             $riwayats = Pesanan::where('id_status_pesanan', 4)->whereBetween('created_at', [$start_date, $end_date])->latest()->paginate(7);
             $riwayatUser = Pesanan::where('id_status_pesanan', 4)->where('id_user', 2)->whereBetween('created_at', [$start_date, $end_date])->latest()->paginate(7); // ganti id user yang login
-        } else{
+        } else {
             $riwayats = Pesanan::where('id_status_pesanan', 4)->latest()->paginate(7);
             $riwayatUser = Pesanan::where('id_status_pesanan', 4)->where('id_user', 2)->latest()->paginate(7);
         }
 
         return view('dashboard.riwayat.index', [
-            'riwayatsUser' => $riwayatUser, 
+            'riwayatsUser' => $riwayatUser,
             'riwayats' => $riwayats
         ]);
     }
@@ -56,7 +56,7 @@ class RiwayatPesananController extends Controller
      */
     public function edit(Pesanan $pesanan)
     {
-        //
+
         return view('dashboard.ulasan.update', [
             'ulasan' => $pesanan,
         ]);
@@ -69,21 +69,21 @@ class RiwayatPesananController extends Controller
      * @param  \App\Models\Pesanan  $pesanan
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, Ulasan $ulasan, Pesanan $pesanan)
-    // {
-    //     //
-    //     $data = [
-    //         'rating' => 'nullabel',
-    //         'ulasan' => 'nullabel'
-    //     ];
+    public function update(Request $request, Ulasan $ulasan, Pesanan $pesanan)
+    {
+        //
+        dd($request->all());
+        $data = [
+            'rating' => 'nullabel',
+            'ulasan' => 'nullabel'
+        ];
 
-    //     $validateData = $request->validate($data);
+        $validateData = $request->validate($data);
 
-    //     $updateUlasan = Ulasan::where('id_pesanan', $pesanan->id)
-    //         ->update($validateData);
-    //     $updateUlasan->save();
+        Ulasan::where('id_pesanan', $pesanan->id)
+            ->update($validateData);
 
-    //     alert()->success('Tambah Ulasan', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true'); 
-    //     return redirect('/dashboard/riwayat/pesanan/' . $pesanan->id);
-    // }
+        alert()->success('Tambah Ulasan', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true');
+        return redirect('/dashboard/riwayat/pesanan/'. $pesanan->id);
+    }
 }
