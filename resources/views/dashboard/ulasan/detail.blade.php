@@ -22,6 +22,8 @@
         </div>
         <hr class="mt-2 mb-3 mb-sm-0" style="background-color: rgba(0, 124, 132, 0.2); height: 2px">
       @foreach ($ulasans as $ulasan)
+      @if ($ulasan->rating > 0)
+          
         <div class="card-body ulasan">
           <div class="container bg-light py-2  border border-dark sty-ulasan">
               <div class="my-0 row">
@@ -49,6 +51,7 @@
               </div>
           </div>
       </div>    
+      @endif
       @endforeach
       <div class="d-flex justify-content-center my-3">
         {{ $ulasans->links() }}
