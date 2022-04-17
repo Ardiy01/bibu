@@ -66,16 +66,15 @@ class RiwayatPesananController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pesanan  $pesanan
+     * @param  \App\Models\Ulasan  $ulasan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ulasan $ulasan, Pesanan $pesanan)
+    public function update(Request $request, Pesanan $pesanan)
     {
         //
-        dd($request->all());
         $data = [
-            'rating' => 'nullabel',
-            'ulasan' => 'nullabel'
+            'rating' => 'required',
+            'ulasan' => 'required'
         ];
 
         $validateData = $request->validate($data);

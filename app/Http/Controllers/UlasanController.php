@@ -24,42 +24,42 @@ class UlasanController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ulasan  $ulasan
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ulasan $ulasan)
-    {
-        //
-        return view('dashboard.ulasan.update',[
-            'ulasan' => $ulasan,
-        ]);
-    }
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  *
+    //  * @param  \App\Models\ulasan  $ulasan
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function edit(ulasan $ulasan)
+    // {
+    //     //
+    //     return view('dashboard.ulasan.update',[
+    //         'ulasan' => $ulasan,
+    //     ]);
+    // }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ulasan  $ulasan
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ulasan $ulasan)
-    {
-        //
-        $data = [
-            'rating' => 'nullabel',
-            'ulasan' => 'nullabel'
-        ];
+    // /**
+    //  * Update the specified resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  \App\Models\ulasan  $ulasan
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function update(Request $request, ulasan $ulasan)
+    // {
+    //     //
+    //     $data = [
+    //         'rating' => 'nullabel',
+    //         'ulasan' => 'nullabel'
+    //     ];
 
-        $validateData = $request->validate($data);
+    //     $validateData = $request->validate($data);
 
-        Ulasan::where('id', $ulasan->id)
-            ->update($validateData);
+    //     Ulasan::where('id', $ulasan->id)
+    //         ->update($validateData);
         
-        alert()->success('Tambah Ulasan', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true'); 
-        return redirect('/dashboard/produk/ulasan');
+    //     alert()->success('Tambah Ulasan', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true'); 
+    //     return redirect('/dashboard/produk/ulasan');
 
-    }
+    // }
 }

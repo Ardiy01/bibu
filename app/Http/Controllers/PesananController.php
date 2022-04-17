@@ -61,7 +61,8 @@ class PesananController extends Controller
             'jumlah_produk' => 'required',
             'bukti_pembayaran' => 'nullable|image|mimes:jpeg,png,jpg|file|max:2048',
             'id_metode_pembayaran' => 'required',
-            'id_pengiriman' => 'required'
+            'id_pengiriman' => 'required',
+            'deskripsi' => 'nullabel'
         ];
 
         $validateData = $request->validate($data);
@@ -76,7 +77,7 @@ class PesananController extends Controller
         $ulasan = Ulasan::create([
             'id_user' => $pesanan->id_user,
             'id_produk' => $pesanan->id_produk,
-            'id_pesanan' => $pesanan->id
+            'id_pesanan' => $pesanan->id,
         ]);
 
         $pesanan->save();

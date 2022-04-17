@@ -25,15 +25,6 @@ Route::get('/dashboard', function () {
     return view('dashboard.index');
 });
 
-// Route::get('/dashboard/riwayat/pesanan', [RiwayatPesananController::class, 'index']);
-// Route::get('/dashboard/riwayat/pesanan/{pesanan}', [RiwayatPesananController::class, 'show']);
-// Route::get('/dashboard/riwayat/pesanan/ulasan/{pesanan}', [RiwayatPesananController::class, 'show']);
-
-// Route::get('/dashboard/pesanan', [PesananController::class, 'index']);
-// Route::get('/dashboard/pesanan/{pesanan}', [PesananController::class, 'show']);
-// Route::get('/dashboard/pesanan/create', [PesananController::class, 'create'])->name('pesanan.create');
-// Route::post('/dashboard/pesanan/{pesanan}', [PesananController::class, 'store'])->name('pesanan.store');
-
 Route::resources([
     '/dashboard/produk' => ProdukController::class,
     '/dashboard/pesanan' => PesananController::class,

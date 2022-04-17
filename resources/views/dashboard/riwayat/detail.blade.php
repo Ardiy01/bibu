@@ -17,9 +17,14 @@
                         <div class="col-4 text-end mb-0" @if ($rwyt->user->rule == "Pemilik")
                             style="visibility: hidden;"
                         @endif>
-                            <a href="/dashboard/riwayat/pesanan/{{ $rwyt->id}}/edit" class="btn sty-btn-edit"> 
+                        @foreach ($ulasan as $uls)
+                            <a href="/dashboard/riwayat/pesanan/{{ $rwyt->id}}/edit" class="btn sty-btn-edit" @if ($uls->rating > 0)
+                                style="visibility: hidden"
+                            @endif> 
                                 <span class="iconify" data-icon="akar-icons:edit" style="color: #007c84; font-size: 1.2rem; "></span>
                             </a>
+                            
+                        @endforeach
                         </div>
                 </div>
             </div>
@@ -108,20 +113,23 @@
                         </tr>
                         @endif
                         @foreach ($ulasan as $uls)
-                        <tr>
-                            <td class="fs-6" style="padding-right: 1rem;">Rating</td>
-                            <td>:</td>
-                            <td class="fs-6" style="padding-left: 0.6rem;">
-                                @for ($i = 0; $i < $uls->rating; $i++)
-                                <p class="d-inline"><span class="iconify" data-icon="ant-design:star-filled" style="color: #007c84;"></span></p>
-                                @endfor
-                            </td>
-                        </tr>   
-                        <tr>
-                            <td class="fs-6" style="padding-right: 1rem;">Ulasan</td>
-                            <td>:</td>
-                            <td class="fs-6" style="padding-left: 0.6rem;">{{ $uls->ulasan }}</td>
-                        </tr>   
+                        @if ($rwyt->user->rule != "Pemilik")
+                            <tr>
+                                <td class="fs-6" style="padding-right: 1rem;">Rating</td>
+                                <td>:</td>
+                                <td class="fs-6" style="padding-left: 0.6rem;">
+                                    @for ($i = 0; $i < $uls->rating; $i++)
+                                        <p class="d-inline"><span class="iconify" data-icon="ant-design:star-filled" style="color: #007c84;"></span></p>
+                                    @endfor
+                                </td>
+                            </tr>   
+                            <tr>
+                                <td class="fs-6" style="padding-right: 1rem;">Ulasan</td>
+                                <td>:</td>
+                                <td class="fs-6" style="padding-left: 0.6rem;">{{ $uls->ulasan }}</td>
+                            </tr>   
+                            
+                        @endif
                         @endforeach
                     </table>
                 </div>
