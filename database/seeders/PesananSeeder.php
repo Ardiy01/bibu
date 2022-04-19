@@ -145,6 +145,7 @@ class PesananSeeder extends Seeder
             'no_resi' => 'JP3282583551',
             'id_status_pesanan' => 4,
             'created_at' => '2022-4-3',
+            'updated_at' => '2022-4-3',
         ]);
 
         DB::table('pesanans')->insert([

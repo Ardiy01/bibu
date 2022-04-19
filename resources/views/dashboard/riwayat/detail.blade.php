@@ -138,7 +138,7 @@
                                     <tr>
                                         <td class="fs-6" style="padding-right: 1rem;">Ulasan</td>
                                         <td>:</td>
-                                        <td class="fs-6" style="padding-left: 0.6rem;">{{ $uls->ulasan }}</td>
+                                        <td class="fs-6 text-capitalize" style="padding-left: 0.6rem;">{{ $uls->ulasan }}</td>
                                     </tr>
                                 @endif
                             @endforeach

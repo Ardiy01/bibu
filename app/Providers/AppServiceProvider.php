@@ -27,12 +27,12 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Paginator::useBootstrap();
-        Blade::directive('currency', function ( $expression ){ 
-            return "Rp. <?= number_format($expression,0,',','.'); ?>"; 
+        Blade::directive('currency', function ($expression) {
+            return "Rp. <?= number_format($expression,0,',','.'); ?>";
         });
 
-        Blade::directive('format', function($expression){
-            return "<?= number_format($expression, 2, '.', ','); ?>";
+        Blade::directive('rating', function ($rating) {
+            return "<?= number_format((float)$rating, 2); ?>";
         });
     }
 }

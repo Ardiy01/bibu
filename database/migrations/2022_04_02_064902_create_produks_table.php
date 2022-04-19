@@ -21,6 +21,9 @@ class CreateProduksTable extends Migration
             $table->string('gambar');
             $table->text('keterangan');
             $table->timestamps();
+            $table->foreignId('id_jenis_produk');
+
+            $table->foreign('id_jenis_produk')->references('id')->on('jenis_produks');
         });
     }
 

@@ -16,7 +16,7 @@ class KecamatanSeeder extends Seeder
     {
         //
         DB::table('kecamatans')->insert([
-            'nama_kecamatan' => 'Kliwates'
+            'nama_kecamatan' => 'Kaliwates'
         ]);
 
         DB::table('kecamatans')->insert([

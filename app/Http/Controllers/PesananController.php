@@ -24,7 +24,7 @@ class PesananController extends Controller
         //
         return view('dashboard.pesanan.index', [
             'pesananUser' => Pesanan::where('id', 2)->latest()->paginate(7), // Ambil pesanan milik user yang login
-            'pesanan' => Pesanan::latest()->paginate(7),
+            'pesanan' => Pesanan::where('id_status_pesanan' , '!=', 4)->latest()->paginate(7),
         ]);
     }
 
@@ -37,7 +37,7 @@ class PesananController extends Controller
     {
         //
         return view('dashboard.pesanan.create', [
-            'users' => User::where('id', 1)->get(), // ubah id user dengan user login
+            'users' => User::where('id', 3)->get(), // ubah id user dengan user login
             'metode' => MetodePembayaran::all(),
             'pembayaran' => StatusPembayaran::all(),
             'status' => StatusPesanan::all(),

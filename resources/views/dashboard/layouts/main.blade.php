@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/media-query.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
     <link rel="shotcut icon" href="{{ asset('assets/img/Logo.png') }}">
     <title>BIBU</title>
 </head>

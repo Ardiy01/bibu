@@ -17,6 +17,23 @@
                         <x-input class="mb-3 fw-bold" id="namaProduk" label="Nama Produk" type="text" name="nama_produk"
                             :value="$produk->nama_produk ?? ''" />
 
+                        <div class="mb-3 fw-bold">
+                            <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="jenis">Jenis Produk</label>
+                            <select class="form-select" id="jenis" name="id_jenis_produk">
+                                @foreach ($jenis_produks as $jenis)
+                                    @if (old('id_jenis_produk', $produk->id_jenis_produk) == $jenis->id)
+                                        <option value="{{ $jenis->id }}" selected>
+                                            {{ $jenis->jenis_produk }}
+                                        </option>
+                                    @else
+                                        <option value="{{ $jenis->id }}">
+                                            {{ $jenis->jenis_produk }}
+                                        </option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+
                         <x-input class="mb-3 fw-bold" id="harga" label="Harga" type="number" name="harga"
                             :value="$produk->harga ?? ''" />
 

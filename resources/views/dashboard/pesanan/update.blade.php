@@ -34,9 +34,9 @@
                                 <select class="form-select" id="produk" name="id_produk">
                                     @foreach ($produk as $prd)
                                         @if (old('id_produk', $pesan->id_produk) == $prd->id)
-                                            <option value="{{ $prd->id }}" selected>{{ $prd->nama_produk }}</option>
+                                            <option value="{{ $prd->id }}" data-jenisproduk="{{ $prd->jenisproduk->jenis_produk }}" selected>{{ $prd->nama_produk }}</option>
                                         @else
-                                            <option value="{{ $prd->id }}">{{ $prd->nama_produk }}</option>
+                                            <option value="{{ $prd->id }}" data-jenisproduk="{{ $prd->jenisproduk->jenis_produk }}">{{ $prd->nama_produk }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -105,7 +105,7 @@
 
                         <div class="row mb-sm-3 mb-3">
                             <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="pengiriman">Jenis Pengiriman</label>
-                            <div class="col-sm-9 col-12 mt-1">
+                            <div class="col-sm-9 col-12 mt-1" id="ekspedisi">
                                 <select class="form-select" id="pengiriman" name="id_pengiriman">
                                     @foreach ($ekspedisi as $eks)
                                         @if (old('id_pengiriman', $pesan->id_pengiriman) == $eks->id)
@@ -128,7 +128,7 @@
                                 :value="$pesan->ongkir ?? ''" />
                         @endif
 
-                        @if ($pesan->user->rule == 'Pemilik')
+                        @if ($pesan->user->rule == 'Pemilik' || $pesan->produk->jenisproduk->jenis_produk == 'Matang')
                             <div class="row mb-sm-3 mb-3">
                                 <label for="deskripsi" class="form-label col-sm-3 col-12 m-auto fs-6">Deskripsi</label>
                                 <div class="col-sm-9 col-12 mt-1">

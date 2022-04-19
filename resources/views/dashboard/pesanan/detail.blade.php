@@ -83,7 +83,7 @@
                             </tr>
 
                             {{-- cek milik pemilik --}}
-                            @if ($pesanan->id_user == 1)
+                            @if ($pesanan->id_user == 1 || $pesanan->produk->jenisproduk->jenis_produk == "Matang")
                                 <tr>
                                     <td class="fs-6" style="padding-right: 1rem;">Deskripsi</td>
                                     <td>:</td>

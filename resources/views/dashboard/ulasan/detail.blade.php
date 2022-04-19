@@ -16,42 +16,41 @@
           </div>
           <div class="my-auto">
             <p class="text-center mb-0 fw-bold fs-4">
-              @format($rating->avg('rating'))<span class="fs-6">/5.0</span>
+              @rating($rating->avg('rating'))<span class="fs-6">/5.0</span>
             </p>   
           </div>
         </div>
         <hr class="mt-2 mb-3 mb-sm-0" style="background-color: rgba(0, 124, 132, 0.2); height: 2px">
       @foreach ($ulasans as $ulasan)
-      @if ($ulasan->rating > 0)
-          
-        <div class="card-body ulasan">
-          <div class="container bg-light py-2  border border-dark sty-ulasan">
-              <div class="my-0 row">
-                  <div class="row col-sm-4 col-4">
-                      <div class="col-12">
-                          <h6 class="nama">{{ $ulasan->user->nama }}</h6>
-                      </div>
-                      <div class="col-12 my-1 img-user">
-                          <img class="m-auto rounded-circle"  src="Logo.png" alt="logo" style="max-width: 2.5rem">
-                      </div>
-                  </div>
-                  <div class="text-center col-sm-6 col-8">
-                      <div class="col-12">
-                        @for ($i = 0; $i < $ulasan->rating; $i++)
-                        <span class="iconify d-inline" data-icon="ant-design:star-filled" style="color: #007c84;"></span>
-                        @endfor
-                      </div>
-                      <div class="col-12 ">
-                          <p class="fw-bold">{{ $ulasan->ulasan }}</p>
-                      </div>
-                  </div>
-                  <div class="text-end fw-bold col-sm-2 col-12 tgl">
-                      01 Juli 2022
-                  </div>
-              </div>
-          </div>
-      </div>    
-      @endif
+        @if ($ulasan->rating > 0) 
+          <div class="card-body ulasan">
+            <div class="container bg-light py-2  border border-dark sty-ulasan">
+                <div class="my-0 row">
+                    <div class="row col-sm-4 col-4">
+                        <div class="col-12">
+                            <h6 class="nama">{{ $ulasan->user->nama }}</h6>
+                        </div>
+                        <div class="col-12 my-1 img-user">
+                            <img class="m-auto rounded-circle"  src="Logo.png" alt="logo" style="max-width: 2.5rem">
+                        </div>
+                    </div>
+                    <div class="text-center col-sm-6 col-8">
+                        <div class="col-12">
+                          @for ($i = 0; $i < $ulasan->rating; $i++)
+                            <span class="iconify d-inline" data-icon="ant-design:star-filled" style="color: #007c84;"></span>
+                          @endfor
+                        </div>
+                        <div class="col-12 ">
+                            <p class="fw-bold text-capitalize">{{ $ulasan->ulasan }}</p>
+                        </div>
+                    </div>
+                    <div class="text-end fw-bold col-sm-2 col-12 tgl">
+                      <p>{{ $ulasan->updated_at->isoFormat('D MMMM Y') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        @endif
       @endforeach
       <div class="d-flex justify-content-center my-3">
         {{ $ulasans->links() }}

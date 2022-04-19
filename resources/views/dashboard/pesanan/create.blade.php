@@ -33,7 +33,7 @@
                                 <div class="col-sm-9 col-12 mt-1">
                                     <select class="form-select" id="produk" name="id_produk">
                                         @foreach ($produk as $prd)
-                                            <option value="{{ old('id_produk', $prd->id) }}">{{ $prd->nama_produk }}
+                                            <option value="{{ old('id_produk', $prd->id) }}" data-jenisproduk="{{ $prd->jenisproduk->jenis_produk }}">{{ $prd->nama_produk }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -94,11 +94,12 @@
 
                         <div class="row mb-sm-3 mb-3">
                             <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="pengiriman">Jenis Pengiriman</label>
-                            <div class="col-sm-9 col-12 mt-1">
+                            <div class="col-sm-9 col-12 mt-1" id="ekspedisi">
                                 <select class="form-select" id="pengiriman" name="id_pengiriman">
                                     @foreach ($ekspedisi as $eks)
-                                        <option value="{{ old('id_pengiriman', $eks->id) }}"
-                                            data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>
+                                    <option value="{{ old('id_pengiriman', $eks->id) }}">
+                                        {{ $eks->nama_pengiriman }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -132,4 +133,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#produk').change(function(){
+                var jenis_produk = $('#produk option:selected').data('jenisproduk');
+                if(jenis_produk == "Matang"){
+                    $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
+                } else{
+                    $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}"data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
+                };
+            });
+        });
+    </script>
 @endsection

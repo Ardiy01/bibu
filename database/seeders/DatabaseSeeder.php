@@ -1,6 +1,8 @@
 <?php
 
 namespace Database\Seeders;
+
+
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\ProdukSeeder;
@@ -10,6 +12,7 @@ use Database\Seeders\KabupatenSeeder;
 use Database\Seeders\KecamatanSeeder;
 use Database\Seeders\TransaksiSeeder;
 use Database\Seeders\PengirimanSeeder;
+use Database\Seeders\JenisProdukSeeder;
 use Database\Seeders\PengeluaranSeeder;
 use Database\Seeders\StatusPesananSeeder;
 use Database\Seeders\MetodePembayaranSeeder;
@@ -27,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             KecamatanSeeder::class,
             KabupatenSeeder::class,
+            JenisProdukSeeder::class,
             ProdukSeeder::class,
             UserSeeder::class,
             TransaksiSeeder::class,

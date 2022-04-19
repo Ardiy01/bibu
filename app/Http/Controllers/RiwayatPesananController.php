@@ -20,8 +20,8 @@ class RiwayatPesananController extends Controller
         if (request()->start_date && request()->end_date) {
             $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
             $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
-            $riwayats = Pesanan::where('id_status_pesanan', 4)->whereBetween('created_at', [$start_date, $end_date])->latest()->paginate(7);
-            $riwayatUser = Pesanan::where('id_status_pesanan', 4)->where('id_user', 2)->whereBetween('created_at', [$start_date, $end_date])->latest()->paginate(7); // ganti id user yang login
+            $riwayats = Pesanan::where('id_status_pesanan', 4)->whereDate('updated_at','>=',$start_date)->whereDate('updated_at','<=',$end_date)->latest()->paginate(7);
+            $riwayatUser = Pesanan::where('id_status_pesanan', 4)->where('id_user', 2)->whereBetween('updated_at', [$start_date, $end_date])->latest()->paginate(7); // ganti id user yang login
         } else {
             $riwayats = Pesanan::where('id_status_pesanan', 4)->latest()->paginate(7);
             $riwayatUser = Pesanan::where('id_status_pesanan', 4)->where('id_user', 2)->latest()->paginate(7);

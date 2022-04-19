@@ -39,7 +39,7 @@
                                         <div class="px-2 my-0 bd-highlight">
                                             <span class="iconify" data-icon="ant-design:star-filled"
                                                 style="color: #007c84;"></span>
-                                            @format($produk->ulasan->avg('rating')) | Terjual
+                                            @rating($produk->ulasan->avg('rating')) | Terjual
                                             {{ $produk->pesanan->sum('jumlah_produk') }} Kg
                                         </div>
                                     </div>

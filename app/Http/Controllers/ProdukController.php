@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisProduk;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,9 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        return view('dashboard.produk.create');
+        return view('dashboard.produk.create', [
+            'jenis_produks' => JenisProduk::all()
+        ]);
     }
 
     /**
@@ -43,12 +46,13 @@ class ProdukController extends Controller
             'harga' => 'required',
             'stok' => 'required',
             'gambar' => 'required|image|mimes:jpeg,png,jpg|file|max:2048',
-            'keterangan' => 'required|min:10'
+            'keterangan' => 'required|min:10',
+            'id_jenis_produk' => 'required' 
         ]);
         $validateData['gambar'] = $request->file('gambar')->store('produk-images');
         Produk::create($validateData);
 
-        alert()->success('Update Produk', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true'); 
+        alert()->success('Tambah Produk', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true'); 
         return redirect('/dashboard/produk');
     }
 
@@ -62,6 +66,7 @@ class ProdukController extends Controller
     {
         return view('dashboard.produk.update', [
             'produk' => $produk,
+            'jenis_produks' => JenisProduk::all()
         ]);
     }
 
@@ -80,7 +85,8 @@ class ProdukController extends Controller
             'harga' => 'required',
             'stok' => 'required',
             'gambar' => 'image|mimes:jpeg,png,jpg|file|max:2048',
-            'keterangan' => 'required|min:10'
+            'keterangan' => 'required|min:10',
+            'id_jenis_produk' => 'required' 
         ];
 
         $validateData = $request->validate($data);
