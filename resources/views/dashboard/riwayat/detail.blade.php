@@ -85,6 +85,12 @@
                                 <td class="fs-6" style="padding-left: 0.6rem;">
                                     {{ $rwyt->pengiriman->nama_pengiriman }}</td>
                             </tr>
+                            <tr>
+                                <td class="fs-6" style="padding-right: 1rem;">Tanggal Transaksi</td>
+                                <td>:</td>
+                                <td class="fs-6" style="padding-left: 0.6rem;">
+                                    {{ $rwyt->updated_at->isoFormat('D MMMM Y') }}</td>
+                            </tr>
 
                             {{-- cek milik pemilik --}}
                             @if ($rwyt->id_user == 1)

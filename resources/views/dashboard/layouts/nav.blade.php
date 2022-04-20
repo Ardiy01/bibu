@@ -35,6 +35,13 @@
                     Riwayat Pesanan
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('dashboard/transaksi*') ? 'active shadow' : '' }}"
+                    href="/dashboard/transaksi">
+                    <span class="iconify" data-icon="healthicons:money-bag-outline"></span>
+                    Transaksi
+                </a>
+            </li>
         </ul>
         <hr>
     </div>

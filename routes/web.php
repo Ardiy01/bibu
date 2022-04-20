@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\PesananController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\RiwayatPesananController;
 
 /*
@@ -30,4 +31,5 @@ Route::resources([
     '/dashboard/pesanan' => PesananController::class,
     '/dashboard/riwayat/pesanan' => RiwayatPesananController::class,
     '/dashboard/produk/ulasan' => UlasanController::class,
+    '/dashboard/transaksi' => TransaksiController::class,
 ]);

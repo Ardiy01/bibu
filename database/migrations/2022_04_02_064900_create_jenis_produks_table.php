@@ -15,7 +15,7 @@ class CreateJenisProduksTable extends Migration
     {
         Schema::create('jenis_produks', function (Blueprint $table) {
             $table->id();
-            $table->string('jenis_produk');
+            $table->string('jenis_produk', 10);
         });
     }
 
