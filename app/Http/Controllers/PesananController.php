@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\StatusPesanan;
 use App\Models\MetodePembayaran;
 use App\Models\StatusPembayaran;
+use App\Models\Transaksi;
 
 class PesananController extends Controller
 {
@@ -23,7 +24,7 @@ class PesananController extends Controller
     {
         //
         return view('dashboard.pesanan.index', [
-            'pesananUser' => Pesanan::where('id', 2)->latest()->paginate(7), // Ambil pesanan milik user yang login
+            'pesananUser' => Pesanan::where('id', 2)->where('id_status_pesanan' , '!=', 4)->latest()->paginate(7), // Ambil pesanan milik user yang login
             'pesanan' => Pesanan::where('id_status_pesanan' , '!=', 4)->latest()->paginate(7),
         ]);
     }
@@ -79,6 +80,7 @@ class PesananController extends Controller
             'id_produk' => $pesanan->id_produk,
             'id_pesanan' => $pesanan->id,
         ]);
+
 
         $pesanan->save();
         $ulasan->save();
@@ -174,6 +176,15 @@ class PesananController extends Controller
         } else {
             $struks = $pesanan->bukti_pembayaran;
             $validateData['bukti_pembayaran'] = $struks;
+        }
+
+        if($request['id_status_pesanan'] == 4){
+            $transaksi = Transaksi::create([
+                'id_jenis_transaksi' => 1,
+                'nominal' => ($pesanan->jumlah_produk * $pesanan->produk->harga),
+            ]);
+
+            $transaksi->save();
         }
 
         Pesanan::where('id', $pesanan->id)

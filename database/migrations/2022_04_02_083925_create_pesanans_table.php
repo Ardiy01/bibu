@@ -28,7 +28,6 @@ class CreatePesanansTable extends Migration
             $table->foreignId('id_status_pesanan')->default(1);
             $table->string('deskripsi')->nullable()->default("Null");
             $table->timestamps();
-            $table->foreignId('id_transaksi')->default(1);
             
 
             $table->foreign('id_user')->references('id')->on('users');
@@ -36,11 +35,7 @@ class CreatePesanansTable extends Migration
             $table->foreign('id_metode_pembayaran')->references('id')->on('metode_pembayarans');
             $table->foreign('id_status_pembayaran')->references('id')->on('status_pembayarans');
             $table->foreign('id_pengiriman')->references('id')->on('pengirimen');
-            $table->foreign('id_status_pesanan')->references('id')->on('status_pesanans');
-            $table->foreign('id_transaksi')->references('id')->on('transaksis');
-           
-            
-
+            $table->foreign('id_status_pesanan')->references('id')->on('status_pesanans');               
         });
     }
 

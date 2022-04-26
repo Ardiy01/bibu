@@ -15,6 +15,7 @@ use Database\Seeders\PengirimanSeeder;
 use Database\Seeders\JenisProdukSeeder;
 use Database\Seeders\PengeluaranSeeder;
 use Database\Seeders\StatusPesananSeeder;
+use Database\Seeders\JenisTransaksiSeeder;
 use Database\Seeders\MetodePembayaranSeeder;
 use Database\Seeders\StatusPembayaranSeeder;
 
@@ -31,9 +32,9 @@ class DatabaseSeeder extends Seeder
             KecamatanSeeder::class,
             KabupatenSeeder::class,
             JenisProdukSeeder::class,
+            JenisTransaksiSeeder::class,
             ProdukSeeder::class,
             UserSeeder::class,
-            TransaksiSeeder::class,
             StatusPesananSeeder::class,
             PengirimanSeeder::class,
             MetodePembayaranSeeder::class,
@@ -41,6 +42,7 @@ class DatabaseSeeder extends Seeder
             PengeluaranSeeder::class,
             PesananSeeder::class,
             UlasanSeeder::class,
+            TransaksiSeeder::class,
         ]);
     }
 }

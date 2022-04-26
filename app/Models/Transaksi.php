@@ -13,13 +13,13 @@ class Transaksi extends Model
 
     protected $guarded = ['id'];
 
-    public function pengeluaran()
+    public function jenis_transaksi()
     {
-        return $this->hasMany(Pengeluaran::class, 'id_transaksi');
+        return $this->belongsTo(JenisTransaksi::class, 'id_jenis_transaksi');
     }
 
-    public function pesanan()
+    public function pengeluaran()
     {
-        return $this->hasMany(Pesanan::class, 'id_transaksi');
+        return $this->belongsTo(Pengeluaran::class, 'id_pengeluaran');
     }
 }

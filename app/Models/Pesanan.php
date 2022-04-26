@@ -24,11 +24,6 @@ class Pesanan extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    public function transaksi()
-    {
-        return $this->belongsTo(Transaksi::class, 'id_transaksi');
-    }
-
     public function produk()
     {
         return $this->belongsTo(Produk::class, 'id_produk');

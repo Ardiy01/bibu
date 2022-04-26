@@ -16,12 +16,9 @@ class CreatePengeluaransTable extends Migration
     {
         Schema::create('pengeluarans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_transaksi')->default(2);
             $table->float('jumlah');
             $table->text('deskripsi');
-            $table->timestamp('tanggal')->default(Carbon::now() -> format('Y-m-d'));
-
-            $table->foreign('id_transaksi')->references('id')->on('transaksis');
+            $table->timestamps();
         });
     }
 

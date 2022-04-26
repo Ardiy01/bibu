@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -16,13 +17,17 @@ class TransaksiSeeder extends Seeder
     {
         //
         DB::table('transaksis')->insert([
-            'kategori' => 'Pemasukan',
-            'deskripsi' => 'Pemasukan pada pembelian ubi cilembu'
+            'keterangan' => 'Pembelian gas',
+            'nominal' => 20000,
+            'id_pengeluaran' => 1,
+            'id_jenis_transaksi' => 2,
+            'updated_at' => Carbon::now(),
         ]);
 
         DB::table('transaksis')->insert([
-            'kategori' => 'Pengeluaran',
-            'deskripsi' => 'Pengeluaran untuk kebutuhan usaha ubi cilembu'
+            'nominal' => 40000,
+            'id_jenis_transaksi' => 1,
+            'updated_at' => Carbon::now()
         ]);
     }
 }

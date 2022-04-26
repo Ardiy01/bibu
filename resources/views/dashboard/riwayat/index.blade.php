@@ -3,6 +3,7 @@
 @section('content')
     <div class="container py-2 mt-4 shadow" style="border-radius: 12px; background-color: rgba(234, 243, 244, 1);">
         <div class="mx-4" style="color: #007c84">
+            {{-- filter tanggal --}}
             <form action="/dashboard/riwayat/pesanan" method="get">
                 <div class="row mb-2 search" style="max-width: 24.5rem;">
                     <label for="start_date" class="form-label col-sm-5 col-12 m-auto">Pilih Rentang Tanggal:</label>

@@ -134,16 +134,19 @@
         </div>
     </div>
 
-    <script>
-        $(document).ready(function(){
-            $('#produk').change(function(){
-                var jenis_produk = $('#produk option:selected').data('jenisproduk');
-                if(jenis_produk == "Matang"){
-                    $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
-                } else{
-                    $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}"data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
-                };
-            });
-        });
-    </script>
+    
 @endsection
+@push('script')
+<script>
+    $(document).ready(function(){
+        $('#produk').change(function(){
+            var jenis_produk = $('#produk option:selected').data('jenisproduk');
+            if(jenis_produk == "Matang"){
+                $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
+            } else{
+                $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}"data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
+            };
+        });
+    });
+</script>
+@endpush

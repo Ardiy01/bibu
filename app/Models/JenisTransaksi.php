@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Transaksi;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Pengeluaran extends Model
+class JenisTransaksi extends Model
 {
     use HasFactory;
 
@@ -14,6 +13,6 @@ class Pengeluaran extends Model
 
     public function transaksi()
     {
-        return $this->hasMany(Transaksi::class, 'id_pengeluaran');
+        return $this->hasMany(Transaksi::class, 'id_jenis_transaksi');
     }
 }

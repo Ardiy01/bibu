@@ -29,13 +29,6 @@ class CreateTriggersTable extends Migration
                 WHERE id = NEW.id_produk;
             END
         ");
-
-        // DB::unprepared("
-        // CREATE TRIGGER create_ulasan BEFORE INSERT ON pesanans FOR EACH ROW
-        //     BEGIN
-        //         INSERT INTO ulasans (id_pesanan) Values (1);
-        //     END
-        // ");
     }
 
     /**
@@ -47,6 +40,5 @@ class CreateTriggersTable extends Migration
     {
         DB::unprepared('DROP TRIGGER "insert_order"');
         DB::unprepared('DROP TRIGGER "up_order"');
-        DB::unprepared('DROP TRIGGER "create_ulasan"');
     }
 }

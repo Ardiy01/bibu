@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container py-2 mt-4 shadow" style="border-radius: 12px; background-color: rgba(234, 243, 244, 1);">
+        {{-- button create --}}
         <div class="container text-end">
             <a href="/dashboard/produk/create" class="btn sty-btn-edit">
                 <span class="iconify" data-icon="akar-icons:plus" style="color: #007c84;"></span>
