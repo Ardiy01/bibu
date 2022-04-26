@@ -9,7 +9,7 @@
         </div>
         @if ($pesanan->count())
             @foreach ($pesanan as $psn)
-                @if ($psn->status_pesanan->status_pesanan != "Selesai")
+                @if ($psn->status_pesanan->status_pesanan != 'Selesai')
                     <a href="/dashboard/pesanan/{{ $psn->id }}" style="text-decoration: none">
                         <div class="container my-3 zoom">
                             @if ($psn->user->rule != 'Pemilik')

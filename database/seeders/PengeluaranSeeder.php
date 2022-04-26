@@ -23,6 +23,19 @@ class PengeluaranSeeder extends Seeder
         DB::table('pengeluarans')->insert([
             'jumlah' => 40000,
             'deskripsi' => 'Beli ubi cilembu',
+            'updated_at' => '2022-04-04'
+        ]);
+
+        DB::table('pengeluarans')->insert([
+            'jumlah' => 40000,
+            'deskripsi' => 'Beli ubi cilembu',
+            'updated_at' => '2022-05-04'
+        ]);
+        
+        DB::table('pengeluarans')->insert([
+            'jumlah' => 100000,
+            'deskripsi' => 'Beli Gas',
+            'updated_at' => '2022-06-04'
         ]);
     }
 }

@@ -174,5 +174,44 @@ class PesananSeeder extends Seeder
             'updated_at' => '2022-4-4',
         ]);
 
+        DB::table('pesanans')->insert([
+            'id_user' => 1,
+            'id_produk' => 2,
+            'jumlah_produk' => 3,
+            'id_metode_pembayaran' => 1,
+            'id_status_pembayaran' => 1,
+            'id_pengiriman' => 1,
+            'id_status_pesanan' => 4,
+            'deskripsi' => 'Pembelian oleh Martin',
+            'created_at' => '2022-3-4',
+            'updated_at' => '2022-3-4',
+        ]);
+
+        DB::table('pesanans')->insert([
+            'id_user' => 1,
+            'id_produk' => 2,
+            'jumlah_produk' => 6,
+            'id_metode_pembayaran' => 1,
+            'id_status_pembayaran' => 1,
+            'id_pengiriman' => 1,
+            'id_status_pesanan' => 4,
+            'deskripsi' => 'Pembelian oleh Martin',
+            'created_at' => '2022-3-1',
+            'updated_at' => '2022-3-1',
+        ]);
+
+        DB::table('pesanans')->insert([
+            'id_user' => 1,
+            'id_produk' => 2,
+            'jumlah_produk' => 8,
+            'id_metode_pembayaran' => 1,
+            'id_status_pembayaran' => 1,
+            'id_pengiriman' => 1,
+            'id_status_pesanan' => 4,
+            'deskripsi' => 'Pembelian oleh Martin',
+            'created_at' => '2022-5-1',
+            'updated_at' => '2022-5-1',
+        ]);
+
     }
 }

@@ -29,5 +29,29 @@ class TransaksiSeeder extends Seeder
             'id_jenis_transaksi' => 1,
             'updated_at' => Carbon::now()
         ]);
+
+        DB::table('transaksis')->insert([
+            'nominal' => 40000,
+            'id_pengeluaran' => 2,
+            'id_jenis_transaksi' => 2,
+            'keterangan' => 'Beli ubi cilembu',
+            'updated_at' => '2022-04-04'
+        ]);
+
+        DB::table('transaksis')->insert([
+            'nominal' => 40000,
+            'id_pengeluaran' => 3,
+            'id_jenis_transaksi' => 2,
+            'keterangan' => 'Beli ubi cilembu',
+            'updated_at' => '2022-05-04'
+        ]);
+
+        DB::table('transaksis')->insert([
+            'nominal' => 10000,
+            'id_pengeluaran' => 4,
+            'id_jenis_transaksi' => 2,
+            'keterangan' => 'Beli Gas',
+            'updated_at' => '2022-06-04'
+        ]);
     }
 }
