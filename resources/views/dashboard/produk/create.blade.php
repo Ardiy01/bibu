@@ -31,7 +31,7 @@
                         <div class="mb-3 fw-bold">
                             <label for="keterangan" class="form-label">Deskripsi Produk</label>
                             <div class="input-group">
-                                <textarea class="form-control" id="keterangan" aria-label="With textarea"
+                                <textarea class="form-control @error('keterangan') is-invalid @enderror" id="keterangan" aria-label="With textarea"
                                     name="keterangan">{{ old('keterangan') }}</textarea>
                                 @error('keterangan')
                                     <div class="invalid-feedback text-capitalize">
