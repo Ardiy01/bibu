@@ -6,10 +6,10 @@
         <div class="container row my-3">
             <div class="col-sm-4  my-auto">
                 <label for="filter" class="form-label fs-6 fw-bold mx-2" style="color: #007C84">Bulan</label>
-                <div class="input-group">
-                    <select class="form-select" id="filter" aria-label="Example select with button addon" name="filter">
+                <div class="input-group shadow">
+                    <select class="form-select fw-bold" style="color: #007C84" id="filter" aria-label="Example select with button addon" name="filter">
                         @foreach ($bulan as $item)
-                            <option value="{{ $item->value }}">{{ $item->bulan . ' ' . $tahun }}
+                            <option value="{{ $item->value }}" >{{ $item->bulan . ' ' . $tahun }}
                             </option>
                         @endforeach
                     </select>

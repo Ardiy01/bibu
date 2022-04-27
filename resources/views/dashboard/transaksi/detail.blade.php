@@ -15,7 +15,7 @@
                         <div class="col-4 text-end mb-0" @if ($transaksi->jenis_transaksi->kategori == "Pemasukan")
                             style="visibility: hidden"
                         @endif>
-                            <a href="/dashboard/transaksi/{{ $transaksi->id_pengeluaran }}/edit" class="btn sty-btn-edit">
+                            <a href="/dashboard/transaksi/{{ $transaksi->id }}/edit" class="btn sty-btn-edit">
                                 <span class="iconify" data-icon="akar-icons:edit"
                                     style="color: #007c84; font-size: 1.2rem; "></span>
                             </a>

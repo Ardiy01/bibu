@@ -14,7 +14,7 @@
                     <form action="/dashboard/transaksi/{{ $pengeluaran->id }}" method="post">
                         @method('put')
                         @csrf
-                        <x-input-pesanan class="row mb-sm-3 mb-3" id="nominal" label="Nominal" type="number" name="nominal" :value="$pengeluaran->nominal" />
+                        <x-input-pesanan class="row mb-sm-3 mb-3" id="nominal" label="Nominal" type="number" name="nominal" :value="$pengeluaran->pengeluaran->jumlah" />
 
                         <div class="row mb-sm-3 mb-3">
                             <label for="keterangan" class="form-label col-sm-3 col-12 m-auto fs-6">Keterangan</label>

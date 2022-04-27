@@ -7,6 +7,7 @@ use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\RiwayatPesananController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +32,5 @@ Route::resources([
     '/dashboard/riwayat/pesanan' => RiwayatPesananController::class,
     '/dashboard/produk/ulasan' => UlasanController::class,
     '/dashboard/transaksi' => TransaksiController::class,
+    '/dashboard/profil' => UserController::class
 ]);

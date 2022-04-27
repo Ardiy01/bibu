@@ -50,6 +50,13 @@
                         Transaksi
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('dashboard/profil*') ? 'active shadow' : '' }}"
+                        href="/dashboard/profil">
+                        <span class="iconify" data-icon="clarity:avatar-line"></span>
+                        Profil
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
