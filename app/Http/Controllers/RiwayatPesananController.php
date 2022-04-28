@@ -74,7 +74,7 @@ class RiwayatPesananController extends Controller
         //
         $data = [
             'rating' => 'required',
-            'ulasan' => 'required'
+            'ulasan' => 'nullable'
         ];
 
         $validateData = $request->validate($data);

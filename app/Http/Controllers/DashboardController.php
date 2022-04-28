@@ -20,7 +20,7 @@ class DashboardController extends Controller
     {
         //
         for ($bulan = 1; $bulan < 13; $bulan++) {
-            $pendapatan = collect(DB::SELECT("SELECT SUM(pesanans.jumlah_produk * produks.harga) AS jumlah FROM pesanans JOIN produks ON pesanans.id_produk = produks.id WHERE month(pesanans.created_at)= '$bulan' AND YEAR(NOW())"))->first();
+            $pendapatan = collect(DB::SELECT("SELECT SUM(jumlah_produk * harga_produk) AS jumlah FROM pesanans WHERE month(created_at)= '$bulan' AND YEAR(NOW())"))->first();
             $pengeluaran = collect(DB::SELECT("SELECT SUM(nominal) AS jumlah FROM transaksis WHERE id_jenis_transaksi = 2 AND month(updated_at)= '$bulan' AND YEAR(NOW())"))->first();
             $data_pendapatan[] = $pendapatan->jumlah + 0;
             $data_pengeluaran[] = $pengeluaran->jumlah + 0;

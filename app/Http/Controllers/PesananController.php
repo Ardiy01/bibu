@@ -169,6 +169,6 @@ class PesananController extends Controller
             ->update($validateData);
 
         alert()->success('Update Pesanan', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true');
-        return redirect('/dashboard/pesanan/' . $pesanan->id . '/edit');
+        return redirect('/dashboard/pesanan/' .$pesanan->id);
     }
 }

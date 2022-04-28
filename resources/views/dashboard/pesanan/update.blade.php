@@ -64,10 +64,10 @@
                         </div>
 
                         <div class="row mb-sm-3 mb-3">
-                            <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="statusPembayaran">Status
+                            <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="statusPesanan">Status
                                 Pesanan</label>
                             <div class="col-sm-9 col-12 mt-1">
-                                <select class="form-select" id="statusPembayaran" name="id_status_pesanan" style="color: #007C84">
+                                <select class="form-select" id="statusPesanan" name="id_status_pesanan" style="color: #007C84">
                                     @foreach ($status as $sts)
                                         @if (old('id_status_pesanan', $pesan->id_status_pesanan) == $sts->id)
                                             <option value="{{ $sts->id }}" style="color: #007C84" selected>{{ $sts->status_pesanan }}
@@ -81,16 +81,16 @@
                         </div>
 
                         <div class="row mb-sm-3 mb-3">
-                            <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="statusPesanan">Metode
+                            <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="pembayaran">Metode
                                 Pembayaran</label>
                             <div class="col-sm-9 col-12 mt-1">
-                                <select class="form-select" id="statusPesanan" name="id_metode_pembayaran" style="color: #007C84">
+                                <select class="form-select" id="pembayaran" name="id_metode_pembayaran" style="color: #007C84">
                                     @foreach ($metode as $mtd)
                                         @if (old('id_status_pesanan', $pesan->id_metode_pembayaran) == $mtd->id)
-                                            <option value="{{ $mtd->id }}" style="color: #007C84" selected>
+                                            <option value="{{ $mtd->id }}" data-pembayaran="{{ $mtd->metode_pembayaran }}" style="color: #007C84" selected>
                                                 {{ $mtd->metode_pembayaran . ' (' . $mtd->no_rekening . ')' }}</option>
                                         @else
-                                            <option value="{{ $mtd->id }}" style="color: #007C84">
+                                            <option value="{{ $mtd->id }}" data-pembayaran="{{ $mtd->metode_pembayaran }}" style="color: #007C84">
                                                 {{ $mtd->metode_pembayaran . ' (' . $mtd->no_rekening . ')' }}</option>
                                         @endif
                                     @endforeach
@@ -159,11 +159,48 @@
 @endsection
 
 @push('script')
+<script>
+    window.onload = function(){
+        var harga_produk = $('#produk option:selected').data('hargaproduk');
+        $('#hargaproduk').val(harga_produk);
+        var pembayaran = $('#pembayaran option:selected').data('pembayaran');
+        if(pembayaran == "Tunai"){
+            $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
+        } else{
+            $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}"data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
+        }
+    }
+</script>
     <script>
         $(document).ready(function(){
             $('#produk').change(function(){
                 var harga_produk = $('#produk option:selected').data('hargaproduk');
                 $('#hargaproduk').val(harga_produk);
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('#produk').change(function(){
+                var jenis_produk = $('#produk option:selected').data('jenisproduk');
+                var harga_produk = $('#produk option:selected').data('hargaproduk');
+                var pembayaran = $('#pembayaran option:selected').data('pembayaran');
+                $('#hargaproduk').val(harga_produk);
+                if(jenis_produk == "Matang" || pembayaran == "Tunai"){
+                    $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
+                } else{
+                    $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}"data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
+                };
+            });
+    
+            $('#pembayaran').change(function(){
+                var pembayaran = $('#pembayaran option:selected').data('pembayaran');
+                var jenis_produk = $('#produk option:selected').data('jenisproduk');
+                if(pembayaran == "Tunai" || jenis_produk == "Matang" ){
+                    $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
+                } else{
+                    $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}"data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
+                }
             });
         });
     </script>

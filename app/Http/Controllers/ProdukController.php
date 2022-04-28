@@ -103,6 +103,6 @@ class ProdukController extends Controller
             ->update($validateData);
 
         alert()->success('Update Produk', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true'); 
-        return redirect('/dashboard/produk/'.$produk->id.'/edit');
+        return redirect('/dashboard/produk');
     }
 }
