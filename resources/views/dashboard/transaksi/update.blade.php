@@ -21,7 +21,7 @@
                             <div class="col-sm-9 col-12 mt-1">
                                 <div class="input-group">
                                     <textarea class="form-control text-capitalize" id="keterangan" aria-label="With textarea"
-                                        name="keterangan">{{ $pengeluaran->keterangan }}</textarea>
+                                        name="keterangan" style="color: #004347">{{ $pengeluaran->keterangan }}</textarea>
                                 </div>
                             </div>
                         </div>

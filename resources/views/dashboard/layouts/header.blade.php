@@ -60,7 +60,7 @@
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('dashboard/customer*') ? 'active shadow' : '' }}"
                         href="/dashboard/customer">
-                        <span class="iconify" data-icon="mdi:account-group-outline"></span>
+                        <span class="iconify" data-icon="carbon:user-profile"></span>
                         Customer
                     </a>
                 </li>

@@ -127,6 +127,6 @@ class TransaksiController extends Controller
                     ]);
 
         alert()->success('Update Transaksi', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true');
-        return redirect('/dashboard/transaksi/' . $transaksi->id . '/edit');
+        return redirect('/dashboard/transaksi/' . $transaksi->id);
     }
 }
