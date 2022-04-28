@@ -31,12 +31,12 @@
                         <div class="row mb-sm-3 mb-3">
                             <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="produk">Nama Produk</label>
                             <div class="col-sm-9 col-12 mt-1">
-                                <select class="form-select" id="produk" name="id_produk">
+                                <select class="form-select" id="produk" name="id_produk" style="color: #007C84">
                                     @foreach ($produk as $prd)
                                         @if (old('id_produk', $pesan->id_produk) == $prd->id)
-                                            <option value="{{ $prd->id }}" data-jenisproduk="{{ $prd->jenisproduk->jenis_produk }}" selected>{{ $prd->nama_produk }}</option>
+                                            <option value="{{ $prd->id }}" data-hargaproduk="{{ $prd->harga }}" data-jenisproduk="{{ $prd->jenisproduk->jenis_produk }}" style="color: #007C84" selected>{{ $prd->nama_produk }}</option>
                                         @else
-                                            <option value="{{ $prd->id }}" data-jenisproduk="{{ $prd->jenisproduk->jenis_produk }}">{{ $prd->nama_produk }}</option>
+                                            <option value="{{ $prd->id }}" data-hargaproduk="{{ $prd->harga }}" data-jenisproduk="{{ $prd->jenisproduk->jenis_produk }}" style="color: #007C84">{{ $prd->nama_produk }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -50,13 +50,13 @@
                             <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="statusPembayaran">Status
                                 Pembayaran</label>
                             <div class="col-sm-9 col-12 mt-1">
-                                <select class="form-select" id="statusPembayaran" name="id_status_pembayaran">
+                                <select class="form-select" id="statusPembayaran" name="id_status_pembayaran" style="color: #007C84">
                                     @foreach ($pembayaran as $pmb)
                                         @if (old('id_status_pembayaran', $pesan->id_status_pembayaran) == $pmb->id)
-                                            <option value="{{ $pmb->id }}" selected>{{ $pmb->status_pembayaran }}
+                                            <option value="{{ $pmb->id }}" style="color: #007C84" selected>{{ $pmb->status_pembayaran }} 
                                             </option>
                                         @else
-                                            <option value="{{ $pmb->id }}">{{ $pmb->status_pembayaran }}</option>
+                                            <option value="{{ $pmb->id }}" style="color: #007C84">{{ $pmb->status_pembayaran }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -67,13 +67,13 @@
                             <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="statusPembayaran">Status
                                 Pesanan</label>
                             <div class="col-sm-9 col-12 mt-1">
-                                <select class="form-select" id="statusPembayaran" name="id_status_pesanan">
+                                <select class="form-select" id="statusPembayaran" name="id_status_pesanan" style="color: #007C84">
                                     @foreach ($status as $sts)
                                         @if (old('id_status_pesanan', $pesan->id_status_pesanan) == $sts->id)
-                                            <option value="{{ $sts->id }}" selected>{{ $sts->status_pesanan }}
+                                            <option value="{{ $sts->id }}" style="color: #007C84" selected>{{ $sts->status_pesanan }}
                                             </option>
                                         @else
-                                            <option value="{{ $sts->id }}">{{ $sts->status_pesanan }}</option>
+                                            <option value="{{ $sts->id }}" style="color: #007C84">{{ $sts->status_pesanan }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -84,13 +84,13 @@
                             <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="statusPesanan">Metode
                                 Pembayaran</label>
                             <div class="col-sm-9 col-12 mt-1">
-                                <select class="form-select" id="statusPesanan" name="id_metode_pembayaran">
+                                <select class="form-select" id="statusPesanan" name="id_metode_pembayaran" style="color: #007C84">
                                     @foreach ($metode as $mtd)
                                         @if (old('id_status_pesanan', $pesan->id_metode_pembayaran) == $mtd->id)
-                                            <option value="{{ $mtd->id }}" selected>
+                                            <option value="{{ $mtd->id }}" style="color: #007C84" selected>
                                                 {{ $mtd->metode_pembayaran . ' (' . $mtd->no_rekening . ')' }}</option>
                                         @else
-                                            <option value="{{ $mtd->id }}">
+                                            <option value="{{ $mtd->id }}" style="color: #007C84">
                                                 {{ $mtd->metode_pembayaran . ' (' . $mtd->no_rekening . ')' }}</option>
                                         @endif
                                     @endforeach
@@ -106,13 +106,13 @@
                         <div class="row mb-sm-3 mb-3">
                             <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="pengiriman">Jenis Pengiriman</label>
                             <div class="col-sm-9 col-12 mt-1" id="ekspedisi">
-                                <select class="form-select" id="pengiriman" name="id_pengiriman">
+                                <select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84">
                                     @foreach ($ekspedisi as $eks)
                                         @if (old('id_pengiriman', $pesan->id_pengiriman) == $eks->id)
-                                            <option value="{{ $eks->id }}" data-eks="{{ $eks->id }}" selected>
+                                            <option value="{{ $eks->id }}" data-eks="{{ $eks->id }}" style="color: #007C84" selected>
                                                 {{ $eks->nama_pengiriman }}</option>
                                         @else
-                                            <option value="{{ $eks->id }}" data-eks="{{ $eks->id }}">
+                                            <option value="{{ $eks->id }}" data-eks="{{ $eks->id }}" style="color: #007C84">
                                                 {{ $eks->nama_pengiriman }}</option>
                                         @endif
                                     @endforeach
@@ -134,11 +134,14 @@
                                 <div class="col-sm-9 col-12 mt-1">
                                     <div class="input-group">
                                         <textarea class="form-control" id="deskripsi" aria-label="With textarea"
-                                            name="deskripsi">{{ $pesan->deskripsi }}</textarea>
+                                            name="deskripsi" style="color: #007C84">{{ $pesan->deskripsi }}</textarea>
                                     </div>
                                 </div>
                             </div>
                         @endif
+
+                        <x-input-pesanan class="row mb-sm-3 mb-3" id="hargaproduk"
+                                type="hidden" name="harga_produk" :value="$pesan->harga_produk ?? ''"/>
 
                         {{-- button --}}
                         <div class="col-12 text-sm-start text-center t-sm-3 my-2" id="btn-update"
@@ -154,3 +157,14 @@
         </div>
     </div>
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(function(){
+            $('#produk').change(function(){
+                var harga_produk = $('#produk option:selected').data('hargaproduk');
+                $('#hargaproduk').val(harga_produk);
+            });
+        });
+    </script>
+@endpush

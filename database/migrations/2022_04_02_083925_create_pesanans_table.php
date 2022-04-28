@@ -23,6 +23,7 @@ class CreatePesanansTable extends Migration
             $table->string('bukti_pembayaran')->nullable()->default("Null");
             $table->foreignId('id_status_pembayaran')->default(2);
             $table->foreignId('id_pengiriman');
+            $table->float('harga_produk');
             $table->float('ongkir')->nullable()->default(0);
             $table->string('no_resi', 30)->nullable()->default("Null");
             $table->foreignId('id_status_pesanan')->default(1);

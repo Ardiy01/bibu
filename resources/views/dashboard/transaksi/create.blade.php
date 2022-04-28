@@ -20,7 +20,7 @@
                             <div class="col-sm-9 col-12 mt-1">
                                 <div class="input-group">
                                     <textarea class="form-control" id="deskripsi" aria-label="With textarea"
-                                        name="deskripsi">{{ old('deskripsi') }}</textarea>
+                                        name="deskripsi" style="color: #007C84">{{ old('deskripsi') }}</textarea>
                                 </div>
                             </div>
                         </div>

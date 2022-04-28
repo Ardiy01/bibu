@@ -22,11 +22,11 @@
                             <select class="form-select" id="jenis" name="id_jenis_produk">
                                 @foreach ($jenis_produks as $jenis)
                                     @if (old('id_jenis_produk', $produk->id_jenis_produk) == $jenis->id)
-                                        <option value="{{ $jenis->id }}" selected>
+                                        <option value="{{ $jenis->id }}" style="color: #007C84" selected>
                                             {{ $jenis->jenis_produk }}
                                         </option>
                                     @else
-                                        <option value="{{ $jenis->id }}">
+                                        <option value="{{ $jenis->id }}" style="color: #007C84">
                                             {{ $jenis->jenis_produk }}
                                         </option>
                                     @endif
@@ -42,10 +42,10 @@
 
                         <x-input class="mb-3 fw-bold" id="gambar" label="Gambar Produk" type="file" name="gambar" />
                         <div class="mb-3">
-                            <label for="keterangan" class="form-label fw-bold">Keterangan Produk</label>
+                            <label for="keterangan" class="form-label fw-bold">Deskripsi Produk</label>
                             <div class="input-group">
                                 <textarea class="form-control @error('keterangan') is-invalid @enderror" id="deskripsi" aria-label="With textarea"
-                                    name="keterangan">{{ old('keterangan', $produk->keterangan) }}</textarea>
+                                    name="keterangan" style="color: #007C84">{{ old('keterangan', $produk->keterangan) }}</textarea>
                                 @error('keterangan')
                                     <div class="invalid-feedback text-capitalize">
                                         {{ $message }}
@@ -60,7 +60,6 @@
                                 <a href="/dashboard/produk" class="btn px-2 fw-bold text-light shadow-sm"
                                     style="background-color: #2DB5B2">Batal</a>
                             </div>
-
                     </form>
                 </div>
             </div>

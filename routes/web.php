@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
@@ -7,7 +8,7 @@ use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\RiwayatPesananController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,6 @@ Route::resources([
     '/dashboard/riwayat/pesanan' => RiwayatPesananController::class,
     '/dashboard/produk/ulasan' => UlasanController::class,
     '/dashboard/transaksi' => TransaksiController::class,
-    '/dashboard/profil' => UserController::class
+    '/dashboard/profil' => ProfilController::class,
+    '/dashboard/customer' => CustomerController::class
 ]);

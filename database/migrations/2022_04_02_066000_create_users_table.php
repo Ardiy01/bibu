@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->enum('rule', ['Pemilik', 'Customer'])->default('Customer');
             $table->string('jalan');
             $table->string('nomor', 4);
+            $table->string('profil')->default('profil-images/profil.png');
             $table->foreignId('id_kecamatan');
             $table->foreignId('id_kabupaten');
             $table->rememberToken();

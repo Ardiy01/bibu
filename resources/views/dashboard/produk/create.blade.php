@@ -16,9 +16,9 @@
                         <x-input class="mb-3 fw-bold" id="namaProduk" label="Nama Produk" type="text" name="nama_produk" />
                         <div class="mb-3 fw-bold">
                             <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="jenis">Jenis Produk</label>
-                            <select class="form-select" id="jenis" name="id_jenis_produk">
+                            <select class="form-select" id="jenis" name="id_jenis_produk" style="color: #007C84">
                                 @foreach ($jenis_produks as $jenis)
-                                    <option value="{{ old('id_jenis_produk', $jenis->id) }}">{{ $jenis->jenis_produk }}
+                                    <option value="{{ old('id_jenis_produk', $jenis->id) }}" style="color: #007C84">{{ $jenis->jenis_produk }}
                                     </option>
                                 @endforeach
                             </select>
@@ -32,7 +32,7 @@
                             <label for="keterangan" class="form-label">Deskripsi Produk</label>
                             <div class="input-group">
                                 <textarea class="form-control @error('keterangan') is-invalid @enderror" id="keterangan" aria-label="With textarea"
-                                    name="keterangan">{{ old('keterangan') }}</textarea>
+                                    name="keterangan" style="color: #007C84">{{ old('keterangan') }}</textarea>
                                 @error('keterangan')
                                     <div class="invalid-feedback text-capitalize">
                                         {{ $message }}

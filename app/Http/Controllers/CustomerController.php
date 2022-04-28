@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,9 @@ class UserController extends Controller
     public function index()
     {
         //
-        return view('dashboard.user.index');
+        return view('dashboard.customer.index', [
+            'users' => User::where('rule', '=', 'Customer')->latest()->paginate(10),
+        ]);
     }
 
     /**
@@ -45,9 +47,12 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($user)
     {
         //
+        return view('dashboard.customer.detail', [
+            'user' => User::where('id', $user)->get(),
+        ]);
     }
 
     /**

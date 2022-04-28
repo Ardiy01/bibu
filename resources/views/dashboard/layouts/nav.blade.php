@@ -49,6 +49,13 @@
                     Profil
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('dashboard/customer*') ? 'active shadow' : '' }}"
+                    href="/dashboard/customer">
+                    <span class="iconify" data-icon="mdi:account-group-outline"></span>
+                    Customer
+                </a>
+            </li>
         </ul>
         <hr>
     </div>

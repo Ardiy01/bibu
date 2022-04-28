@@ -31,9 +31,9 @@
                             <div class="row mb-sm-3 mb-3">
                                 <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="produk">Nama Produk</label>
                                 <div class="col-sm-9 col-12 mt-1">
-                                    <select class="form-select" id="produk" name="id_produk">
+                                    <select class="form-select" id="produk" name="id_produk" style="color: #007C84">
                                         @foreach ($produk as $prd)
-                                            <option value="{{ old('id_produk', $prd->id) }}" data-jenisproduk="{{ $prd->jenisproduk->jenis_produk }}">{{ $prd->nama_produk }}
+                                            <option value="{{ old('id_produk', $prd->id) }}" data-hargaproduk="{{ $prd->harga }}" data-jenisproduk="{{ $prd->jenisproduk->jenis_produk }}" style="color: #007C84">{{ $prd->nama_produk }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -42,43 +42,15 @@
 
                             <x-input-pesanan class="row mb-sm-3 mb-3" id="jumlahPesanan" label="Jumlah Pesanan"
                                 type="number" name="jumlah_produk" />
-
-                            @if ($user->rule == 'Pemilik')
-                                <div class="row mb-sm-3 mb-3">
-                                    <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="statusPembayaran">Status
-                                        Pembayaran</label>
-                                    <div class="col-sm-9 col-12 mt-1">
-                                        <select class="form-select" id="statusPembayaran" name="id_status_pembayaran">
-                                            @foreach ($pembayaran as $pmb)
-                                                <option value="{{ old('id_status_pembayaran', $pmb->id) }}">
-                                                    {{ $pmb->status_pembayaran }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-sm-3 mb-3">
-                                    <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="statusPembayaran">Status
-                                        Pesanan</label>
-                                    <div class="col-sm-9 col-12 mt-1">
-                                        <select class="form-select" id="statusPembayaran" name="id_status_pesanan">
-                                            @foreach ($status as $sts)
-                                                <option value="{{ old('is_status_pesanan', $sts->id) }}">
-                                                    {{ $sts->status_pesanan }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            @endif
                         @endforeach
 
                         <div class="row mb-sm-3 mb-3">
                             <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="statusPesanan">Metode
                                 Pembayaran</label>
                             <div class="col-sm-9 col-12 mt-1">
-                                <select class="form-select" id="statusPesanan" name="id_metode_pembayaran">
+                                <select class="form-select" id="statusPesanan" name="id_metode_pembayaran" style="color: #007C84">
                                     @foreach ($metode as $mtd)
-                                        <option value="{{ old('id_metode_pembayaran', $mtd->id) }}">
+                                        <option value="{{ old('id_metode_pembayaran', $mtd->id) }}" style="color: #007C84">
                                             {{ $mtd->metode_pembayaran . ' (' . $mtd->no_rekening . ')' }}</option>
                                     @endforeach
                                 </select>
@@ -95,9 +67,9 @@
                         <div class="row mb-sm-3 mb-3">
                             <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="pengiriman">Jenis Pengiriman</label>
                             <div class="col-sm-9 col-12 mt-1" id="ekspedisi">
-                                <select class="form-select" id="pengiriman" name="id_pengiriman">
+                                <select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84">
                                     @foreach ($ekspedisi as $eks)
-                                    <option value="{{ old('id_pengiriman', $eks->id) }}">
+                                    <option value="{{ old('id_pengiriman', $eks->id) }}" style="color: #007C84">
                                         {{ $eks->nama_pengiriman }}
                                     </option>
                                     @endforeach
@@ -112,16 +84,17 @@
                                     <div class="col-sm-9 col-12 mt-1">
                                         <div class="input-group">
                                             <textarea class="form-control" id="deskripsi" aria-label="With textarea"
-                                                name="deskripsi">{{ old('deskripsi') }}</textarea>
+                                                name="deskripsi" style="color: #007C84">{{ old('deskripsi') }}</textarea>
                                         </div>
                                     </div>
                                 </div>
                             @endif
+                            <input type="hidden" id="hargaproduk" name="harga_produk">
                         @endforeach
 
 
                         {{-- button --}}
-                        <div class="col-12 text-sm-start text-center t-sm-3 my-2" id="btn-update"
+                        <div class="col-12 text-sm-start text-center mt-0 mb-2" id="btn-update"
                             style="margin-left: 11rem">
                             <button type="submit" class="btn text-light shadow-sm ms-sm-5 mx-2"
                                 style="background-color: #004347">Simpan</button>
@@ -138,9 +111,17 @@
 @endsection
 @push('script')
 <script>
+    window.onload = function(){
+        var harga_produk = $('#produk option:selected').data('hargaproduk');
+        $('#hargaproduk').val(harga_produk);
+    }
+</script>
+<script>
     $(document).ready(function(){
         $('#produk').change(function(){
             var jenis_produk = $('#produk option:selected').data('jenisproduk');
+            var harga_produk = $('#produk option:selected').data('hargaproduk');
+            $('#hargaproduk').val(harga_produk);
             if(jenis_produk == "Matang"){
                 $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
             } else{

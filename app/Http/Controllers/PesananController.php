@@ -38,7 +38,7 @@ class PesananController extends Controller
     {
         //
         return view('dashboard.pesanan.create', [
-            'users' => User::where('id', 3)->get(), // ubah id user dengan user login
+            'users' => User::where('id', 2)->get(), // ubah id user dengan user login
             'metode' => MetodePembayaran::all(),
             'pembayaran' => StatusPembayaran::all(),
             'status' => StatusPesanan::all(),
@@ -63,7 +63,8 @@ class PesananController extends Controller
             'bukti_pembayaran' => 'nullable|image|mimes:jpeg,png,jpg|file|max:2048',
             'id_metode_pembayaran' => 'required',
             'id_pengiriman' => 'required',
-            'deskripsi' => 'nullabel'
+            'deskripsi' => 'nullable',
+            'harga_produk' => 'required'
         ];
 
         $validateData = $request->validate($data);
@@ -141,34 +142,11 @@ class PesananController extends Controller
             'id_pengiriman' => 'required',
             'no_resi' => 'nullable',
             'ongkir' => 'nullable',
-            'deskripsi' => 'nullable'
+            'deskripsi' => 'nullable',
+            'harga_produk' => 'required'
         ];
 
         $validateData = $request->validate($data);
-
-        if ($request['no_resi']) {
-            $noResi = $request['no_resi'];
-            $validateData['no_resi'] = $noResi;
-        } else {
-            $noResi = $pesanan->no_resi;
-            $validateData['no_resi'] = $noResi;
-        }
-
-        if ($request['ongkir']) {
-            $ongkir = $request['ongkir'];
-            $validateData['ongkir'] = $ongkir;
-        } else {
-            $ongkir = $pesanan->ongkir;
-            $validateData['ongkir'] = $ongkir;
-        }
-
-        if ($request['deskripsi']) {
-            $deskripsi = $request['deskripsi'];
-            $validateData['deskripsi'] = $deskripsi;
-        } else {
-            $deskripsi = $pesanan->deskripsi;
-            $validateData['deskripsi'] = $deskripsi;
-        }
 
         if ($request->file('bukti_pembayaran')) {
             $struks = $request->file('bukti_pembayaran')->store('struk-images');
@@ -181,7 +159,7 @@ class PesananController extends Controller
         if($request['id_status_pesanan'] == 4){
             $transaksi = Transaksi::create([
                 'id_jenis_transaksi' => 1,
-                'nominal' => ($pesanan->jumlah_produk * $pesanan->produk->harga),
+                'nominal' => ($pesanan->jumlah_produk * $pesanan->harga_produk),
             ]);
 
             $transaksi->save();

@@ -73,7 +73,7 @@
                                 <td class="fs-6" style="padding-right: 1rem;">Total Harga Pesanan</td>
                                 <td>:</td>
                                 <td class="fs-6" style="padding-left: 0.6rem;">@currency($pesanan->jumlah_produk *
-                                    $pesanan->produk->harga)</td>
+                                    $pesanan->harga_produk)</td>
                             </tr>
                             <tr>
                                 <td class="fs-6" style="padding-right: 1rem;">Jenis Pengiriman</td>
