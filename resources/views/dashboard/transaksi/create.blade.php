@@ -13,14 +13,19 @@
                 <div class="card-body mt-0 mx-sm-5 mx-1">
                     <form action="/dashboard/transaksi" method="post">
                         @csrf
-                        <x-input-pesanan class="row mb-sm-3 mb-3" id="jumlah" label="Nominal" type="number" name="jumlah" />
+                        <x-input-pesanan class="row mb-sm-3 mb-3" id="nominal" label="Nominal" type="number" name="nominal" />
 
                         <div class="row mb-sm-3 mb-3">
-                            <label for="deskripsi" class="form-label col-sm-3 col-12 m-auto fs-6">Keterangan</label>
+                            <label for="keterangan" class="form-label col-sm-3 col-12 m-auto fs-6">Keterangan</label>
                             <div class="col-sm-9 col-12 mt-1">
                                 <div class="input-group">
-                                    <textarea class="form-control" id="deskripsi" aria-label="With textarea"
-                                        name="deskripsi" style="color: #007C84">{{ old('deskripsi') }}</textarea>
+                                    <textarea class="form-control @error('keterangan') is-invalid @enderror" id="keterangan" aria-label="With textarea"
+                                        name="keterangan" style="color: #007C84">{{ old('keterangan') }}</textarea>
+                                    @error('keterangan')
+                                        <div class="invalid-feedback text-capitalize">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

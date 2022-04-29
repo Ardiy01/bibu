@@ -50,8 +50,8 @@ class TransaksiController extends Controller
     {
         //
         $data = [
-            'jumlah' => 'required',
-            'deskripsi' => 'required|max:255'
+            'nominal' => 'required',
+            'keterangan' => 'required|max:255'
         ];
 
         $validateData = $request->validate($data);
@@ -59,8 +59,8 @@ class TransaksiController extends Controller
         $pengeluaran = Pengeluaran::create($validateData);
 
         $transaksi = Transaksi::create([
-            'keterangan' => $pengeluaran->deskripsi,
-            'nominal' => $pengeluaran->jumlah,
+            'keterangan' => $pengeluaran->keterangan,
+            'nominal' => $pengeluaran->nominal,
             'id_pengeluaran' => $pengeluaran->id,
             'id_jenis_transaksi' => 2
         ]);
@@ -122,8 +122,8 @@ class TransaksiController extends Controller
                     ->update($validateData);
         Pengeluaran::where('id', $idP)
                     ->update([
-                        'jumlah' => $request->nominal,
-                        'deskripsi' => $request->keterangan
+                        'nominal' => $request->nominal,
+                        'keterangan' => $request->keterangan
                     ]);
 
         alert()->success('Update Transaksi', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true');

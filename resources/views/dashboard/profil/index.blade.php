@@ -61,13 +61,6 @@
                         :value="$usr->email"
                         :readonly=true
                     />
-                    <x-detail  
-                        id="pass"
-                        type="password"
-                        label="Password"
-                        :value="$usr->username"
-                        :readonly=true
-                    />
             </div>
            @endforeach
        </div>

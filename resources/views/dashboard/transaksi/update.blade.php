@@ -14,14 +14,19 @@
                     <form action="/dashboard/transaksi/{{ $pengeluaran->id }}" method="post">
                         @method('put')
                         @csrf
-                        <x-input-pesanan class="row mb-sm-3 mb-3" id="nominal" label="Nominal" type="number" name="nominal" :value="$pengeluaran->pengeluaran->jumlah" />
+                        <x-input-pesanan class="row mb-sm-3 mb-3" id="nominal" label="Nominal" type="number" name="nominal" :value="$pengeluaran->pengeluaran->nominal" />
 
                         <div class="row mb-sm-3 mb-3">
                             <label for="keterangan" class="form-label col-sm-3 col-12 m-auto fs-6">Keterangan</label>
                             <div class="col-sm-9 col-12 mt-1">
                                 <div class="input-group">
-                                    <textarea class="form-control text-capitalize" id="keterangan" aria-label="With textarea"
+                                    <textarea class="form-control text-capitalize @error('keterangan') is-invalid @enderror" id="keterangan" aria-label="With textarea"
                                         name="keterangan" style="color: #004347">{{ $pengeluaran->keterangan }}</textarea>
+                                        @error('keterangan')
+                                        <div class="invalid-feedback text-capitalize">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
