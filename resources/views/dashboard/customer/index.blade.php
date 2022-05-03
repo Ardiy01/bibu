@@ -21,9 +21,9 @@
                                                 class="sty-profil-cus shadow-sm">
                                         </div>
                                         <div class="col-sm-8 col-12 text-center mt-sm-0 mt-2 mx-sm-3 text-sm-start">
-                                            <h6 class="fw-bold">{{ $user->nama }}</h6>
+                                            <h6 class="fw-bold text-capitalize">{{ $user->nama }}</h6>
                                             <p class="mb-1">{{ $user->nomer_telepon }}</p>
-                                            <p class="mb-0">
+                                            <p class="mb-0 text-capitalize">
                                                 {{ $user->jalan .' no. ' .$user->nomor .', ' .$user->kecamatan->nama_kecamatan .', ' .$user->kabupaten->nama_kabupaten }}
                                             </p>
                                         </div>

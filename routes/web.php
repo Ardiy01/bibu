@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UlasanController;
@@ -9,6 +10,8 @@ use App\Http\Controllers\PesananController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\RiwayatPesananController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\RegistrasiController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +24,16 @@ use App\Http\Controllers\ProfilController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// login
+Route::get('/', [LoginController::class, 'index']);
+
+// registrasi
+Route::get('/registrasi', [RegistrasiController::class, 'create']);
+Route::post('/registrasi', [RegistrasiController::class, 'store']);
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 

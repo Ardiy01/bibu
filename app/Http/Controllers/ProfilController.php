@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kabupaten;
+use App\Models\Kecamatan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfilController extends Controller
 {
@@ -16,19 +19,8 @@ class ProfilController extends Controller
     {
         //
         return view('dashboard.profil.index', [
-            'user' => User::where('id', 3)->get()
+            'user' => User::where('id', 2)->get()
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
     }
 
     /**
@@ -42,6 +34,8 @@ class ProfilController extends Controller
         //
         return view('dashboard.profil.update',[
             'user' => User::where('id', $usr)->get(),
+            'kecamatan' => Kecamatan::all(),
+            'kabupaten' => Kabupaten::all() 
         ]);
     }
 
@@ -52,42 +46,58 @@ class ProfilController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $usr)
     {
         //
-        dd($request);
+        $user = User::where('id', $usr)->get();
+        foreach($user as $usr){
+            $email = $usr->email;
+            $username = $usr->username;
+            $profil = $usr->profil;
+            $id = $usr->id;
+            $pass = $usr->password;
+        }
+
         $data = [
             'nama' => 'required',
-            'username' => 'required|unique:users,username',
             'nomer_telepon' => 'required|max:12',
-            'email' => 'required|email:rfc,dns|unique:users,email',
             'profil' => 'image|mimes:jpeg,png,jpg|file|max:2048',
             'jalan' => 'required',
-            'no' => 'required',
+            'nomor' => 'required',
             'id_kecamatan' => 'required',
             'id_kabupaten' => 'required',
-            'password' => 'min:6'
+            'password' => 'nullable|min:6'
         ];
+
+        if($request->email != $email){
+            $data['email'] = 'required|email:rfc,dns|unique:users,email';
+        }
+
+        if($request->username != $username){
+            $data['username'] = 'required|unique:users,username';
+        }
 
         $validateData = $request->validate($data);
 
         if ($request->file('profil')) {
-            $profil =  $request->file('profil')->store('profil->images');
-            $validateData['profil'] = $profil;
+            $profils =  $request->file('profil')->store('profil-images');
+            $validateData['profil'] = $profils;
         } else {
-            $profil = $user->gambar;
-            $validateData['gambar'] = $profil;
+            $profils = $profil;
+            $validateData['profil'] = $profils;
         }
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
+        if($request->password == null){
+            $validateData['password'] = $pass;
+        } else{
+            $passwordBaru = Hash::make($request->password);
+            $validateData['password'] = $passwordBaru;
+        }
+
+        User::where('id', $id)
+                ->update($validateData);
+        
+        alert()->success('Update Profil', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true');            
+        return redirect('/dashboard/profil');
     }
 }

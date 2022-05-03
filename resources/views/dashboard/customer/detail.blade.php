@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.main')
 
 @section('content')
-    <div class="container py-2 mt-4 shadow mb-4" style="border-radius: 12px; background-color: rgba(234, 243, 244, 1);">
+    <div class="container py-2 mt-4 shadow mb-5" style="border-radius: 12px; background-color: rgba(234, 243, 244, 1);">
         <div class="container py-3">
             <div class="col-8 my-auto fw-bold text-uppercase fs-6" style="color: #007C84;">
                 <a href="/dashboard/customer" class="mx-1 text-center" style="text-decoration: none">
@@ -17,7 +17,7 @@
                     </div>
                     {{-- nama --}}
                     <div class="col-sm-2 col-12 text-center my-sm-auto my-2">
-                        <h5 class="fw-bold" style="color: #007C84">{{ $usr->nama }}</h5>
+                        <h5 class="fw-bold text-capitalize" style="color: #007C84">{{ $usr->nama }}</h5>
                     </div>
                 </div>
 

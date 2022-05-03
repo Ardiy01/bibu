@@ -50,3 +50,13 @@
     overflow: hidden;
     border-radius: 50%; 
 }
+
+/* login */
+body.login-sty{
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.form-login{
+    background-color: #F2F8F8;
+}

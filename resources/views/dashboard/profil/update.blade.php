@@ -34,6 +34,62 @@
 
                             <x-detail id="username" label="Username" name="username" type="text" :value="$usr->username ?? ''" />
 
+                            <div class="row">
+                                <div class="col-3">
+                                    <x-detail id="jalan" label="Jalan" name="jalan" type="text" :value="$usr->jalan ?? ''" />
+                                </div>
+                                <div class="col-1">
+                                    <x-detail id="nomor" label="Nomor" name="nomor" type="text" :value="$usr->nomor ?? ''" />
+                                </div>
+                                <div class="col-4">
+                                    <div class="d-grid gap-2 col-12 mx-auto">
+                                        <div class="my-2" style="color: #007C84">
+                                            <label class="form-label mb-1 fw-bold" for="kecamatan">Kecamatan</label>
+                                            <div class="input-group mt-0">
+                                                <select class="form-select bg-white fw-bold shadow" id="kecamatan" name="id_kecamatan"
+                                                    style="color: #007C84">
+                                                    @foreach ($kecamatan as $kcmt)
+                                                        @if (old('id_kecamatan', $usr->id_kecamatan) == $kcmt->id)
+                                                            <option value="{{ $kcmt->id }}" style="color: #007C84"
+                                                                selected>
+                                                                {{ $kcmt->nama_kecamatan }}
+                                                            </option>
+                                                        @else
+                                                            <option value="{{ $kcmt->id }}" style="color: #007C84">
+                                                                {{ $kcmt->nama_kecamatan }}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="d-grid gap-2 col-12 mx-auto">
+                                        <div class="my-2" style="color: #007C84">
+                                            <label class="form-label mb-1 fw-bold" for="kabupaten">Kabupaten</label>
+                                            <div class="input-group mt-0">
+                                                <select class="form-select bg-white fw-bold shadow" id="kabupaten" name="id_kabupaten"
+                                                    style="color: #007C84">
+                                                    @foreach ($kabupaten as $kbp)
+                                                        @if (old('id_kabupaten', $usr->id_kabupaten) == $kbp->id)
+                                                            <option value="{{ $kbp->id }}" style="color: #007C84"
+                                                                selected>
+                                                                {{ $kbp->nama_kabupaten }}
+                                                            </option>
+                                                        @else
+                                                            <option value="{{ $kbp->id }}" style="color: #007C84">
+                                                                {{ $kbp->nama_kabupaten }}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
                             <x-detail id="nomer_telepon" label="Nomor Telepon" name="nomer_telepon" type="text"
                                 :value="$usr->nomer_telepon ?? ''" />
 
@@ -49,8 +105,8 @@
                             <a href="/dashboard/profil" class="btn px-4 text-light shadow-sm"
                                 style="background-color: #2DB5B2">Batal</a>
                         </div>
+                    </form>
                 </div>
-                </form>
         </div>
         @endforeach
 
