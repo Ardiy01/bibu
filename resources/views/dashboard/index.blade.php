@@ -18,7 +18,7 @@
             <div class="col-sm-4 text-center">
                 <div class="card-style">
                     <div class="bg-transparent" style="color: #007C84">
-                        <h6 class="fw-bold">Laba Penjualan</h6>
+                        <h6 class="fw-bold">Laba Penjualan/Bulan</h6>
                     </div>
                     <div class="bg-white rounded-3 shadow mt-3 py-1" style="background-color: #dbeaec; color: #007C84"
                         id="laba">
@@ -29,7 +29,7 @@
             <div class="col-sm-4 text-center">
                 <div class="card-style">
                     <div class="bg-transparent">
-                        <h6 class="fw-bold" style="color: #007C84">Rata - Rata Pendapatan</h6>
+                        <h6 class="fw-bold" style="color: #007C84">Rata - Rata Pendapatan/Hari</h6>
                     </div>
                     <div  id="pendapatan" class="card-body bg-white shadow rounded-3 mt-3 py-1"
                         style="background-color: #dbeaec; color: #007C84">

@@ -31,8 +31,6 @@ class DashboardController extends Controller
             $pdp = DB::table('transaksis')->where('id_jenis_transaksi', 1)->whereMonth('updated_at', $query)->sum('nominal');
             $png = DB::table('transaksis')->where('id_jenis_transaksi', 2)->whereMonth('updated_at', $query)->sum('nominal');
 
-           
-
             $laba = $pdp - $png;
             $pemasukan = $pdp/30;
 
@@ -53,7 +51,6 @@ class DashboardController extends Controller
 
         $tahun = Carbon::now()->format('Y');
         $data_bulan = DB::table('transaksis')->select(DB::raw("MONTHNAME(updated_at) as bulan, MONTH(updated_at) as value"))->distinct()->paginate(8);
-        $value_bulan = DB::table('transaksis')->select(DB::raw("MONTH(updated_at) as bulan"))->distinct()->paginate(8);
         return view('dashboard.index', [
             'data_pendapatan' => $data_pendapatan,
             'data_pengeluaran' => $data_pengeluaran,
@@ -61,9 +58,6 @@ class DashboardController extends Controller
             'pengeluaran' => $png,
             'bulan' => $data_bulan,
             'tahun' => $tahun,
-            'value_bulan' => $value_bulan
-            
-
         ]);
     }
 }
