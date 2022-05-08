@@ -14,14 +14,14 @@ class UlasanSeeder extends Seeder
      */
     public function run()
     {
-        //
+
         DB::table('ulasans')->insert([
             'id_produk' => 2,
             'id_user' => 2,
             'rating' => 4,
             'ulasan' => 'Rasanya manis, enak',
             'id_pesanan' => 1,
-            'updated_at' => '2022-4-3'
+            'updated_at' => '2022-4-1'
         ]);
 
         DB::table('ulasans')->insert([
@@ -30,7 +30,7 @@ class UlasanSeeder extends Seeder
             'rating' => 5,
             'ulasan' => 'Matangnya rata, manis',
             'id_pesanan' => 2,
-            'updated_at' => '2022-4-3'
+            'updated_at' => '2022-4-1'
         ]);
 
         DB::table('ulasans')->insert([
@@ -39,7 +39,7 @@ class UlasanSeeder extends Seeder
             'rating' => 5,
             'ulasan' => 'packingnya rapi',
             'id_pesanan' => 3,
-            'updated_at' => '2022-4-3'
+            'updated_at' => '2022-4-2'
         ]);
 
         DB::table('ulasans')->insert([
@@ -48,7 +48,7 @@ class UlasanSeeder extends Seeder
             'rating' => 4,
             'ulasan' => 'Udah langganan disini, produk ubinya berkualitas',
             'id_pesanan' => 4,
-            'updated_at' => '2022-4-3'
+            'updated_at' => '2022-4-2'
         ]);
 
         DB::table('ulasans')->insert([
@@ -57,7 +57,7 @@ class UlasanSeeder extends Seeder
             'rating' => 5,
             'ulasan' => 'Ubinya enak, lembut, gurih',
             'id_pesanan' => 5,
-            'updated_at' => '2022-4-3'
+            'updated_at' => '2022-4-2'
         ]);
 
         DB::table('ulasans')->insert([
@@ -111,16 +111,8 @@ class UlasanSeeder extends Seeder
             'rating' => 4,
             'ulasan' => 'Mantap banget besok beli lagi',
             'id_pesanan' => 11,
-            'updated_at' => '2022-4-3'
+            'updated_at' => '2022-4-4'
         ]);
-
-        DB::table('ulasans')->insert([
-            'id_produk' => 1,
-            'id_user' => 1,
-            'id_pesanan' => 12,
-            'updated_at' => '2022-4-3'
-        ]);
-
 
     }
 }

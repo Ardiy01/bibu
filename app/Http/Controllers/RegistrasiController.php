@@ -19,8 +19,8 @@ class RegistrasiController extends Controller
     {
         //
         return view('registrasi', [
-            'kecamatan' => Kecamatan::all(),
-            'kabupaten' => Kabupaten::all()
+            'kecamatan' => Kecamatan::all()->sortBy('nama_kecamatan'),
+            'kabupaten' => Kabupaten::all()->sortBy('nama_kabupaten')
         ]);
     }
 
@@ -53,7 +53,7 @@ class RegistrasiController extends Controller
 
         User::create($validateData);
 
-        alert()->success('Update Profil', 'Data Berhasil Disimpan')->showConfirmButton('Ok')->showCloseButton('true');
-        return redirect('/login');
+        alert()->success('Registrasi Berhasil')->showConfirmButton('Ok')->showCloseButton('true');
+        return redirect('/');
     }
 }

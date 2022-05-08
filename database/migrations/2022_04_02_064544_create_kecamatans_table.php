@@ -15,7 +15,10 @@ class CreateKecamatansTable extends Migration
     {
         Schema::create('kecamatans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_kecamatan')->unique();
+            $table->foreignId('id_kab');
+            $table->string('nama_kecamatan');
+
+            $table->foreign('id_kab')->references('id')->on('kabupatens');
         });
     }
 

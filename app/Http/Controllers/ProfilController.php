@@ -29,13 +29,13 @@ class ProfilController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user, $usr)
+    public function edit(User $user, $usr, Request $request)
     {
         //
         return view('dashboard.profil.update',[
             'user' => User::where('id', $usr)->get(),
-            'kecamatan' => Kecamatan::all(),
-            'kabupaten' => Kabupaten::all() 
+            'kecamatan' => Kecamatan::all()->sortBy('nama_kecamatan'),
+            'kabupaten' => Kabupaten::all()->sortBy('nama_kabupaten')
         ]);
     }
 

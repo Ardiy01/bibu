@@ -60,7 +60,6 @@
                                                 style="color: #007c84;"></span>
                                         </a>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

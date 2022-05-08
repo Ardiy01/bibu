@@ -41,7 +41,7 @@ Route::resources([
     '/dashboard/produk' => ProdukController::class,
     '/dashboard/pesanan' => PesananController::class,
     '/dashboard/riwayat/pesanan' => RiwayatPesananController::class,
-    '/dashboard/produk/ulasan' => UlasanController::class,
+    'dashboard/produk/ulasan' => UlasanController::class,
     '/dashboard/transaksi' => TransaksiController::class,
     '/dashboard/profil' => ProfilController::class,
     '/dashboard/customer' => CustomerController::class

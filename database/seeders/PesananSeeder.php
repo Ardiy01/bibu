@@ -16,6 +16,7 @@ class PesananSeeder extends Seeder
     public function run()
     {
         //
+
         DB::table('pesanans')->insert([
             'id_user' => 2,
             'id_produk' => 2,
@@ -26,11 +27,11 @@ class PesananSeeder extends Seeder
             'harga_produk' => 22000,
             'id_status_pesanan' => 4,
             'created_at' => '2022-4-1',
-            'updated_at' => '2022-4-1',
+            'updated_at' => '2022-4-1', 
         ]);
 
         DB::table('pesanans')->insert([
-            'id_user' => 2,
+            'id_user' => 3,
             'id_produk' => 2,
             'jumlah_produk' => 2,
             'id_metode_pembayaran' => 1,
@@ -181,7 +182,7 @@ class PesananSeeder extends Seeder
             'id_pengiriman' => 1,
             'id_status_pesanan' => 4,
             'harga_produk' => 22000,
-            'deskripsi' => 'Pembelian oleh Martin',
+            'deskripsi' => 'Pembelian oleh Siva',
             'created_at' => '2022-4-4',
             'updated_at' => '2022-4-4',
         ]);
@@ -189,7 +190,7 @@ class PesananSeeder extends Seeder
         DB::table('pesanans')->insert([
             'id_user' => 1,
             'id_produk' => 2,
-            'jumlah_produk' => 3,
+            'jumlah_produk' => 2,
             'id_metode_pembayaran' => 1,
             'id_status_pembayaran' => 1,
             'id_pengiriman' => 1,
@@ -203,13 +204,13 @@ class PesananSeeder extends Seeder
         DB::table('pesanans')->insert([
             'id_user' => 1,
             'id_produk' => 2,
-            'jumlah_produk' => 6,
+            'jumlah_produk' => 5,
             'id_metode_pembayaran' => 1,
             'id_status_pembayaran' => 1,
             'id_pengiriman' => 1,
             'id_status_pesanan' => 4,
             'harga_produk' => 22000,
-            'deskripsi' => 'Pembelian oleh Martin',
+            'deskripsi' => 'Pembelian oleh Tina',
             'created_at' => '2022-3-1',
             'updated_at' => '2022-3-1',
         ]);
@@ -217,16 +218,28 @@ class PesananSeeder extends Seeder
         DB::table('pesanans')->insert([
             'id_user' => 1,
             'id_produk' => 2,
-            'jumlah_produk' => 8,
+            'jumlah_produk' => 4,
             'id_metode_pembayaran' => 1,
             'id_status_pembayaran' => 1,
             'id_pengiriman' => 1,
             'id_status_pesanan' => 4,
             'harga_produk' => 22000,
-            'deskripsi' => 'Pembelian oleh Martin',
+            'deskripsi' => 'Pembelian oleh Salma',
             'created_at' => '2022-5-1',
             'updated_at' => '2022-5-1',
         ]);
-
+        DB::table('pesanans')->insert([
+            'id_user' => 1,
+            'id_produk' => 2,
+            'jumlah_produk' => 5,
+            'id_metode_pembayaran' => 1,
+            'id_status_pembayaran' => 1,
+            'id_pengiriman' => 1,
+            'id_status_pesanan' => 4,
+            'harga_produk' => 22000,
+            'deskripsi' => 'Pembelian oleh Salma',
+            'created_at' => '2022-5-1',
+            'updated_at' => '2022-5-1',
+        ]);
     }
 }

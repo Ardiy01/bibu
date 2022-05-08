@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            KecamatanSeeder::class,
             KabupatenSeeder::class,
+            KecamatanSeeder::class,
             JenisProdukSeeder::class,
             JenisTransaksiSeeder::class,
             ProdukSeeder::class,
@@ -39,10 +39,10 @@ class DatabaseSeeder extends Seeder
             PengirimanSeeder::class,
             MetodePembayaranSeeder::class,
             StatusPembayaranSeeder::class,
-            // PengeluaranSeeder::class,
-            // PesananSeeder::class,
-            // UlasanSeeder::class,
-            // TransaksiSeeder::class,
+            PengeluaranSeeder::class,
+            PesananSeeder::class,
+            UlasanSeeder::class,
+            TransaksiSeeder::class,
         ]);
     }
 }

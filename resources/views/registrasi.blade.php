@@ -69,6 +69,23 @@
                             <div class="col-4">
                                 <div class="d-grid gap-2 col-12 mx-auto">
                                     <div class="my-2" style="color: #007C84">
+                                        <label class="form-label mb-1 fw-bold" for="kabupaten">Kabupaten</label>
+                                        <div class="input-group mt-0">
+                                            <select class="form-select bg-white fw-bold shadow" id="kabupaten"
+                                                name="id_kabupaten" style="color: #007C84">
+                                                @foreach ($kabupaten as $kbp)
+                                                    <option value="{{ old('id_kabupaten', $kbp->id) }}"
+                                                        style="color: #007C84" selected>
+                                                        {{ $kbp->nama_kabupaten }}
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-grid gap-2 col-12 mx-auto">
+                                    <div class="my-2" style="color: #007C84">
                                         <label class="form-label mb-1 fw-bold" for="kecamatan">Kecamatan</label>
                                         <div class="input-group mt-0">
                                             <select class="form-select bg-white fw-bold shadow" id="kecamatan"
@@ -84,24 +101,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <div class="d-grid gap-2 col-12 mx-auto">
-                                    <div class="my-2" style="color: #007C84">
-                                        <label class="form-label mb-1 fw-bold" for="kabupaten">Kabupaten</label>
-                                        <div class="input-group mt-0">
-                                            <select class="form-select bg-white fw-bold shadow" id="kabupaten"
-                                                name="id_kabupaten" style="color: #007C84">
-                                                @foreach ($kabupaten as $kbp)
-                                                    <option value="{{ old('id_kabupaten', $kbp->id) }}"
-                                                        style="color: #007C84" selected>
-                                                        {{ $kbp->nama_kabupaten }}
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
 
                         <x-detail id="nomer_telepon" label="Nomor Telepon" name="nomer_telepon" type="text" />

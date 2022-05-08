@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <hr class="mt-2 mb-3 mb-sm-0" style="background-color: rgba(0, 124, 132, 0.2); height: 2px">
-                @if ($ulasans->count())
+                {{-- @if ($ulasans->count()) --}}
                     @foreach ($ulasans as $ulasan)
                         @if ($ulasan->rating > 0)
                             <div class="card-body ulasan">
@@ -32,7 +32,8 @@
                                                 <h6 class="nama">{{ $ulasan->user->nama }}</h6>
                                             </div>
                                             <div class="col-12 my-1 img-user mx-2">
-                                                <img class="m-auto rounded-circle" src="{{ asset('storage/' . $ulasan->user->profil) }}" alt="logo"
+                                                <img class="m-auto rounded-circle"
+                                                    src="{{ asset('storage/' . $ulasan->user->profil) }}" alt="logo"
                                                     style="max-width: 2.5rem">
                                             </div>
                                         </div>
@@ -55,9 +56,9 @@
                             </div>
                         @endif
                     @endforeach
-                @else
-                    <h4 class="text-center m-auto">Belum ada Ulasan</h4>
-                @endif
+                {{-- @else
+                    <h4 class="text-center mx-auto mt-4">Belum ada Ulasan</h4>
+                @endif --}}
                 <div class="d-flex justify-content-center my-3">
                     {{ $ulasans->links() }}
                 </div>

@@ -30,7 +30,7 @@
                         $usr->nomor .
                         ' Kec. ' .
                         $usr->kecamatan->nama_kecamatan .
-                        ', Kab. ' .
+                        ', ' .
                         $usr->kabupaten->nama_kabupaten" :readonly=true />
                     <x-detail id="nohp" type="text" label="Nomor Hp" :value="$usr->nomer_telepon" :readonly=true />
                     <x-detail id="email" type="email" label="Email" :value="$usr->email" :readonly=true />

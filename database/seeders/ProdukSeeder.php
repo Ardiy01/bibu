@@ -20,7 +20,7 @@ class ProdukSeeder extends Seeder
             'nama_produk' => 'Ubi Cilembu Mentah',
             'harga' => 15000,
             'stok' => 500,
-            'gambar' => 'produkmentah.png',
+            'gambar' => 'produk-images/ubimentah.jpg',
             'keterangan' => 'ubi jalar yang belum diolah yang ditanam di Desa Cilembu yang memiliki rasa manis',
             'id_jenis_produk' => 1
         ]);
@@ -29,7 +29,7 @@ class ProdukSeeder extends Seeder
             'nama_produk' => 'Ubi Cilembu Bakar',
             'harga' => 22000,
             'stok' => 300,
-            'gambar' => 'produkbakar.png',
+            'gambar' => 'produk-images/ubimatang.jpg',
             'keterangan' => 'ubi jalar khas cilembu yang melalui proses pemanggangan dan memiliki rasa manis yang didalamnya mengeluarkan cairan madu.',
             'id_jenis_produk' => 2
         ]);

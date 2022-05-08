@@ -26,8 +26,8 @@ class UserSeeder extends Seeder
             'nomer_telepon' => '082257583258',
             'jalan' => 'Jl. Jendral Ahmad Yani',
             'nomor' => '115',
-            'id_kecamatan' => 1,
-            'id_kabupaten' => 1,
+            'id_kecamatan' => 196,
+            'id_kabupaten' => 9,
             'rule' => 'Pemilik',
         ]);
 
@@ -40,8 +40,8 @@ class UserSeeder extends Seeder
             'nomer_telepon' => '081233256789',
             'jalan' => 'Jl. Hayam Wuruk',
             'nomor' => '9',
-            'id_kecamatan' => 1,
-            'id_kabupaten' => 1,
+            'id_kecamatan' => 196,
+            'id_kabupaten' => 9,
         ]);
 
         DB::table('users')->insert([
@@ -53,8 +53,8 @@ class UserSeeder extends Seeder
             'nomer_telepon' => '085465556345',
             'jalan' => 'Jl. Hasan Asari ',
             'nomor' => '5',
-            'id_kecamatan' => 2,
-            'id_kabupaten' => 1,
+            'id_kecamatan' => 191,
+            'id_kabupaten' => 9,
         ]);
 
         DB::table('users')->insert([
@@ -66,8 +66,8 @@ class UserSeeder extends Seeder
             'nomer_telepon' => '089124562420',
             'jalan' => 'Jl. Kalimantan',
             'nomor' => '37',
-            'id_kecamatan' => 3,
-            'id_kabupaten' => 1,
+            'id_kecamatan' => 198,
+            'id_kabupaten' => 9,
         ]);
 
         DB::table('users')->insert([
@@ -79,8 +79,8 @@ class UserSeeder extends Seeder
             'nomer_telepon' => '085279381046',
             'jalan' => 'Jl. Ahmad Yani',
             'nomor' => '48',
-            'id_kecamatan' => 4,
-            'id_kabupaten' => 2,
+            'id_kecamatan' => 210,
+            'id_kabupaten' => 10,
         ]);
 
         DB::table('users')->insert([
@@ -92,8 +92,8 @@ class UserSeeder extends Seeder
             'nomer_telepon' => '082334629373',
             'jalan' => 'Jl. Karimata',
             'nomor' => '29',
-            'id_kecamatan' => 3,
-            'id_kabupaten' => 1,
+            'id_kecamatan' => 198,
+            'id_kabupaten' => 9,
         ]);
 
         DB::table('users')->insert([
@@ -105,8 +105,8 @@ class UserSeeder extends Seeder
             'nomer_telepon' => '085327914710',
             'jalan' => 'Jl. Hayam Wuruk',
             'nomor' => '40',
-            'id_kecamatan' => 1,
-            'id_kabupaten' => 1,
+            'id_kecamatan' => 196,
+            'id_kabupaten' => 9,
         ]);
 
         DB::table('users')->insert([
@@ -118,8 +118,8 @@ class UserSeeder extends Seeder
             'nomer_telepon' => '081631471949',
             'jalan' => 'Jl. Jaksa Agung Suprapto',
             'nomor' => '1',
-            'id_kecamatan' => 4,
-            'id_kabupaten' => 2,
+            'id_kecamatan' => 210,
+            'id_kabupaten' => 10,
         ]);
 
         DB::table('users')->insert([
@@ -131,8 +131,8 @@ class UserSeeder extends Seeder
             'nomer_telepon' => '083291482641',
             'jalan' => 'Jl. Jawa',
             'nomor' => '8',
-            'id_kecamatan' => 3,
-            'id_kabupaten' => 1,
+            'id_kecamatan' => 198,
+            'id_kabupaten' => 9,
         ]);
 
         DB::table('users')->insert([
@@ -144,8 +144,8 @@ class UserSeeder extends Seeder
             'nomer_telepon' => '082362841791',
             'jalan' => 'Jl. Gajah Mada',
             'nomor' => '44',
-            'id_kecamatan' => 1,
-            'id_kabupaten' => 1,
+            'id_kecamatan' => 370,
+            'id_kabupaten' => 18,
         ]);
 
         DB::table('users')->insert([
@@ -157,8 +157,8 @@ class UserSeeder extends Seeder
             'nomer_telepon' => '082333213719',
             'jalan' => 'Jl. Brawijaya Selatan',
             'nomor' => '8',
-            'id_kecamatan' => 5,
-            'id_kabupaten' => 3,
+            'id_kecamatan' => 196,
+            'id_kabupaten' => 9,
         ]);
 
         DB::table('users')->insert([
@@ -170,8 +170,8 @@ class UserSeeder extends Seeder
             'nomer_telepon' => '083627197314',
             'jalan' => 'Jl. Sumatra ',
             'nomor' => '12',
-            'id_kecamatan' => 3,
-            'id_kabupaten' => 1,
+            'id_kecamatan' => 198,
+            'id_kabupaten' => 9,
         ]);
 
 
