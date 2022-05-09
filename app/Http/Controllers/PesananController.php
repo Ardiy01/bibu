@@ -12,6 +12,7 @@ use App\Models\StatusPesanan;
 use App\Models\MetodePembayaran;
 use App\Models\StatusPembayaran;
 use App\Models\Transaksi;
+use Illuminate\Support\Facades\Auth;
 
 class PesananController extends Controller
 {
@@ -24,7 +25,7 @@ class PesananController extends Controller
     {
         //
         return view('dashboard.pesanan.index', [
-            'pesananUser' => Pesanan::where('id', 2)->where('id_status_pesanan' , '!=', 4)->latest()->paginate(7), // Ambil pesanan milik user yang login
+            'pesananUser' => Pesanan::where('id_user', auth()->user()->id)->where('id_status_pesanan' , '!=', 4)->latest()->paginate(7), // Ambil pesanan milik user yang login
             'pesanan' => Pesanan::where('id_status_pesanan' , '!=', 4)->latest()->paginate(7),
         ]);
     }
@@ -38,7 +39,7 @@ class PesananController extends Controller
     {
         //
         return view('dashboard.pesanan.create', [
-            'users' => User::where('id', 2)->get(), // ubah id user dengan user login
+            'users' => User::where('id', auth()->user()->id)->get(), // ubah id user dengan user login
             'metode' => MetodePembayaran::all(),
             'pembayaran' => StatusPembayaran::all(),
             'status' => StatusPesanan::all(),

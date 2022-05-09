@@ -3,11 +3,13 @@
 @section('content')
     <div class="container py-2 mt-4 shadow" style="border-radius: 12px; background-color: rgba(234, 243, 244, 1);">
         {{-- button create --}}
-        <div class="container text-end">
-            <a href="/dashboard/produk/create" class="btn sty-btn-edit">
-                <span class="iconify" data-icon="akar-icons:plus" style="color: #007c84;"></span>
-            </a>
-        </div>
+        @can('pemilik')
+            <div class="container text-end">
+                <a href="/dashboard/produk/create" class="btn sty-btn-edit">
+                    <span class="iconify" data-icon="akar-icons:plus" style="color: #007c84;"></span>
+                </a>
+            </div>
+        @endcan
         @if ($produks->count())
             @foreach ($produks as $produk)
                 <div class="container my-3">
@@ -47,7 +49,9 @@
                                 </div>
                                 <div class="col-sm-2 col-12  text-end ">
                                     {{-- button edit --}}
-                                    <div class="mb-sm-5 mx-3 mx-sm-0 d-inline d-sm-block">
+                                    <div class="mb-sm-5 mx-3 mx-sm-0 d-inline d-sm-block" @can('pemilik')
+                                    style="visibility: unset"
+                                    @endcan style="visibility: hidden">
                                         <a href="/dashboard/produk/{{ $produk->id }}/edit" class="btn sty-btn-edit">
                                             <span class="iconify" data-icon="akar-icons:edit"
                                                 style="color: #007c84; font-size: 1.2rem; "></span>

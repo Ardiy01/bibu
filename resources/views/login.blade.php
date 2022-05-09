@@ -30,16 +30,34 @@
                             </div>
                         </div>
 
-                        <form action="" method="post">
+
+
+                        <form action="/" method="post">
+                            @csrf
                             <div class="container px-5">
+                                @if (session()->has('loginGagal'))
+                                    <p class="text-danger fw-bold py-1">
+                                        {{ session('loginGagal') }}
+                                    </p>
+                                @endif
                                 <div class="form-floating mb-4">
-                                    <input type="text" class="form-control" id="username" name="username"
-                                        placeholder="Username" autocomplete="off">
+                                    <input type="text" class="form-control @error('username') is-invalid @enderror"
+                                        id="username" name="username" placeholder="Username" autocomplete="off">
+                                    @error('username')
+                                        <div class="invalid-feedback text-capitalize">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                     <label for="username">Username</label>
                                 </div>
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" id="password" name="password"
-                                        placeholder="Password">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                        id="password" name="password" placeholder="Password">
+                                    @error('password')
+                                        <div class="invalid-feedback text-capitalize">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                     <label for="password">Password</label>
                                 </div>
 
@@ -53,7 +71,7 @@
 
                                 <!-- button -->
                                 <div class="d-grid gap-2 col-12 mx-auto mt-4">
-                                    <button class="btn fw-bold py-2 fs-5 text-white" type="button"
+                                    <button class="btn fw-bold py-2 fs-5 text-white" type="submit"
                                         style="background-color: #007C84;">Masuk</button>
                                 </div>
 

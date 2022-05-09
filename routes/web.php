@@ -27,22 +27,22 @@ use App\Http\Controllers\RegistrasiController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
-// login
-Route::get('/', [LoginController::class, 'index']);
-
 // registrasi
-Route::get('/registrasi', [RegistrasiController::class, 'create']);
+Route::get('/registrasi', [RegistrasiController::class, 'create'])->middleware('guest');
 Route::post('/registrasi', [RegistrasiController::class, 'store']);
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
+// login
+Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/', [LoginController::class, 'cekLogin']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::resources([
-    '/dashboard/produk' => ProdukController::class,
-    '/dashboard/pesanan' => PesananController::class,
-    '/dashboard/riwayat/pesanan' => RiwayatPesananController::class,
-    'dashboard/produk/ulasan' => UlasanController::class,
-    '/dashboard/transaksi' => TransaksiController::class,
-    '/dashboard/profil' => ProfilController::class,
-    '/dashboard/customer' => CustomerController::class
-]);
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+
+Route::resource('/dashboard/produk', ProdukController::class);
+Route::resource('/dashboard/pesanan', PesananController::class);
+Route::resource('/dashboard/riwayat/pesanan', RiwayatPesananController::class);
+Route::resource('dashboard/produk/ulasan', UlasanController::class);
+Route::resource('/dashboard/transaksi', TransaksiController::class)->middleware('pemilik');
+Route::resource('/dashboard/profil', ProfilController::class);
+Route::resource('/dashboard/customer', CustomerController::class)->middleware('pemilik');

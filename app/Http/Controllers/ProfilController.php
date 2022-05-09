@@ -19,7 +19,7 @@ class ProfilController extends Controller
     {
         //
         return view('dashboard.profil.index', [
-            'user' => User::where('id', 2)->get()
+            'user' => User::where('id', auth()->user()->id)->get()
         ]);
     }
 
@@ -33,7 +33,7 @@ class ProfilController extends Controller
     {
         //
         return view('dashboard.profil.update',[
-            'user' => User::where('id', $usr)->get(),
+            'user' => User::where('id', auth()->user()->id)->get(),
             'kecamatan' => Kecamatan::all()->sortBy('nama_kecamatan'),
             'kabupaten' => Kabupaten::all()->sortBy('nama_kabupaten')
         ]);
@@ -49,7 +49,7 @@ class ProfilController extends Controller
     public function update(Request $request, $usr)
     {
         //
-        $user = User::where('id', $usr)->get();
+        $user = User::where('id', auth()->user()->id)->get();
         foreach($user as $usr){
             $email = $usr->email;
             $username = $usr->username;

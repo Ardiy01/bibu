@@ -35,13 +35,15 @@
                     Riwayat Pesanan
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/transaksi*') ? 'active shadow' : '' }}"
-                    href="/dashboard/transaksi">
-                    <span class="iconify" data-icon="healthicons:money-bag-outline"></span>
-                    Transaksi
-                </a>
-            </li>
+            @can('pemilik')
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('dashboard/transaksi*') ? 'active shadow' : '' }}"
+                        href="/dashboard/transaksi">
+                        <span class="iconify" data-icon="healthicons:money-bag-outline"></span>
+                        Transaksi
+                    </a>
+                </li>
+            @endcan
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('dashboard/profil*') ? 'active shadow' : '' }}"
                     href="/dashboard/profil">
@@ -49,14 +51,26 @@
                     Profil
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/customer*') ? 'active shadow' : '' }}"
-                    href="/dashboard/customer">
-                    <span class="iconify" data-icon="carbon:user-profile"></span>
-                    Customer
-                </a>
-            </li>
+            @can('pemilik')
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('dashboard/customer*') ? 'active shadow' : '' }}"
+                        href="/dashboard/customer">
+                        <span class="iconify" data-icon="carbon:user-profile"></span>
+                        Customer
+                    </a>
+                </li>
+            @endcan
         </ul>
-        <hr>
+
+        {{-- logout --}}
+        <div class="text-center">
+            <form action="/logout" method="post">
+                @csrf
+                <button type="submit" class="mt-5 md-5 rounded-circle shadow-lg p-2 border border-light"
+                    style="background-color: #F5FAFA">
+                    <span class="iconify" data-icon="ri:logout-circle-line" style="color: #007c84;"></span>
+                </button>
+            </form>
+        </div>
     </div>
 </nav>

@@ -7,12 +7,12 @@
         </a>
 
         <h6 class="my-auto tx-nav-max person text-uppercase" style="color: #007C84">
-            Kelompok 9A
+            {{ Auth()->user()->nama }}
         </h6>
         <div class="dropdown drp-header" style="border: solid 2px white; border-radius: 10px;">
             <button class="btn dropdown-toggle text-uppercase" type="button" id="dropdownMenuButton2"
                 data-bs-toggle="dropdown" aria-expanded="false" style="color: #007C84;">
-                Kelompok 9A
+                {{ Auth()->user()->nama }}
             </button>
             <ul class="dropdown-menu dropdown-menu-lg-start dropdown-menu-end" aria-labelledby="dropdownMenuButton2"
                 style="background-color: rgba(234, 243, 244, 1);">

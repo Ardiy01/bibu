@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
@@ -33,6 +35,15 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::directive('rating', function ($rating) {
             return "<?= number_format((float)$rating, 2); ?>";
+        });
+
+        
+        Gate::define('pemilik', function(User $user){
+            return $user->rule === 'Pemilik';
+        });
+
+        Gate::define('customer', function(User $user){
+            return $user->rule === 'Customer';
         });
     }
 }

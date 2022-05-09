@@ -27,6 +27,7 @@ class ProdukController extends Controller
      */
     public function create()
     {
+        $this->authorize('pemilik');
         return view('dashboard.produk.create', [
             'jenis_produks' => JenisProduk::all()
         ]);
@@ -41,6 +42,7 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('pemilik');
         $validateData = $request->validate([
             'nama_produk' => 'required|min:5',
             'harga' => 'required',
@@ -64,6 +66,7 @@ class ProdukController extends Controller
      */
     public function edit(Produk $produk)
     {
+        $this->authorize('pemilik');
         return view('dashboard.produk.update', [
             'produk' => $produk,
             'jenis_produks' => JenisProduk::all()
@@ -79,7 +82,7 @@ class ProdukController extends Controller
      */
     public function update(Request $request, Produk $produk)
     {
-
+        $this->authorize('pemilik');
         $data = [
             'nama_produk' => 'required|min:5',
             'harga' => 'required',
