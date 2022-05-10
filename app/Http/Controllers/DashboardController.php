@@ -51,6 +51,9 @@ class DashboardController extends Controller
 
         $tahun = Carbon::now()->format('Y');
         $data_bulan = DB::table('transaksis')->select(DB::raw("MONTHNAME(updated_at) as bulan, MONTH(updated_at) as value"))->distinct()->paginate(8);
+
+        // customer
+        $data_produk = DB::table('produks')->join('pesanans', 'produks.id', '=', 'pesanans.id_produk')->select(DB::raw("produks.*, COUNT(produks.id) AS total"))->where('pesanans.id_user', auth()->user()->id)->groupBy('pesanans.id_produk')->orderBy('total', 'DESC')->paginate(2);
         return view('dashboard.index', [
             'data_pendapatan' => $data_pendapatan,
             'data_pengeluaran' => $data_pengeluaran,
@@ -58,6 +61,7 @@ class DashboardController extends Controller
             'pengeluaran' => $png,
             'bulan' => $data_bulan,
             'tahun' => $tahun,
+            'produkUser' => $data_produk
         ]);
     }
 }

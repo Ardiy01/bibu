@@ -16,6 +16,7 @@ class TransaksiController extends Controller
      */
     public function index()
     {
+        $this->authorize('pemilik');
         if (request()->start_date && request()->end_date) {
             $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
             $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
@@ -37,6 +38,7 @@ class TransaksiController extends Controller
     public function create()
     {
         //
+        $this->authorize('pemilik');
         return view('dashboard.transaksi.create');
     }
 
@@ -49,6 +51,7 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('pemilik');
         $data = [
             'nominal' => 'required',
             'keterangan' => 'required|max:255'
@@ -81,6 +84,7 @@ class TransaksiController extends Controller
     public function show(Transaksi $transaksi)
     {
         //
+        $this->authorize('pemilik');
         return view('dashboard.transaksi.detail', [
             'transaksi' => $transaksi,
         ]);
@@ -95,6 +99,7 @@ class TransaksiController extends Controller
     public function edit(Transaksi $transaksi)
     {
         //
+        $this->authorize('pemilik');
         return view('dashboard.transaksi.update', [
             'pengeluaran' => $transaksi,
         ]);
@@ -110,6 +115,7 @@ class TransaksiController extends Controller
     public function update(Request $request, Transaksi $transaksi)
     {
         //
+        $this->authorize('pemilik');
         $idP = $transaksi->id_pengeluaran;
         $data = [
             'nominal' => 'required',

@@ -60,3 +60,22 @@ body.login-sty{
 .form-login{
     background-color: #F2F8F8;
 }
+
+.hover-logout{
+    background-color: #F2F8F8;
+}
+
+.hover-logout .logout{
+    color: #007C84;
+}
+
+
+.hover-logout:hover{
+    transition: 0.2s ease;
+    transform: scale(1.02);
+    background-color: #007687;
+}
+
+.hover-logout .logout:hover{
+    color: #F2F8F8;
+}

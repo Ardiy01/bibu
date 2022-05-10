@@ -23,7 +23,7 @@
                     <div class="my-5 pt-5">
                         <div class="my-5 row">
                             <div class="col-6 text-end">
-                                <img src="{{ asset('assets/img/Logo.png') }}" alt="">
+                                <img src="{{ asset('assets/img/Logo.png') }}" alt="logoBibu">
                             </div>
                             <div class="col-6">
                                 <h2 class="d-inline my-auto" style="color: #007C84;">BiBU</h2>
@@ -42,7 +42,7 @@
                                 @endif
                                 <div class="form-floating mb-4">
                                     <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                        id="username" name="username" placeholder="Username" autocomplete="off">
+                                        id="username" name="username" placeholder="Username">
                                     @error('username')
                                         <div class="invalid-feedback text-capitalize">
                                             {{ $message }}

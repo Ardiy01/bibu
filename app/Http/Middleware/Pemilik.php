@@ -17,7 +17,7 @@ class Pemilik
     public function handle(Request $request, Closure $next)
     {
         if(!auth()->check() || auth()->user()->rule !== 'Pemilik'){
-            return redirect('/dashboard/produk');
+            abort(403);
         }
         return $next($request);
     }

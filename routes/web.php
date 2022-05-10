@@ -39,10 +39,10 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
-Route::resource('/dashboard/produk', ProdukController::class);
-Route::resource('/dashboard/pesanan', PesananController::class);
-Route::resource('/dashboard/riwayat/pesanan', RiwayatPesananController::class);
-Route::resource('dashboard/produk/ulasan', UlasanController::class);
-Route::resource('/dashboard/transaksi', TransaksiController::class)->middleware('pemilik');
-Route::resource('/dashboard/profil', ProfilController::class);
-Route::resource('/dashboard/customer', CustomerController::class)->middleware('pemilik');
+Route::resource('/dashboard/produk', ProdukController::class)->middleware('auth');
+Route::resource('/dashboard/pesanan', PesananController::class)->middleware('auth');
+Route::resource('/dashboard/riwayat/pesanan', RiwayatPesananController::class)->middleware('auth');
+Route::resource('dashboard/produk/ulasan', UlasanController::class)->middleware('auth');
+Route::resource('/dashboard/transaksi', TransaksiController::class)->middleware('auth');
+Route::resource('/dashboard/profil', ProfilController::class)->middleware('auth');
+Route::resource('/dashboard/customer', CustomerController::class)->middleware('auth');

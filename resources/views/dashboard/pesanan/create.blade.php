@@ -130,8 +130,10 @@
                 var pembayaran = $('#pembayaran option:selected').data('pembayaran');
                 $('#hargaproduk').val(harga_produk);
                 if(jenis_produk == "Matang" || pembayaran == "Tunai"){
+                    $('#pembayaran').html('<select class="form-select" id="pembayaran" name="id_metode_pembayaran"><option value="{{ old('id_metode_pembayaran', 1) }}" style="color: #007C84">Tunai</option></select>');
                     $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
                 } else{
+                    $('#pembayaran').html('<select class="form-select" id="pembayaran" name="id_metode_pembayaran">@foreach ($metode as $pymb)<option value="{{ old('id_metode_pembayaran', $pymb->id) }}" data-pembayaran="{{ $pymb->metode_pembayaran }}" style="color: #007C84">{{ $pymb->metode_pembayaran . ' (' . $pymb->no_rekening . ')' }}</option>@endforeach</select>');
                     $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}"data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
                 };
             });

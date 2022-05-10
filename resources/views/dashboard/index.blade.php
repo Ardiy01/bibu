@@ -1,8 +1,9 @@
 @extends('dashboard.layouts.main')
 
 @section('content')
+{{-- data rekapitulasi --}}
+@can('pemilik')
     <div class="container py-2 mt-4 shadow" style="border-radius: 12px; background-color: rgba(234, 243, 244, 1);">
-        {{-- data rekapitulasi --}}
         <div class="container row my-3">
             <div class="col-sm-4  my-auto">
                 <label for="filter" class="form-label fs-6 fw-bold mx-2" style="color: #007C84">Bulan</label>
@@ -41,8 +42,63 @@
             <canvas class="my-4 w-100" id="grafik" width="900" height="380"></canvas>
         </div>
     </div>
+        @endcan
+
+        {{-- customer --}}
+        @can('customer')
+        <div class="container py-2 mt-3 ">
+            {{-- welcome --}}
+            <div class="container row my-2 shadow-sm rounded-3" style="background-color: #B5E6EE; color: #007C84;">
+                <div class="col-8 py-5">
+                    <h2 class="fw-bold mx-5">Hi, {{ auth()->user()->nama }}</h2>
+                    <h6 class="mx-5">Dapatkan Ubi Cilembu Yang Anda Inginkan</h6>
+                </div>
+                <div class="col-4">
+                    <img class="mx-5 mb-5" src="{{ asset('assets/img/welcome.png') }}" alt="welcome" height="185" style="position: absolute; margin-top: -1rem;">
+                </div>
+            </div>
+
+
+            {{-- produk populer user --}}
+            <div class="container my-4">
+                <div class="row justify-content-center">
+                    @foreach ($produkUser as $produk)
+                    <div class="col-6 shadow py-3 rounded-3 px-0" style="background-color: #EAF3F4">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-4 my-auto">
+                                    <img class="shadow rounded-3" src="{{ asset('storage/'. $produk->gambar) }}" alt="{{ $produk->nama_produk }}" style="max-width: 9rem">
+                                </div>
+                                <div class="col-8" style="color: #007C84">
+                                    <h6 class="fw-bold text-capitalize">{{ $produk->nama_produk }}</h6>
+                                    <p class="text-capitalize" style="text-align: justify">{{ $produk->keterangan }}</p>
+                                    <p class="">Telah Dibeli Sebanyak: {{ $produk->total }} Kali</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
+            {{-- informasi toko --}}
+            <div class="container shadow py-3" style="background-color: #EAF3F4; color: #007C84;">
+                <div class="row">
+                    <div class="col-3">
+                        <img class="shadow rounded-3" src="{{ asset('assets/img/toko.jpeg') }}" alt="tokoBibu" style="max-height: 9rem">
+                    </div>
+                    <div class="col-9 py-2">
+                        <h5 class="fw-bold mb-3">TENTANG  <span class="fw-normal">KAMI</span></h5>
+                        <p style="text-align: justify">Selama lebih dari 10 tahun Toko Ubi Madu Cilembu telah hadir di kota Jember, Jawa Timur. Ubi yang kami pasarkan berasal langsung dari Desa Cilembu, Jawa Barat. Ubi madu cilembu dengan ciri khas memiliki rasa manis seperti madu yang kami jual merupakan produk dengan pilihan terbaik yang akan diberikan kepada customer. Banyak manfaat yang didapatkan dengan mengonsumsi ubi madu cilembu ini, utamanya untuk meningkatkan imunitas tubuh.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endcan
 @endsection
 @push('script')
+@can('pemilik')
+    
     <script>
         $(document).ready(function() {
             $('#filter').on('change', function() {
@@ -129,4 +185,5 @@
             });
         };
     </script>
+@endcan
 @endpush

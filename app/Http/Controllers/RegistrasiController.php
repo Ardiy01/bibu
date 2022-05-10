@@ -54,6 +54,6 @@ class RegistrasiController extends Controller
         User::create($validateData);
 
         alert()->success('Registrasi Berhasil')->showConfirmButton('Ok')->showCloseButton('true');
-        return redirect('/');
+        return back();
     }
 }

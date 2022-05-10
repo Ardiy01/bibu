@@ -6,11 +6,11 @@
             <span style="color: #007C84; margin: auto;">BiBU</span>
         </a>
 
-        <h6 class="my-auto tx-nav-max person text-uppercase" style="color: #007C84">
+        <h6 class="my-auto tx-nav-max person text-uppercase fw-bold" style="color: #007C84">
             {{ Auth()->user()->nama }}
         </h6>
         <div class="dropdown drp-header" style="border: solid 2px white; border-radius: 10px;">
-            <button class="btn dropdown-toggle text-uppercase" type="button" id="dropdownMenuButton2"
+            <button class="btn dropdown-toggle text-uppercase fw-bold" type="button" id="dropdownMenuButton2"
                 data-bs-toggle="dropdown" aria-expanded="false" style="color: #007C84;">
                 {{ Auth()->user()->nama }}
             </button>

@@ -66,9 +66,8 @@
         <div class="text-center">
             <form action="/logout" method="post">
                 @csrf
-                <button type="submit" class="mt-5 md-5 rounded-circle shadow-lg p-2 border border-light"
-                    style="background-color: #F5FAFA">
-                    <span class="iconify" data-icon="ri:logout-circle-line" style="color: #007c84;"></span>
+                <button type="submit" class="mt-5 md-5 rounded-circle shadow-lg p-2 border border-light hover-logout">
+                    <span class="iconify logout" data-icon="ri:logout-circle-line"></span>
                 </button>
             </form>
         </div>
