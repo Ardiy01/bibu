@@ -113,13 +113,29 @@
     </div>
 @endsection
 
-{{-- @push('script')
-    <script>
-        $(document).ready(function(){
-            $('#kabupaten').change(function(){
-                var kab = $('#kabupaten').val();
-                $('#kecamatan').html('<select class="form-select" id="kecamatan" name="id_kecamatan" style="color: #007C84">@foreach($kecamatan as $kcmt) @if($kcmt->id_kab ==' + kab + ')<option value="{{ old('id_kecamatan', $kcmt->id) }}">{{ $kcmt->nama_kecamatan }}</option>@endif @endforeach</select>');
+@push('script')
+<script>
+    $(document).ready(function() {
+        $('#kabupaten').on('change', function() {
+            var value = $('#kabupaten').val();
+            var kcmtan = document.getElementById('#kecamatan');
+            $.ajax({
+                type: "get",
+                url: "/dashboard/profil/{{ $usr->id }}/edit",
+                data: {value: value},
+                dataType: "json",
+                success: function(data) {
+                    var kcmt = data.kecamatan;
+
+                    $.each(kcmt, function(index, obj){
+                        $('#kecamatan').append('<option value="' + obj.id + '">' + obj.nama_kecamatan + '</option>');
+                    });
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.responseText);
+                }
             });
         });
-    </script>
-@endpush --}}
+    });
+</script>
+@endpush

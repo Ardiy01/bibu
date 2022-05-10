@@ -59,26 +59,50 @@
             </div>
 
 
-            {{-- produk populer user --}}
+            {{-- rekomendasi produk --}}
             <div class="container my-4">
-                <div class="row justify-content-center">
-                    @foreach ($produkUser as $produk)
-                    <div class="col-6 shadow py-3 rounded-3 px-0" style="background-color: #EAF3F4">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-4 my-auto">
-                                    <img class="shadow rounded-3" src="{{ asset('storage/'. $produk->gambar) }}" alt="{{ $produk->nama_produk }}" style="max-width: 9rem">
+                    <div class="row justify-content-center">
+                        @if ($produkUser->count())
+                            @foreach ($produkUser as $produk)
+                                <div class="col-sm-6">
+                                <div class="card- shadow" style="min-height: 10rem; max-height: 10rem; background-color:#EAF3F4; color:#007C84;">
+                                    <div class="card-body py-auto">
+                                        <div class="row">
+                                            <div class="col-4 my-auto">
+                                                <img class="shadow rounded-3" src="{{ asset('storage/' . $produk->gambar) }}" alt="{{ $produk->nama_produk }}" width="140">
+                                            </div>
+                                            <div class="col-8">
+                                                <h6 class="fw-bold text-capitalize">{{ $produk->nama_produk }}</h6>
+                                                <p class="text-capitalize">{{ $produk->keterangan }}</p>
+                                                <p class="mb-0 pb-0">Telah Dibeli Sebanyak: {{ $produk->total }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-8" style="color: #007C84">
-                                    <h6 class="fw-bold text-capitalize">{{ $produk->nama_produk }}</h6>
-                                    <p class="text-capitalize" style="text-align: justify">{{ $produk->keterangan }}</p>
-                                    <p class="">Telah Dibeli Sebanyak: {{ $produk->total }} Kali</p>
                                 </div>
-                            </div>
-                        </div>
+                            @endforeach 
+                        @else
+                            @foreach ($produk as $prd)
+                                <div class="col-sm-6">
+                                <div class="card- shadow" style="min-height: 10rem; max-height: 10rem; background-color:#EAF3F4; color:#007C84;">
+                                    <div class="card-body py-auto">
+                                        <div class="row">
+                                            <div class="col-4 my-auto">
+                                                <img class="shadow rounded-3" src="{{ asset('storage/' . $prd->gambar) }}" alt="{{ $prd->nama_produk }}" width="140">
+                                            </div>
+                                            <div class="col-8">
+                                                <h6 class="fw-bold text-capitalize">{{ $prd->nama_produk }}</h6>
+                                                <p class="text-capitalize">{{ $prd->keterangan }}</p>
+                                                <p class="mb-0 pb-0">Rating: <span class="iconify" data-icon="ant-design:star-filled"
+                                                    style="color: #007c84;"></span>@rating($prd->rat)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            @endforeach 
+                        @endif
                     </div>
-                    @endforeach
-                </div>
             </div>
 
             {{-- informasi toko --}}

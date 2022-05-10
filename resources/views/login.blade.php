@@ -11,8 +11,10 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="shotcut icon" href="{{ asset('assets/img/Logo.png') }}">
     <title>BiBU</title>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="media-query.css">
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
 </head>
 
 <body class="login-sty">
@@ -30,8 +32,6 @@
                             </div>
                         </div>
 
-
-
                         <form action="/" method="post">
                             @csrf
                             <div class="container px-5">
@@ -40,25 +40,25 @@
                                         {{ session('loginGagal') }}
                                     </p>
                                 @endif
-                                <div class="form-floating mb-4">
-                                    <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                        id="username" name="username" placeholder="Username">
+                                <div class="input-group mb-4 input-group-lg">
+                                    <input type="text" id="username" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                                     @error('username')
                                         <div class="invalid-feedback text-capitalize">
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                    <label for="username">Username</label>
                                 </div>
-                                <div class="form-floating">
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                        id="password" name="password" placeholder="Password">
+
+                                <div class="input-group mb-3 input-group-lg">
+                                    <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" aria-describedby="show">
+                                    {{-- <button class="btn" type="button" id="show" style="background-color:#007C84">
+                                        <span class="iconify" data-icon="akar-icons:eye-open" style="color: white;"></span>
+                                    </button> --}}
                                     @error('password')
                                         <div class="invalid-feedback text-capitalize">
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                    <label for="password">Password</label>
                                 </div>
 
                                 <!-- rember me -->
@@ -97,6 +97,17 @@
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('#show').click(function(){
+                if($('#password').type() === "password"){
+                    $("#password").attr("type", "text");
+                } else{
+                    $("#password").attr("type", "password");
+                };
+            });
+        });
     </script>
 </body>
 

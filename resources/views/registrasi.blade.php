@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="shotcut icon" href="{{ asset('assets/img/Logo.png') }}">
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     <title>BIBU</title>
 </head>
 
@@ -75,7 +76,7 @@
                                                 name="id_kabupaten" style="color: #007C84">
                                                 @foreach ($kabupaten as $kbp)
                                                     <option value="{{ old('id_kabupaten', $kbp->id) }}"
-                                                        style="color: #007C84" selected>
+                                                        style="color: #007C84">
                                                         {{ $kbp->nama_kabupaten }}
                                                 @endforeach
                                             </select>
@@ -88,14 +89,11 @@
                                     <div class="my-2" style="color: #007C84">
                                         <label class="form-label mb-1 fw-bold" for="kecamatan">Kecamatan</label>
                                         <div class="input-group mt-0">
-                                            <select class="form-select bg-white fw-bold shadow" id="kecamatan"
+                                            <select class="form-select bg-white fw-bold shadow @error('id_kecamatan') is-invalid @enderror" id="kecamatan"
                                                 name="id_kecamatan" style="color: #007C84">
-                                                @foreach ($kecamatan as $kcmt)
-                                                    <option value="{{ old('id_kecamatan', $kcmt->id) }}"
-                                                        style="color: #007C84" selected>
-                                                        {{ $kcmt->nama_kecamatan }}
+                                                    <option value="" style="color: #007C84" selected>
+                                                        ---- Pilih Kecamatan ---
                                                     </option>
-                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -124,6 +122,31 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#kabupaten').on('change', function() {
+                var value = $('#kabupaten').val();
+                var kcmtan = document.getElementById('#kecamatan');
+                $.ajax({
+                    type: "get",
+                    url: "registrasi",
+                    data: {value: value},
+                    dataType: "json",
+                    success: function(data) {
+                        var kcmt = data.kecamatan;
+
+                        $.each(kcmt, function(index, obj){
+                            $('#kecamatan').append('<option value="' + obj.id + '">' + obj.nama_kecamatan + '</option>');
+                        });
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert(xhr.responseText);
+                    }
+                });
+            });
+        });
     </script>
 </body>
 

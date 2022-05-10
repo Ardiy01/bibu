@@ -6,6 +6,7 @@ use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class RegistrasiController extends Controller
@@ -15,9 +16,21 @@ class RegistrasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        if(request()->ajax()){
+            $query = $request->get('value');
+            $kecamatan = DB::table('kecamatans')->where('id_kab', $query)->orderBy('nama_kecamatan', 'ASC')->get();
+
+            $data = array(
+                'kecamatan' => $kecamatan,
+            );
+
+            return Response($data);
+
+        }
+
         return view('registrasi', [
             'kecamatan' => Kecamatan::all()->sortBy('nama_kecamatan'),
             'kabupaten' => Kabupaten::all()->sortBy('nama_kabupaten')
