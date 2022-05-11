@@ -10,6 +10,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="shotcut icon" href="{{ asset('assets/img/Logo.png') }}">
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
     <title>BIBU</title>
 </head>
 
@@ -50,11 +51,9 @@
                                 <div class="input-group mt-0">
                                     <select class="form-select bg-white fw-bold shadow" id="jenis_kelamin"
                                         name="jenis_kelamin" style="color: #007C84">
-                                        <option value="Laki - Laki"
-                                            style="color: #007C84" selected> laki - Laki
+                                        <option value="Laki - Laki" style="color: #007C84" selected> laki - Laki
                                         </option>
-                                        <option value="Perempuan"
-                                            style="color: #007C84"> Perempuan
+                                        <option value="Perempuan" style="color: #007C84"> Perempuan
                                         </option>
                                     </select>
                                 </div>
@@ -89,11 +88,12 @@
                                     <div class="my-2" style="color: #007C84">
                                         <label class="form-label mb-1 fw-bold" for="kecamatan">Kecamatan</label>
                                         <div class="input-group mt-0">
-                                            <select class="form-select bg-white fw-bold shadow @error('id_kecamatan') is-invalid @enderror" id="kecamatan"
-                                                name="id_kecamatan" style="color: #007C84">
-                                                    <option value="" style="color: #007C84" selected>
-                                                        ---- Pilih Kecamatan ---
-                                                    </option>
+                                            <select
+                                                class="form-select bg-white fw-bold shadow @error('id_kecamatan') is-invalid @enderror"
+                                                id="kecamatan" name="id_kecamatan" style="color: #007C84">
+                                                <option value="" style="color: #007C84" selected>
+                                                    ---- Pilih Kecamatan ---
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -105,7 +105,13 @@
 
                         <x-detail id="email" label="Email" name="email" type="email" />
 
-                        <x-detail id="password" label="Password" name="password" type="password" />
+                        <label for="password" class="form-label fw-bold mt-2" style="color:#007C84">Password</label>
+                        <div class="input-group mb-3">
+                            <input name="password" type="password" class="form-control shadow fw-bold" id="password"  style="color:#007C84">
+                            <button class="btn shadwo" type="button" id="show" style="background-color:#007C84">
+                                <span id="icons" class="iconify" data-icon="pepicons:eye" style="color: white; font-size: 20px"></span>
+                            </button>
+                        </div>
                     </div>
 
                     {{-- button --}}
@@ -129,15 +135,18 @@
             $('#kabupaten').on('change', function() {
                 var value = $('#kabupaten').val();
                 var kcmtan = document.getElementById('#kecamatan');
+                $('#kecamatan').html(" ");
                 $.ajax({
                     type: "get",
                     url: "registrasi",
-                    data: {value: value},
+                    data: {
+                        value: value
+                    },
                     dataType: "json",
                     success: function(data) {
                         var kcmt = data.kecamatan;
 
-                        $.each(kcmt, function(index, obj){
+                        $.each(kcmt, function(index, obj) {
                             $('#kecamatan').append('<option value="' + obj.id + '">' + obj.nama_kecamatan + '</option>');
                         });
                     },
@@ -145,6 +154,19 @@
                         alert(xhr.responseText);
                     }
                 });
+            });
+
+            $('#show').click(function(){
+                if($('#password').attr("type") == "password"){
+                    $("#password").attr("type", "text");
+                    $('#icons').removeAttr('data-icon', 'pepicons:eye')
+                    $('#icons').attr('data-icon', 'pepicons:eye-closed')
+                    
+                } else{
+                    $("#password").attr("type", "password");
+                    $('#icons').removeAttr('data-icon', 'pepicons:eye-closed')
+                    $('#icons').attr('data-icon', 'pepicons:eye')
+                };
             });
         });
     </script>

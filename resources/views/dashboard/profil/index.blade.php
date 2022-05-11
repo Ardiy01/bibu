@@ -43,7 +43,7 @@
                         $usr->nomor .
                         ' Kec. ' .
                         $usr->kecamatan->nama_kecamatan .
-                        ', Kab. ' .
+                        ', ' .
                         $usr->kabupaten->nama_kabupaten"
                         :readonly=true
                     />

@@ -18,6 +18,7 @@
 </head>
 
 <body class="login-sty">
+    @include('sweetalert::alert')
     <main>
         <div class="row" style=" box-sizing: border-box;">
             <div class="col-12 col-sm-5 form-login">
@@ -32,7 +33,7 @@
                             </div>
                         </div>
 
-                        <form action="/" method="post">
+                        <form action="/login" method="post">
                             @csrf
                             <div class="container px-5">
                                 @if (session()->has('loginGagal'))
@@ -51,9 +52,9 @@
 
                                 <div class="input-group mb-3 input-group-lg">
                                     <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" aria-describedby="show">
-                                    {{-- <button class="btn" type="button" id="show" style="background-color:#007C84">
-                                        <span class="iconify" data-icon="akar-icons:eye-open" style="color: white;"></span>
-                                    </button> --}}
+                                    <button class="btn" type="button" id="show" style="background-color:#007C84">
+                                        <span id="icons" class="iconify" data-icon="pepicons:eye" style="color: white; font-size: 25px"></span>
+                                    </button>
                                     @error('password')
                                         <div class="invalid-feedback text-capitalize">
                                             {{ $message }}
@@ -101,10 +102,15 @@
     <script>
         $(document).ready(function(){
             $('#show').click(function(){
-                if($('#password').type() === "password"){
+                if($('#password').attr("type") == "password"){
                     $("#password").attr("type", "text");
+                    $('#icons').removeAttr('data-icon', 'pepicons:eye')
+                    $('#icons').attr('data-icon', 'pepicons:eye-closed')
+                    
                 } else{
                     $("#password").attr("type", "password");
+                    $('#icons').removeAttr('data-icon', 'pepicons:eye-closed')
+                    $('#icons').attr('data-icon', 'pepicons:eye')
                 };
             });
         });

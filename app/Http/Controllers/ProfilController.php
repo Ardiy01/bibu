@@ -6,6 +6,7 @@ use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ProfilController extends Controller
@@ -32,9 +33,19 @@ class ProfilController extends Controller
     public function edit(User $user, $usr, Request $request)
     {
         //
+        if(request()->ajax()){
+            $query = $request->get('value');
+            $kecamatan = DB::table('kecamatans')->where('id_kab', $query)->orderBy('nama_kecamatan', 'ASC')->get();
+
+            $data = array(
+                'kecamatan' => $kecamatan,
+            );
+
+            return Response($data);
+
+        }
         return view('dashboard.profil.update',[
             'user' => User::where('id', auth()->user()->id)->get(),
-            'kecamatan' => Kecamatan::all()->sortBy('nama_kecamatan'),
             'kabupaten' => Kabupaten::all()->sortBy('nama_kabupaten')
         ]);
     }

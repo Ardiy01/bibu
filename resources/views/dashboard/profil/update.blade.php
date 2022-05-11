@@ -69,20 +69,13 @@
                                     <div class="d-grid gap-2 col-12 mx-auto">
                                         <div class="my-2" style="color: #007C84">
                                             <label class="form-label mb-1 fw-bold" for="kecamatan">Kecamatan</label>
-                                            <div class="input-group mt-0" id="kecamatan">
+                                            <div class="input-group mt-0">
                                                 <select class="form-select bg-white fw-bold shadow" id="kecamatan"
                                                     name="id_kecamatan" style="color: #007C84">
-                                                    @foreach ($kecamatan as $kcmt)
-                                                        @if (old('id_kecamatan', $usr->id_kecamatan) == $kcmt->id)
-                                                            <option value="{{ $kcmt->id }}" style="color: #007C84"
+                                                        <option value="{{ $usr->id_kecamatan }}" style="color: #007C84"
                                                                 selected>
-                                                                {{ $kcmt->nama_kecamatan }}
-                                                            </option>
-                                                        @else
-                                                            <option value="{{ $kcmt->id }}" style="color: #007C84">
-                                                                {{ $kcmt->nama_kecamatan }}</option>
-                                                        @endif
-                                                    @endforeach
+                                                            {{ $usr->kecamatan->nama_kecamatan }}
+                                                        </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -95,10 +88,12 @@
                             <x-detail id="email" label="Email" name="email" type="email" :value="$usr->email ?? ''" />
 
                             <x-detail id="password" label="Password" name="password" type="password" />
+                            <x-input class="my-0" type="hidden" id="id_us" :value="$usr->id"/>
+
                         </div>
 
                         {{-- button --}}
-                        <div class="col-12 text-sm-start text-center my-2" id="btn-update">
+                        <div class="col-12 text-sm-start text-center mt-0 mb-2" id="btn-update">
                             <button type="submit" class="btn text-light shadow-sm me-3"
                                 style="background-color: #004347">Simpan</button>
                             <a href="/dashboard/profil" class="btn px-4 text-light shadow-sm"
@@ -115,18 +110,40 @@
 
 @push('script')
 <script>
-    $(document).ready(function() {
-        $('#kabupaten').on('change', function() {
+    window.onload = function(){
+        var id = $('#id_us').val()
             var value = $('#kabupaten').val();
-            var kcmtan = document.getElementById('#kecamatan');
             $.ajax({
                 type: "get",
-                url: "/dashboard/profil/{{ $usr->id }}/edit",
+                url: "/dashboard/profil/" + id + "/edit",
                 data: {value: value},
                 dataType: "json",
                 success: function(data) {
                     var kcmt = data.kecamatan;
+                    $.each(kcmt, function(index, obj){
+                        $('#kecamatan').append('<option value="' + obj.id + '">' + obj.nama_kecamatan + '</option>');
+                    });
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.responseText);
+                }
+            });
+    };
+</script>
 
+<script>
+    $(document).ready(function() {
+        $('#kabupaten').on('change', function() {
+            var id = $('#id_us').val()
+            var value = $('#kabupaten').val();
+            $('#kecamatan').html("");
+            $.ajax({
+                type: "get",
+                url: "/dashboard/profil/" + id + "/edit",
+                data: {value: value},
+                dataType: "json",
+                success: function(data) {
+                    var kcmt = data.kecamatan;
                     $.each(kcmt, function(index, obj){
                         $('#kecamatan').append('<option value="' + obj.id + '">' + obj.nama_kecamatan + '</option>');
                     });

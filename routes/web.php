@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
@@ -24,16 +25,14 @@ use App\Http\Controllers\RegistrasiController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/',[HomeController::class, 'index'])->middleware('guest');
 // registrasi
 Route::get('/registrasi', [RegistrasiController::class, 'create'])->middleware('guest');
 Route::post('/registrasi', [RegistrasiController::class, 'store']);
 
 // login
-Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/', [LoginController::class, 'cekLogin']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'cekLogin']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 
