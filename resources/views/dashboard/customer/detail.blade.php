@@ -24,6 +24,7 @@
                 {{-- data --}}
                 <div class="d-grid gap-1 col-12 mx-auto">
                     <x-detail id="nama" label="Nama Lengkap" type="text" :value="$usr->nama" :readonly=true />
+                    <x-detail id="jenis_kelamin" label="Jenis Kelamin" type="text" :value="$usr->jenis_kelamin" :readonly=true />
                     <x-detail id="username" label="Username" type="text" :value="$usr->username" :readonly=true />
                     <x-detail id="alamat" type="text" label="Alamat" :value="$usr->jalan .
                         ' No. ' .

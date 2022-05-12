@@ -33,7 +33,7 @@
                         {{-- button --}}
                         <div class="col-12 text-sm-start text-center t-sm-3 my-2" id="btn-update"
                             style="margin-left: 11rem">
-                            <button type="submit" class="btn text-light shadow-sm ms-sm-5 mx-2"
+                            <button type="submit" id="simpan" class="btn text-light shadow-sm ms-sm-5 mx-2"
                                 style="background-color: #004347">Simpan</button>
                             <a href="/dashboard/transaksi" class="btn px-4 text-light shadow-sm"
                                 style="background-color: #2DB5B2">Batal</a>

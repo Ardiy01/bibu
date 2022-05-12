@@ -65,7 +65,7 @@
                         @if ($produkUser->count())
                             @foreach ($produkUser as $produk)
                                 <div class="col-sm-6">
-                                <div class="card- shadow" style="min-height: 10rem; max-height: 10rem; background-color:#EAF3F4; color:#007C84;">
+                                <div class="shadow rounded-3" style="min-height: 10rem; max-height: 10rem; background-color:#EAF3F4; color:#007C84;">
                                     <div class="card-body py-auto">
                                         <div class="row">
                                             <div class="col-4 my-auto">
@@ -84,7 +84,7 @@
                         @else
                             @foreach ($produk as $prd)
                                 <div class="col-sm-6">
-                                <div class="card- shadow" style="min-height: 10rem; max-height: 10rem; background-color:#EAF3F4; color:#007C84;">
+                                <div class="shadow rounded-3" style="min-height: 10rem; max-height: 10rem; background-color:#EAF3F4; color:#007C84;">
                                     <div class="card-body py-auto">
                                         <div class="row">
                                             <div class="col-4 my-auto">
@@ -106,7 +106,7 @@
             </div>
 
             {{-- informasi toko --}}
-            <div class="container shadow py-3" style="background-color: #EAF3F4; color: #007C84;">
+            <div class="container shadow py-3 rounded-3" style="background-color: #EAF3F4; color: #007C84;">
                 <div class="row">
                     <div class="col-3">
                         <img class="shadow rounded-3" src="{{ asset('assets/img/toko.jpeg') }}" alt="tokoBibu" style="max-height: 9rem">
@@ -122,37 +122,12 @@
 @endsection
 @push('script')
 @can('pemilik')
-    
-    <script>
-        $(document).ready(function() {
-            $('#filter').on('change', function() {
-                var value = $('#filter').val();
-                $.ajax({
-                    type: "get",
-                    url: "dashboard",
-                    data: {value: value},
-                    dataType: "json",
-                    success: function(data) {
-                        $('#laba').html(" ");
-                        $('#laba').html('<h5 class="card-title"> Rp. ' + data.laba.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") +'</h5>');
-
-                        $('#pendapatan').html(" ");
-                        $('#pendapatan').html('<h5 class="card-title"> Rp. ' + data.pemasukan.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") +'</h5>');
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        alert(xhr.responseText);
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script>
-        window.onload = function() {
-            // Graphs
-            var ctx = document.getElementById('grafik')
+        $(document).ready(function() {
             // eslint-disable-next-line no-unused-vars
-            var grafik = new Chart(ctx, {
+            var grafik = new Chart($('#grafik'), {
                 type: 'line',
                 data: {
                     labels: [
@@ -207,7 +182,8 @@
                     }
                 }
             });
-        };
+        });
     </script>
+    
 @endcan
 @endpush

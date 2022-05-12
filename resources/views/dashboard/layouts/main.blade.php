@@ -12,13 +12,20 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/component.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/media-query.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/loading.css') }}">
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <link rel="shotcut icon" href="{{ asset('assets/img/Logo.png') }}">
     <title>BIBU</title>
+    <style>
+        body{
+            background-color: #f5fafa;
+        }
+    </style>
 </head>
 
-<body style="background-color: #f5fafa">
+<body class="load">
+    
     @include('sweetalert::alert')
     <div class="container-fluid">
         <div class="row">
@@ -35,8 +42,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
-    <script src="{{ asset('assets/js/script.js') }}"></script>
-    <script src="{{ asset('assets/js/orders.js') }}"></script>
+    <script src="{{ asset('assets/js/loading.js') }}"></script>
     @stack('script')
 </body>
 

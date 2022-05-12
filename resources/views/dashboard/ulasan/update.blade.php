@@ -36,7 +36,7 @@
                             <textarea name="ulasan" id="ulasan" cols="35" rows="4"></textarea>
                         </div>
                         <div class="col-12 text-sm-start text-center pt-sm-3 my-2" id="btn-ulasan">
-                            <button type="submit" class="btn text-light shadow-sm ms-sm-5 mx-2 px-sm-3" style="background-color: #004347">Simpan</button>
+                            <button type="submit" id="simpan" class="btn text-light shadow-sm ms-sm-5 mx-2 px-sm-3" style="background-color: #004347">Simpan</button>
                             <a href="/dashboard/riwayat/pesanan/{{ $ulasan->id }}" class="btn px-4 text-light shadow-sm" style="background-color: #2DB5B2">Batal</a>
                         </div>
                     {{-- </div> --}}

@@ -24,7 +24,7 @@
                                         $user->nomor .
                                         ' Kec. ' .
                                         $user->kecamatan->nama_kecamatan .
-                                        ', Kab. ' .
+                                        ', ' .
                                         $user->kabupaten->nama_kabupaten" :readonly=true />
                             @endif
 
@@ -59,7 +59,7 @@
 
                         @foreach ($users as $user)
                             @if ($user->rule == 'Customer')
-                                <x-input-pesanan class="row mb-sm-3 mb-3" id="struk" label="Bukti Pembayaran" type="file"
+                                <x-input-pesanan class="row mb-sm-3 mb-3 bukti-transfer" id="struk" label="Bukti Pembayaran" type="file"
                                     name="bukti_pembayaran" />
                             @endif
                         @endforeach
@@ -96,7 +96,7 @@
                         {{-- button --}}
                         <div class="col-12 text-sm-start text-center mt-0 mb-2" id="btn-update"
                             style="margin-left: 11rem">
-                            <button type="submit" class="btn text-light shadow-sm ms-sm-5 mx-2"
+                            <button type="submit" class="btn text-light shadow-sm ms-sm-5 mx-2" id="simpan"
                                 style="background-color: #004347">Simpan</button>
                             <a href="/dashboard/pesanan" class="btn px-4 text-light shadow-sm"
                                 style="background-color: #2DB5B2">Batal</a>
@@ -111,42 +111,45 @@
 @endsection
 @push('script')
 <script>
-    window.onload = function(){
+    $(document).ready(function(){
         var harga_produk = $('#produk option:selected').data('hargaproduk');
         $('#hargaproduk').val(harga_produk);
         var pembayaran = $('#pembayaran option:selected').data('pembayaran');
         if(pembayaran == "Tunai"){
             $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
+            $('.bukti-transfer').addClass('d-none');
         } else{
             $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}"data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
-        }
-    }
-</script>
-<script>
-    $(document).ready(function(){
+            $('.bukti-transfer').removeClass('d-none');
+        };
         $('#produk').change(function(){
                 var jenis_produk = $('#produk option:selected').data('jenisproduk');
                 var harga_produk = $('#produk option:selected').data('hargaproduk');
                 var pembayaran = $('#pembayaran option:selected').data('pembayaran');
                 $('#hargaproduk').val(harga_produk);
-                if(jenis_produk == "Matang" || pembayaran == "Tunai"){
-                    $('#pembayaran').html('<select class="form-select" id="pembayaran" name="id_metode_pembayaran"><option value="{{ old('id_metode_pembayaran', 1) }}" style="color: #007C84">Tunai</option></select>');
+                if(jenis_produk == "Matang" || pembayaran != "Tunai"){
+                    $('#pembayaran').html('<select class="form-select" id="pembayaran" name="id_metode_pembayaran"><option value="{{ old('id_metode_pembayaran', 1) }}" data-pembayaran="Tunai" style="color: #007C84">Tunai</option></select>');
                     $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
                 } else{
                     $('#pembayaran').html('<select class="form-select" id="pembayaran" name="id_metode_pembayaran">@foreach ($metode as $pymb)<option value="{{ old('id_metode_pembayaran', $pymb->id) }}" data-pembayaran="{{ $pymb->metode_pembayaran }}" style="color: #007C84">{{ $pymb->metode_pembayaran . ' (' . $pymb->no_rekening . ')' }}</option>@endforeach</select>');
-                    $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}"data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
+                    $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}" data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
+                }; 
+ 
+                if(pembayaran == "Tunai"){
+                    $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
+                    $('.bukti-transfer').addClass('d-none');
                 };
             });
-    
-            $('#pembayaran').change(function(){
-                var pembayaran = $('#pembayaran option:selected').data('pembayaran');
-                var jenis_produk = $('#produk option:selected').data('jenisproduk');
-                if(pembayaran == "Tunai" || jenis_produk == "Matang" ){
-                    $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
-                } else{
-                    $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}"data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
-                }
-            });
+        $('#pembayaran').change(function(){
+            var pembayaran = $('#pembayaran option:selected').data('pembayaran');
+            if(pembayaran == "Tunai"){
+                $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
+                $('.bukti-transfer').addClass('d-none');
+            } else{
+                $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}"data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
+                $('.bukti-transfer').removeClass('d-none');
+            };
+        });
     });
 </script>
 @endpush

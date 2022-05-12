@@ -31,7 +31,20 @@
                         {{-- data profil --}}
                         <div class="d-grid gap-0 col-12 mx-auto mt-3">
                             <x-detail id="nama" label="Nama Lengkap" name="nama" type="text" :value="$usr->nama ?? ''" />
-
+                            
+                            <div class="d-grid gap-2 col-12 mx-auto">
+                                <div class="my-2" style="color: #007C84">
+                                    <label class="form-label mb-1 fw-bold" for="jenis_kelamin">Jenis Kelamin</label>
+                                    <div class="input-group mt-0">
+                                        <select class="form-select bg-white fw-bold shadow" id="jenis_kelamin"
+                                                name="jenis_kelamin" style="color: #007C84">
+                                            <option value="{{ $usr->jenis_kelamin }}" style="color: #007C84" selected> {{ $usr->jenis_kelamin }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <x-detail id="username" label="Username" name="username" type="text" :value="$usr->username ?? ''" />
 
                             <div class="row">
@@ -82,19 +95,25 @@
                                     </div>
                                 </div>
                             </div>
-                            <x-detail id="nomer_telepon" label="Nomor Telepon" name="nomer_telepon" type="text"
+                            <x-detail id="nomer_telepon" label="Nomor Hp" name="nomer_telepon" type="text"
                                 :value="$usr->nomer_telepon ?? ''" />
 
                             <x-detail id="email" label="Email" name="email" type="email" :value="$usr->email ?? ''" />
 
-                            <x-detail id="password" label="Password" name="password" type="password" />
+                            <label for="password" class="form-label fw-bold mt-2" style="color:#007C84">Password</label>
+                            <div class="input-group mb-3">
+                                <input name="password" type="password" class="form-control shadow fw-bold" id="password"  style="color:#007C84">
+                                <button class="btn shadwo" type="button" id="show" style="background-color:#007C84">
+                                    <span id="icons" class="iconify" data-icon="pepicons:eye" style="color: white; font-size: 20px"></span>
+                                </button>
+                            </div>
                             <x-input class="my-0" type="hidden" id="id_us" :value="$usr->id"/>
 
                         </div>
 
                         {{-- button --}}
                         <div class="col-12 text-sm-start text-center mt-0 mb-2" id="btn-update">
-                            <button type="submit" class="btn text-light shadow-sm me-3"
+                            <button type="submit" id="simpan" class="btn text-light shadow-sm me-3"
                                 style="background-color: #004347">Simpan</button>
                             <a href="/dashboard/profil" class="btn px-4 text-light shadow-sm"
                                 style="background-color: #2DB5B2">Batal</a>
@@ -109,50 +128,6 @@
 @endsection
 
 @push('script')
-<script>
-    window.onload = function(){
-        var id = $('#id_us').val()
-            var value = $('#kabupaten').val();
-            $.ajax({
-                type: "get",
-                url: "/dashboard/profil/" + id + "/edit",
-                data: {value: value},
-                dataType: "json",
-                success: function(data) {
-                    var kcmt = data.kecamatan;
-                    $.each(kcmt, function(index, obj){
-                        $('#kecamatan').append('<option value="' + obj.id + '">' + obj.nama_kecamatan + '</option>');
-                    });
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.responseText);
-                }
-            });
-    };
-</script>
-
-<script>
-    $(document).ready(function() {
-        $('#kabupaten').on('change', function() {
-            var id = $('#id_us').val()
-            var value = $('#kabupaten').val();
-            $('#kecamatan').html("");
-            $.ajax({
-                type: "get",
-                url: "/dashboard/profil/" + id + "/edit",
-                data: {value: value},
-                dataType: "json",
-                success: function(data) {
-                    var kcmt = data.kecamatan;
-                    $.each(kcmt, function(index, obj){
-                        $('#kecamatan').append('<option value="' + obj.id + '">' + obj.nama_kecamatan + '</option>');
-                    });
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.responseText);
-                }
-            });
-        });
-    });
-</script>
+<script src="{{ asset('assets/js/profil.js') }}"></script>
+<script src="{{ asset('assets/js/showPass.js') }}"></script>
 @endpush

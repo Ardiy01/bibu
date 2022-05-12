@@ -42,7 +42,7 @@
                                     </p>
                                 @endif
                                 <div class="input-group mb-4 input-group-lg">
-                                    <input type="text" id="username" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                    <input type="text" id="username" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Username" aria-label="Username" style="color: #007C84">
                                     @error('username')
                                         <div class="invalid-feedback text-capitalize">
                                             {{ $message }}
@@ -51,7 +51,7 @@
                                 </div>
 
                                 <div class="input-group mb-3 input-group-lg">
-                                    <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" aria-describedby="show">
+                                    <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" aria-describedby="show" style="color: #007C84">
                                     <button class="btn" type="button" id="show" style="background-color:#007C84">
                                         <span id="icons" class="iconify" data-icon="pepicons:eye" style="color: white; font-size: 25px"></span>
                                     </button>
@@ -99,22 +99,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-    <script>
-        $(document).ready(function(){
-            $('#show').click(function(){
-                if($('#password').attr("type") == "password"){
-                    $("#password").attr("type", "text");
-                    $('#icons').removeAttr('data-icon', 'pepicons:eye')
-                    $('#icons').attr('data-icon', 'pepicons:eye-closed')
-                    
-                } else{
-                    $("#password").attr("type", "password");
-                    $('#icons').removeAttr('data-icon', 'pepicons:eye-closed')
-                    $('#icons').attr('data-icon', 'pepicons:eye')
-                };
-            });
-        });
-    </script>
+    <script src="{{ asset('assets/js/showPass.js') }}"></script>
 </body>
 
 </html>

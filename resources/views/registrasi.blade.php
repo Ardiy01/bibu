@@ -43,8 +43,6 @@
                     <div class="d-grid gap-0 col-12 mx-auto mt-3">
                         <x-detail id="nama" label="Nama Lengkap" name="nama" type="text" />
 
-                        <x-detail id="username" label="Username" name="username" type="text" />
-
                         <div class="d-grid gap-2 col-12 mx-auto">
                             <div class="my-2" style="color: #007C84">
                                 <label class="form-label mb-1 fw-bold" for="jenis_kelamin">Jenis Kelamin</label>
@@ -59,6 +57,9 @@
                                 </div>
                             </div>
                         </div>
+
+                        <x-detail id="username" label="Username" name="username" type="text" />
+
                         <div class="row">
                             <div class="col-3">
                                 <x-detail id="jalan" label="Jalan" name="jalan" type="text" />
@@ -130,46 +131,8 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $('#kabupaten').on('change', function() {
-                var value = $('#kabupaten').val();
-                var kcmtan = document.getElementById('#kecamatan');
-                $('#kecamatan').html(" ");
-                $.ajax({
-                    type: "get",
-                    url: "registrasi",
-                    data: {
-                        value: value
-                    },
-                    dataType: "json",
-                    success: function(data) {
-                        var kcmt = data.kecamatan;
-
-                        $.each(kcmt, function(index, obj) {
-                            $('#kecamatan').append('<option value="' + obj.id + '">' + obj.nama_kecamatan + '</option>');
-                        });
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        alert(xhr.responseText);
-                    }
-                });
-            });
-
-            $('#show').click(function(){
-                if($('#password').attr("type") == "password"){
-                    $("#password").attr("type", "text");
-                    $('#icons').removeAttr('data-icon', 'pepicons:eye')
-                    $('#icons').attr('data-icon', 'pepicons:eye-closed')
-                    
-                } else{
-                    $("#password").attr("type", "password");
-                    $('#icons').removeAttr('data-icon', 'pepicons:eye-closed')
-                    $('#icons').attr('data-icon', 'pepicons:eye')
-                };
-            });
-        });
-    </script>
+    <script src="{{ asset('assets/js/register.js') }}"></script>
+    <script src="{{ asset('assets/js/showPass.js') }}"></script>
 </body>
 
 </html>

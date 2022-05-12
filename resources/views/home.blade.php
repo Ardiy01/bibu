@@ -2,13 +2,11 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="shotcut icon" href="{{ asset('assets/img/Logo.png') }}">
     <title>BiBU</title>
     <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
 </head>
@@ -44,32 +42,54 @@
             </div>
         </div>
 
-        <div class="container my-2">
-            <div class="row justify-content-center my-5">
+        <div class="container mt-4 mb-4">
+            <div class="row">
                 @foreach ($produks as $produk)
                     <div class="col-sm-6">
-                        <div class="card- shadow"
-                            style="min-height: 10.5rem; max-height: 10.5rem; background-color:#F2F8F8; color:#007C84;">
-                            <div class="card-body py-auto">
-                                <div class="row">
+                        <a class="text-decoration-none" href="/dashboard/pesanan/create" style="color: #007C84">
+                            <div class="shadow rounded-3 py-3 px-3" style="max-height: 13rem; min-height: 13rem;">
+                                <div class="row mb-0">
+                                    <!-- gambar produk -->
                                     <div class="col-4 my-auto">
-                                        <img class="shadow rounded-3" src="{{ asset('storage/'. $produk->gambar) }}" alt="{{ $produk->nama_produk }}" width="140">
+                                        <img class="rounded-3 shadow" src="{{ asset('storage/' . $produk->gambar) }}"
+                                            alt="{{ $produk->nama_produk }}" style="max-width: 10rem;">
                                     </div>
+                                    <!-- keterangan produk -->
                                     <div class="col-8">
-                                        <h6 class="fw-bold text-capitalize">{{ $produk->nama_produk }}</h6>
-                                        <p class="text-capitalize">{{ $produk->keterangan }}</p>
+                                        <div class="d-flex justify-content-between mb-0">
+                                            <div class="my-auto">
+                                                <h6 class="fw-bold">{{ $produk->nama_produk }}</h6>
+                                            </div>
+                                            <div class="text-center">
+                                                <p class="my-0 py-0">Stok</p>
+                                                <p class="pb-0 mb-0 fw-bold" style="margin-top: -6px;">
+                                                    {{ $produk->stok }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="my-0" style="min-height: 5rem">
+                                            <p class="mb-2 text-capitalize" style="text-align: justify">
+                                                {{ $produk->keterangan }}
+                                            </p>
+                                        </div>
+
+                                        <div class="my-0">
+                                            <p class="mb-0 fw-bold">@currency($produk->harga)</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <p class="mb-1 py-1">Telah Dibeli Sebanyak: 200</p>
+                                <!-- jumlah di beli -->
+                                <div class="col-12 my-2">
+                                    <p class="mb-0 fw-bold">Telah Dibeli Sebanyak: {{ $produk->total }} Kg</p>
+                                </div>
                             </div>
-                        </div>
-                    </div>     
+                        </a>
+                    </div>
                 @endforeach
             </div>
         </div>
 
         <div class="container my-3">
-            <div class="container shadow py-3" style="background-color: #F2F8F8; color: #007C84;">
+            <div class="container shadow py-3 rounded-3" style="background-color: #F2F8F8; color: #007C84;">
                 <div class="row">
                     <div class="col-3 my-auto px-5">
                         <img class="shadow rounded-3" src="{{ asset('assets/img/toko.jpeg') }}" alt="tokoBibu"

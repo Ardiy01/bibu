@@ -18,7 +18,8 @@
                             <label class="form-label col-sm-3 fs-6 col-12 m-auto" for="jenis">Jenis Produk</label>
                             <select class="form-select" id="jenis" name="id_jenis_produk" style="color: #007C84">
                                 @foreach ($jenis_produks as $jenis)
-                                    <option value="{{ old('id_jenis_produk', $jenis->id) }}" style="color: #007C84">{{ $jenis->jenis_produk }}
+                                    <option value="{{ old('id_jenis_produk', $jenis->id) }}" style="color: #007C84">
+                                        {{ $jenis->jenis_produk }}
                                     </option>
                                 @endforeach
                             </select>
@@ -43,7 +44,7 @@
 
                         {{-- button --}}
                         <div class="d-grid gap-2 mt-4">
-                            <button type="submit" class="btn fw-bold text-light shadow-sm"
+                            <button type="submit" id="simpan" class="btn fw-bold text-light shadow-sm"
                                 style="background-color: #004347">Simpan</button>
                             <a href="/dashboard/produk" class="btn px-2 fw-bold text-light shadow-sm"
                                 style="background-color: #2DB5B2">Batal</a>

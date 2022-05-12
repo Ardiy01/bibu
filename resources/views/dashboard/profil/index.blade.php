@@ -28,6 +28,13 @@
                         :readonly=true
                     />
                     <x-detail  
+                        id="jenis_kelamin"
+                        label="Jenis Kelamin"
+                        type="text"
+                        :value="$usr->jenis_kelamin"
+                        :readonly=true
+                    />
+                    <x-detail  
                         id="username"
                         label="Username"
                         type="text"

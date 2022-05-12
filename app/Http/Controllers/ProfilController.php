@@ -30,7 +30,7 @@ class ProfilController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user, $usr, Request $request)
+    public function edit(Request $request)
     {
         //
         if(request()->ajax()){
@@ -71,6 +71,7 @@ class ProfilController extends Controller
 
         $data = [
             'nama' => 'required',
+            'jenis_kelamin' => 'required',
             'nomer_telepon' => 'required|max:12',
             'profil' => 'image|mimes:jpeg,png,jpg|file|max:2048',
             'jalan' => 'required',

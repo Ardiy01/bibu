@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="text-sm-start btn-src-date" style="margin-left: 10rem;">
-                    <button class="btn mb-2 text-light px-4" type="submit"
+                    <button class="btn mb-2 text-light px-4" type="submit" id="search"
                         style="background-color: #007C84;  border-radius: 10px">Cari</button>
                 </div>
             </form>

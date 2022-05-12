@@ -147,7 +147,7 @@
                                 name="nama_pembayaran" :readonly=true :value="$pesan->metode_pembayaran->metode_pembayaran"/>
                         
                         
-                        <x-input-pesanan class="row m-0" id="ekspedisi" type="hidden"
+                        <x-input-pesanan class="row m-0" type="hidden"
                                 name="id_pengiriman" :readonly=true :value="$pesan->id_pengiriman"/>
                         <x-input-pesanan class="row mb-sm-3 mb-3" id="ekspedisi" label="Jenis Pengiriman" type="text"
                                 name="nama_pengiriman" :readonly=true :value="$pesan->pengiriman->nama_pengiriman"/>
@@ -221,7 +221,7 @@
                         {{-- button --}}
                         <div class="col-12 text-sm-start text-center t-sm-3 my-2" id="btn-update"
                             style="margin-left: 11rem">
-                            <button type="submit" class="btn text-light shadow-sm ms-sm-5 mx-2"
+                            <button type="submit" class="btn text-light shadow-sm ms-sm-5 mx-2" id="simpan"
                                 style="background-color: #004347">Simpan</button>
                             <a href="/dashboard/pesanan/{{ $pesan->id }}" class="btn px-4 text-light shadow-sm"
                                 style="background-color: #2DB5B2">Batal</a>
@@ -235,44 +235,46 @@
 
 @push('script')
 
-    <script>
-        window.onload = function(){
-            var harga_produk = $('#produk option:selected').data('hargaproduk');
-            $('#hargaproduk').val(harga_produk);
+@can('customer')
+<script>
+    $(document).ready(function(){
+        var harga_produk = $('#produk option:selected').data('hargaproduk');
+        var jenis_produk = $('#produk option:selected').data('jenisproduk');
+        $('#hargaproduk').val(harga_produk);
+        var pembayaran = $('#pembayaran option:selected').data('pembayaran');
+        if(pembayaran == "Tunai" || jenis_produk == "Matang"){
+            $('#pembayaran').html('<select class="form-select" id="pembayaran" name="id_metode_pembayaran"><option value="{{ old('id_metode_pembayaran', 1) }}" data-pembayaran="Tunai" style="color: #007C84">Tunai</option></select>');
+            $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
+        } else{
+            $('#pembayaran').html('<select class="form-select" id="pembayaran" name="id_metode_pembayaran">@foreach ($metode as $pymb)<option value="{{ old('id_metode_pembayaran', $pymb->id) }}" data-pembayaran="{{ $pymb->metode_pembayaran }}" style="color: #007C84">{{ $pymb->metode_pembayaran . ' (' . $pymb->no_rekening . ')' }}</option>@endforeach</select>');
+            $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}"data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
+        };
+        $('#produk').change(function(){
+                var jenis_produk = $('#produk option:selected').data('jenisproduk');
+                var harga_produk = $('#produk option:selected').data('hargaproduk');
+                var pembayaran = $('#pembayaran option:selected').data('pembayaran');
+                $('#hargaproduk').val(harga_produk);
+                if(jenis_produk == "Matang" || pembayaran != "Tunai"){
+                    $('#pembayaran').html('<select class="form-select" id="pembayaran" name="id_metode_pembayaran"><option value="{{ old('id_metode_pembayaran', 1) }}" data-pembayaran="Tunai" style="color: #007C84">Tunai</option></select>');
+                    $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
+                } else{
+                    $('#pembayaran').html('<select class="form-select" id="pembayaran" name="id_metode_pembayaran">@foreach ($metode as $pymb)<option value="{{ old('id_metode_pembayaran', $pymb->id) }}" data-pembayaran="{{ $pymb->metode_pembayaran }}" style="color: #007C84">{{ $pymb->metode_pembayaran . ' (' . $pymb->no_rekening . ')' }}</option>@endforeach</select>');
+                    $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}" data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
+                }; 
+ 
+                if(pembayaran == "Tunai"){
+                       $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
+                };
+            });
+        $('#pembayaran').change(function(){
             var pembayaran = $('#pembayaran option:selected').data('pembayaran');
             if(pembayaran == "Tunai"){
                 $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84"><option value="{{ old('id_pengiriman', 1) }}">Pick Up</option></select>');
             } else{
                 $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman" style="color: #007C84">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}"data-eks="{{ $eks->id }}">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
-            }
-        };
-    </script>
-    <script>
-        $(document).ready(function(){
-            $('#produk').change(function(){
-                    var jenis_produk = $('#produk option:selected').data('jenisproduk');
-                    var harga_produk = $('#produk option:selected').data('hargaproduk');
-                    var pembayaran = $('#pembayaran option:selected').data('pembayaran');
-                    $('#hargaproduk').val(harga_produk);
-                    if(jenis_produk == "Matang" || pembayaran == "Tunai"){
-                        $('#pembayaran').html('<select class="form-select" id="pembayaran" name="id_metode_pembayaran"><option value="{{ old('id_metode_pembayaran', 1) }}" style="color: #007C84">Tunai</option></select>');
-                        $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman"><option value="{{ old('id_pengiriman', 1) }}" style="color: #007C84">Pick Up</option></select>');
-                    } else{
-                        $('#pembayaran').html('<select class="form-select" id="pembayaran" name="id_metode_pembayaran">@foreach ($metode as $pymb)<option value="{{ old('id_metode_pembayaran', $pymb->id) }}" data-pembayaran="{{ $pymb->metode_pembayaran }}" style="color: #007C84">{{ $pymb->metode_pembayaran . ' (' . $pymb->no_rekening . ')' }}</option>@endforeach</select>');
-                        $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}"data-eks="{{ $eks->id }}" style="color: #007C84">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
-                    };
-                });
-        
-                $('#pembayaran').change(function(){
-                    var pembayaran = $('#pembayaran option:selected').data('pembayaran');
-                    var jenis_produk = $('#produk option:selected').data('jenisproduk');
-                    if(pembayaran == "Tunai" || jenis_produk == "Matang" ){
-                        $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman"><option value="{{ old('id_pengiriman', 1) }}" style="color: #007C84">Pick Up</option></select>');
-                    } else{
-                        $('#ekspedisi').html('<select class="form-select" id="pengiriman" name="id_pengiriman">@foreach ($ekspedisi as $eks)<option value="{{ old('id_pengiriman', $eks->id) }}"data-eks="{{ $eks->id }}" style="color: #007C84">{{ $eks->nama_pengiriman }}</option>@endforeach</select>');
-                    }
-                });
-            });
-        </script>
-
+            };
+        });
+    });
+</script>
+@endcan
 @endpush
