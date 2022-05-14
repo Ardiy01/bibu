@@ -16,7 +16,7 @@ class CreateTransaksisTable extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->string('keterangan')->default('Pendapatan');
-            $table->float('nominal');
+            $table->double('nominal');
             $table->foreignId('id_jenis_transaksi');
             $table->foreignId('id_pengeluaran')->nullable();
             $table->timestamps();

@@ -51,6 +51,7 @@ class ProdukController extends Controller
             'keterangan' => 'required|min:10',
             'id_jenis_produk' => 'required' 
         ]);
+        
         $validateData['gambar'] = $request->file('gambar')->store('produk-images');
         Produk::create($validateData);
 

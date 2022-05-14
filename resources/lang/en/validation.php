@@ -84,7 +84,7 @@ return [
     'mac_address' => 'The :attribute must be a valid MAC address.',
     'max' => [
         'numeric' => ':attribute maksimal :max.',
-        'file' => ':attribute ukuran gambar maksimal :max kilobytes.',
+        'file' => 'ukuran :attribute maksimal :max kilobytes.',
         'string' => ':attribute maksimal terdiri :max karakter.',
         'array' => 'The :attribute must not have more than :max items.',
     ],

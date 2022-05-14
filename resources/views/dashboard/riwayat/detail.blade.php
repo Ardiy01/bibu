@@ -13,8 +13,13 @@
                             Detail pesanan
                         </div>
                         @foreach ($riwayat as $rwyt)
-                            <div class="col-4 text-end mb-0"
-                                @if ($rwyt->user->rule == 'Pemilik') style="visibility: hidden;" @endif>
+                            @if (auth()->user()->rule == "Pemilik")
+                                <div class="col-4 text-end mb-0 invisible"  @if ($rwyt->user->rule == 'Pemilik') style="visibility: hidden; margin-top: 2rem;" @endif>   
+                            @endif
+                            @if (auth()->user()->rule == "Customer")
+                                <div class="col-4 text-end mb-0 visible"  @if ($rwyt->user->rule == 'Pemilik') style="visibility: hidden; margin-top: 2rem;" @endif>   
+                            @endif
+                        
                                 @foreach ($ulasan as $uls)
                                     <a href="/dashboard/riwayat/pesanan/{{ $rwyt->id }}/edit" class="btn sty-btn-edit"
                                         @if ($uls->rating > 0) style="visibility: hidden" @endif>

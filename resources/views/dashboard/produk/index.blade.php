@@ -31,7 +31,7 @@
                                 <div class="col-sm-3 col-12">
                                     <div class="text-center">
                                         <img src="{{ asset('storage/' . $produk->gambar) }}" class="rounded m-auto"
-                                            alt="{{ $produk->nama_produk }}" style="max-width: 12rem;">
+                                            alt="{{ $produk->nama_produk }}" style="max-width: 12rem; min-width: 12rem; max-height: 8rem;">
                                     </div>
                                 </div>
                                 <div class="col-sm-7 col-12 mt-2 mt-sm-0">

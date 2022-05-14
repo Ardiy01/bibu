@@ -25,6 +25,7 @@
                                     <span>Upload Foto Baru</span>
                                     <input type="file" id="profil" class="upload" name="profil">
                                 </div>
+                                <p class="mt-0 px-2 pt-0" style="color:#007C84;">Gambar Maksimal Berukuran 2MB</p>
                             </div>
                         </div>
 

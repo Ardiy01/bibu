@@ -33,7 +33,7 @@
                                 <div class="col-sm-9 col-12 mt-1">
                                     <select class="form-select" id="produk" name="id_produk" style="color: #007C84">
                                         @foreach ($produk as $prd)
-                                            <option value="{{ old('id_produk', $prd->id) }}" data-hargaproduk="{{ $prd->harga }}" data-jenisproduk="{{ $prd->jenisproduk->jenis_produk }}" style="color: #007C84">{{ $prd->nama_produk }}
+                                            <option class="text-capitalize" value="{{ old('id_produk', $prd->id) }}" data-hargaproduk="{{ $prd->harga }}" data-jenisproduk="{{ $prd->jenisproduk->jenis_produk }}" style="color: #007C84">{{ $prd->nama_produk }}
                                             </option>
                                         @endforeach
                                     </select>

@@ -36,11 +36,11 @@
                                     <select class="form-select" id="produk" name="id_produk" style="color: #007C84">
                                         @foreach ($produk as $prd)
                                             @if (old('id_produk', $pesan->id_produk) == $prd->id)
-                                                <option value="{{ $prd->id }}" data-hargaproduk="{{ $prd->harga }}"
+                                                <option class="text-capitalize" value="{{ $prd->id }}" data-hargaproduk="{{ $prd->harga }}"
                                                     data-jenisproduk="{{ $prd->jenisproduk->jenis_produk }}"
                                                     style="color: #007C84" selected>{{ $prd->nama_produk }}</option>
                                             @else
-                                                <option value="{{ $prd->id }}" data-hargaproduk="{{ $prd->harga }}"
+                                                <option class="text-capitalize" value="{{ $prd->id }}" data-hargaproduk="{{ $prd->harga }}"
                                                     data-jenisproduk="{{ $prd->jenisproduk->jenis_produk }}"
                                                     style="color: #007C84">{{ $prd->nama_produk }}</option>
                                             @endif
