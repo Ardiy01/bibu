@@ -1,8 +1,8 @@
 @extends('dashboard.layouts.main')
 
 @section('content')
-<div class="container py-2 mt-4 shadow" style="border-radius: 12px; background-color: rgba(234, 243, 244, 1);">
-    <div class="container my-3">
+<div class="container py-2 mt-4 shadow" style="border-radius: 12px; background-color: (234, 243, 244, 1);">
+    <div class="container my-3">rgba
         <div class="card shadow sty-card">
             <div class="card-header mb-0 pb-0 hd">
                 <div class="text-center py-2">
@@ -33,7 +33,7 @@
                         </div>
                         <div>
                             <h6>Ulasan: </h6>
-                            <textarea name="ulasan" id="ulasan" cols="35" rows="4"></textarea>
+                            <textarea name="ulasan" id="ulasan" cols="35" rows="4" style="color: #007C84"></textarea>
                         </div>
                         <div class="col-12 text-sm-start text-center pt-sm-3 my-2" id="btn-ulasan">
                             <button type="submit" id="simpan" class="btn text-light shadow-sm ms-sm-5 mx-2 px-sm-3" style="background-color: #004347">Simpan</button>

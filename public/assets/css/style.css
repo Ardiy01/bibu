@@ -79,3 +79,12 @@ body.login-sty{
 .hover-logout .logout:hover{
     color: #F2F8F8;
 }
+
+.zoom-struk{
+    position: relative;
+}
+
+img.zoom-struk:hover{
+    z-index: 99999;
+    transform: scale(1.6);
+}

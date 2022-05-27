@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\Pesanan;
-use App\Models\Produk;
-use App\Models\Transaksi;
-use Facade\FlareClient\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -54,7 +50,7 @@ class DashboardController extends Controller
         $data_bulan = DB::table('transaksis')->select(DB::raw("MONTHNAME(updated_at) as bulan, MONTH(updated_at) as value"))->distinct()->paginate(8);
 
         // customer
-        $data_produk = DB::table('produks')->join('pesanans', 'produks.id', '=', 'pesanans.id_produk')->select(DB::raw("produks.*, COUNT(pesanans.id_produk) AS total"))->where('pesanans.id_user', auth()->user()->id)->groupBy('pesanans.id_produk')->orderBy('total', 'DESC')->paginate(2);
+        $data_produk = DB::table('produks')->join('pesanans', 'produks.id', '=', 'pesanans.id_produk')->select(DB::raw("produks.*, COUNT(pesanans.id_produk) AS total"))->where('pesanans.id_user', auth()->user()->id)->where('pesanans.id_status_pesanan', '=', 4)->groupBy('pesanans.id_produk')->orderBy('total', 'DESC')->paginate(2);
         $produks = DB::table('produks')->join('ulasans', 'produks.id', '=', 'ulasans.id_produk')->select(DB::raw("produks.*, AVG(ulasans.rating) AS rat"))->groupBy('ulasans.id_produk')->orderBy('rat', 'DESC')->paginate(2);
 
         return view('dashboard.index', [

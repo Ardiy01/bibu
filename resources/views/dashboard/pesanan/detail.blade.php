@@ -48,7 +48,7 @@
                                 <td class="fs-6" style="padding-right: 1rem;">Alamat</td>
                                 <td>:</td>
                                 <td class="fs-6" style="padding-left: 0.6rem;">
-                                    {{ $pesanan->user->jalan .' No. ' .$pesanan->user->nomor .' Kec. ' .$pesanan->user->kecamatan->nama_kecamatan .', Kab. ' .$pesanan->user->kabupaten->nama_kabupaten }}
+                                    {{ $pesanan->user->jalan . ' No. ' . $pesanan->user->nomor . ' Kec. ' . $pesanan->user->kecamatan->nama_kecamatan . ', Kab. ' . $pesanan->user->kabupaten->nama_kabupaten }}
                                 </td>
                             </tr>
                             <tr>
@@ -72,8 +72,7 @@
                             <tr>
                                 <td class="fs-6" style="padding-right: 1rem;">Total Harga Pesanan</td>
                                 <td>:</td>
-                                <td class="fs-6" style="padding-left: 0.6rem;">@currency($pesanan->jumlah_produk *
-                                    $pesanan->harga_produk)</td>
+                                <td class="fs-6" style="padding-left: 0.6rem;">@currency($pesanan->jumlah_produk * $pesanan->harga_produk)</td>
                             </tr>
                             <tr>
                                 <td class="fs-6" style="padding-right: 1rem;">Jenis Pengiriman</td>
@@ -83,7 +82,7 @@
                             </tr>
 
                             {{-- cek milik pemilik --}}
-                            @if ($pesanan->id_user == 1 || $pesanan->produk->jenisproduk->jenis_produk == "Matang")
+                            @if ($pesanan->id_user == 1 || $pesanan->produk->jenisproduk->jenis_produk == 'Matang')
                                 <tr>
                                     <td class="fs-6" style="padding-right: 1rem;">Deskripsi</td>
                                     <td>:</td>
@@ -116,7 +115,7 @@
                                     <td valign="top">:</td>
                                     <td rowspan="2" class="fs-6" style="padding-left: 0.6rem;"><img
                                             src="{{ asset('storage/' . $pesanan->bukti_pembayaran) }}"
-                                            style="max-width: 15rem" class="rounded float-start"
+                                            style="max-width: 15rem" class="rounded float-start zoom-struk"
                                             alt="{{ $pesanan->bukti_pembayaran }}"></td>
                                 </tr>
                             @endif

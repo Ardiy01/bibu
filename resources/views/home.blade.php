@@ -42,7 +42,7 @@
             </div>
         </div>
 
-        <div class="container mt-4 mb-4">
+        <div class="container mt-4 mb-4" style="background-color: #F2F8F8; color: #007C84;">
             <div class="row">
                 @foreach ($produks as $produk)
                     <div class="col-sm-6">
@@ -79,7 +79,7 @@
                                 </div>
                                 <!-- jumlah di beli -->
                                 <div class="col-12 my-2">
-                                    <p class="mb-0 fw-bold">Telah Dibeli Sebanyak: {{ $produk->total }} Kg</p>
+                                    <p class="mb-0 fw-bold">Telah Dibeli Sebanyak: {{ $produk->total }} Kali</p>
                                 </div>
                             </div>
                         </a>

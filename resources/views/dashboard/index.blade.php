@@ -50,7 +50,7 @@
             {{-- welcome --}}
             <div class="container row my-2 shadow-sm rounded-3" style="background-color: #B5E6EE; color: #007C84;">
                 <div class="col-8 py-5">
-                    <h2 class="fw-bold mx-5">Hi, {{ auth()->user()->nama }}</h2>
+                    <h2 class="fw-bold mx-5" id="text-sapaan"></h2>
                     <h6 class="mx-5">Dapatkan Ubi Cilembu Yang Anda Inginkan</h6>
                 </div>
                 <div class="col-4">
@@ -74,7 +74,7 @@
                                             <div class="col-8">
                                                 <h6 class="fw-bold text-capitalize">{{ $produk->nama_produk }}</h6>
                                                 <p class="text-capitalize">{{ $produk->keterangan }}</p>
-                                                <p class="mb-0 pb-0">Telah Dibeli Sebanyak: {{ $produk->total }}</p>
+                                                <p class="mb-0 pb-0">Telah Dibeli Sebanyak: {{ $produk->total }} kali</p>
                                             </div>
                                         </div>
                                     </div>
@@ -184,6 +184,25 @@
             });
         });
     </script>
+    
+@endcan
+
+
+@can('customer')
+<script>
+    $(document).ready(function(){
+        var i = 0, text;
+        text = "Hai..., {{auth()->user()->nama}}";
+        function ketik(){
+            if(i < text.length){
+                document.getElementById("text-sapaan").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(ketik, 180);
+            }
+        }
+        ketik(); 
+    })
+</script>
     
 @endcan
 @endpush
